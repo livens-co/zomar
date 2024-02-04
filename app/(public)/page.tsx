@@ -9,7 +9,7 @@ const HomePage = async () => {
      
 
       {/* SLIDER */}
-      <Slider />
+      {/* <Slider /> */}
     </div>
   );
 };
