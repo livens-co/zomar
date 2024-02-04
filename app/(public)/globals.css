@@ -1,0 +1,51 @@
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+:root {
+  --foreground-rgb: 0, 0, 0;
+  --background-start-rgb: 214, 219, 220;
+  --background-end-rgb: 255, 255, 255;
+  --primary: #242021;
+  --secondary: #7F8269;
+  --tertiary: #8b857f;
+  --quaternary: #D0C7C0;
+  --off-white: #F4F4F4;
+  --white: #fff;
+  --black: #000;
+  --radius: 5px;
+}
+
+* {
+  margin: 0;
+  padding: 0;
+  border: 0;
+  outline: 0;
+  box-sizing: border-box;
+  list-style: none;
+  text-decoration: none;
+}
+
+html {
+  scroll-behavior: smooth;
+}
+
+body {
+  color: var(--black);
+  background-color: var(--white);
+  line-height: 1.4;
+  overflow-x: hidden;
+}
+
+a {
+  color: inherit;
+}
+
+.mainLayout {
+  width: 100%;
+  margin-top: 5rem;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  position: relative;
+}
