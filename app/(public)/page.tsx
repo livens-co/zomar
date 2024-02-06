@@ -196,9 +196,6 @@ const HomePage = async () => {
           </div>
         </div>
       </div>
-
-      {/* INSPIRACIJA - DRUSTVENE MREZE */}
-      
     </div>
   );
 };

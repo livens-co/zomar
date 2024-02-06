@@ -8,11 +8,11 @@ const navLinks = [
   //   path: "/",
   // },
   {
-    name: "Proizvodi",
+    name: "Kolekcije",
     path: "/proizvodi",
   },
   {
-    name: "Kolekcije",
+    name: "Spiana",
     path: "/",
   },
   {
