@@ -1,7 +1,264 @@
-.homePage{
+.homePage {
   width: 100%;
   display: flex;
   flex-direction: column;
+  align-items: center;
   min-height: 100vh;
-  gap: 2rem;
+  gap: 4rem;
+
+  .aboutUs {
+    max-width: 1000px;
+    width: 100%;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    padding: 4rem 2rem;
+
+    .logo {
+      height: 5rem;
+      width: fit-content;
+
+      img {
+        height: 100%;
+        width: auto;
+      }
+    }
+
+    .text {
+      width: 60%;
+      margin-top: 2rem;
+
+      p {
+        font-size: 1.25rem;
+        font-weight: 400;
+        text-align: center;
+
+        span {
+          font-weight: 600;
+          color: var(--secondary);
+        }
+      }
+    }
+  }
+
+  .collections {
+    max-width: 1200px;
+    width: 100%;
+    display: flex;
+    flex-direction: column;
+    gap: 2rem;
+
+    .title {
+      h1 {
+        font-size: 2rem;
+      }
+    }
+
+    .collectionsSlider {
+      width: 100%;
+      display: flex;
+      // flex-direction: column;
+      gap: 3rem;
+      overflow: hidden;
+
+      .sliderCard {
+        height: 23rem;
+        width: 15rem;
+        // background-color: blue;
+        display: flex;
+        flex-direction: column;
+
+        .image {
+          height: 20rem;
+          width: 15rem;
+
+          img {
+            height: 100%;
+            width: 100%;
+            object-fit: cover;
+          }
+        }
+
+        .title {
+          margin-top: 1rem;
+          h2 {
+            font-size: 1.25rem;
+            font-weight: 400;
+          }
+        }
+      }
+    }
+  }
+
+  .featuredCollection {
+    max-width: 1200px;
+    width: 100%;
+    display: flex;
+    // flex-direction: column;
+    gap: 2rem;
+    margin-top: 2rem;
+
+    height: 30rem;
+
+    .image {
+      flex: 4;
+      height: 100%;
+
+      img {
+        height: 100%;
+        width: 100%;
+        object-fit: cover;
+      }
+    }
+
+    .content {
+      flex: 3;
+      display: flex;
+      flex-direction: column;
+      justify-content: space-between;
+      padding: 1rem 0 2rem;
+
+      .title {
+        display: flex;
+        flex-direction: column;
+
+        h1 {
+          font-size: 3rem;
+          font-weight: 600;
+          color: var(--tertiary);
+        }
+
+        h2 {
+          font-size: 2rem;
+          margin-top: -0.5rem;
+          color: var(--primary);
+        }
+      }
+
+      p {
+        margin-top: 2rem;
+      }
+
+      a {
+        width: fit-content;
+        font-size: 1rem;
+        padding: 0.35rem 1.5rem;
+        border: 1px solid var(--primary);
+        display: flex;
+        align-items: center;
+        justify-content: center;
+      }
+    }
+  }
+
+  .news {
+    max-width: 1200px;
+    width: 100%;
+    display: flex;
+    flex-direction: column;
+    gap: 2rem;
+    padding: 2rem 0;
+
+    .title {
+      h1 {
+        font-size: 2rem;
+      }
+    }
+
+    .newsSlider {
+      width: 100%;
+      display: flex;
+      gap: 2rem;
+
+      .articleCard {
+        height: fit-content;
+        width: 17rem;
+        background-color: var(--off-white);
+
+        .image {
+          height: 15rem;
+          width: 17rem;
+
+          img {
+            height: 100%;
+            width: 100%;
+            object-fit: cover;
+          }
+        }
+
+        .title {
+          padding: 1rem 0.75rem;
+
+          p {
+            line-height: 1.2;
+            color: var(--primary);
+          }
+        }
+      }
+    }
+  }
+
+  .shop {
+    width: 100%;
+    min-height: 30rem;
+    background-color: var(--tertiary);
+    display: flex;
+    justify-content: center;
+    margin-top: 2rem;
+
+    .innerContainer {
+      width: 100%;
+      max-width: 1200px;
+      display: flex;
+      flex-direction: column;
+      padding: 2rem 0;
+      gap: 2rem;
+
+      .title {
+        h1 {
+          font-size: 2rem;
+          color: var(--white);
+        }
+      }
+
+      .productsContainer {
+        width: 100%;
+        display: flex;
+        flex-wrap: wrap;
+        gap: 2rem;
+
+        .productCard {
+          width: 17rem;
+          height: 20rem;
+          background-color: var(--off-white);
+          display: flex;
+          flex-direction: column;
+
+          .image {
+            width: 100%;
+            height: 13rem;
+
+            img {
+              height: 100%;
+              width: 100%;
+              object-fit: cover;
+            }
+          }
+
+          .content {
+            height: 7rem;
+            display: flex;
+            flex-direction: column;
+            justify-content: space-between;
+            padding: 1rem;
+
+            h4 {
+              align-self: flex-end;
+              font-weight: 600;
+            }
+          }
+        }
+      }
+    }
+  }
 }
