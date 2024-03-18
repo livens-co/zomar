@@ -5,6 +5,6 @@ import format from "./format-schema";
 import productShop from "./product-shop-schema";
 import product from "./product-schema";
 
-const schemas = [product, productShop, category, format, finish, brand];
+const schemas = [product, productShop, category, format, brand];
 
 export default schemas;
