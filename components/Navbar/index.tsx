@@ -9,7 +9,7 @@ const navLinks = [
   // },
   {
     name: "Kolekcije",
-    path: "/proizvodi",
+    path: "/kategorije",
   },
   {
     name: "Spiana",
@@ -17,7 +17,7 @@ const navLinks = [
   },
   {
     name: "Outlet",
-    path: "/outlet",
+    path: "/ponuda",
   },
   {
     name: "Katalozi",

@@ -1,9 +1,9 @@
 import { normalize } from "normalize-diacritics";
 import { isUniqueAcrossAllDocuments } from "@/lib/isUniqueAcrossAllDocuments";
 
-const product = {
-  name: "products",
-  title: "Proizvodi",
+const productShop = {
+  name: "productsShop",
+  title: "Dućan Proizvodi",
   type: "document",
   fields: [
     {
@@ -40,6 +40,21 @@ const product = {
       title: "Slike",
       type: "array",
       of: [{ type: "image" }],
+    },
+    {
+      name: "price",
+      title: "Cijena",
+      type: "number",
+    },
+    {
+      name: "salePrice",
+      title: "Akcijska cijena",
+      type: "number",
+    },
+    {
+      name: "sku",
+      title: "Šifra proizvoda",
+      type: "string",
     },
     {
       name: "categories",
@@ -80,7 +95,7 @@ const product = {
       type: "object",
       options: {
         collapsible: true,
-        collapsed: false,
+        collapsed: true,
       },
       fields: [
         { name: "mat", type: "boolean", title: "Mat" },
@@ -107,4 +122,4 @@ const product = {
   ],
 };
 
-export default product;
+export default productShop;

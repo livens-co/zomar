@@ -4,6 +4,7 @@
   display: flex;
   flex-direction: column;
   align-items: center;
+  padding-bottom: 4rem;
 
   .header {
     width: 100%;
@@ -80,6 +81,36 @@
           color: var(--tertiary);
         }
       }
+    }
+  }
+
+  .pagination {
+    display: flex;
+    gap: 1rem;
+    align-items: center;
+
+    button {
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      height: 2rem;
+      width: 2rem;
+      border-radius: 50%;
+      background-color: transparent;
+      border: 1px solid var(--tertiary);
+
+      svg {
+        font-size: 1rem;
+        color: var(--tertiary);
+      }
+    }
+
+    .pages{
+      height: fit-content;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      line-height: 1;
     }
   }
 }

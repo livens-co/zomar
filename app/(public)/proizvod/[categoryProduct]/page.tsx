@@ -5,14 +5,14 @@ import { FaAngleRight } from "react-icons/fa6";
 
 import { Tabs, TabsContent, TabsList, TabsTrigger } from "@/components/ui/tabs";
 
-import bahrein1 from "../../../../../public/test/bahrein1.jpeg";
-import bahrein2 from "../../../../../public/test/bahrein2.jpeg";
-import bahrein3 from "../../../../../public/test/bahrein3.jpeg";
-import bahrein4 from "../../../../../public/test/bahrein4.jpeg";
+import bahrein1 from "../../../../public/test/bahrein1.jpeg";
+import bahrein2 from "../../../../public/test/bahrein2.jpeg";
+import bahrein3 from "../../../../public/test/bahrein3.jpeg";
+import bahrein4 from "../../../../public/test/bahrein4.jpeg";
 
 const images = [bahrein1, bahrein2, bahrein3, bahrein4];
 
-const CollectionProductPage = () => {
+const CategoryProductPage = () => {
   return (
     <div className="collectionProductPage">
       <header>
@@ -57,4 +57,4 @@ const CollectionProductPage = () => {
   );
 };
 
-export default CollectionProductPage;
+export default CategoryProductPage;

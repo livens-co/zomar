@@ -2,7 +2,7 @@ import './style.scss'
 
 const CategoryPage = () => {
   return (
-    <div>CategoryPage</div>
+    <div>CategoryPage Single</div>
   )
 }
 
