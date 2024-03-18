@@ -3,7 +3,7 @@ import { isUniqueAcrossAllDocuments } from "@/lib/isUniqueAcrossAllDocuments";
 
 const format = {
   name: "format",
-  title: "Format",
+  title: "Dimenzije",
   type: "document",
   fields: [
     {
