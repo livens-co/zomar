@@ -1,20 +1,20 @@
 import { normalize } from "normalize-diacritics";
 import { isUniqueAcrossAllDocuments } from "@/lib/isUniqueAcrossAllDocuments";
 
-const category = {
-  name: "category",
-  title: "Kategorije",
+const subcategory = {
+  name: "subcategory",
+  title: "Potkategorije",
   type: "document",
   fields: [
     {
       name: "title",
-      title: "Naziv kategorije",
+      title: "Naziv potkategorije",
       type: "string",
       required: true,
     },
     {
       name: "slug",
-      title: "URL kategorije",
+      title: "URL potkategorije",
       type: "slug",
       options: {
         source: "title",
@@ -35,13 +35,18 @@ const category = {
       type: "array",
       of: [{ type: "image" }],
     },
-    {
-      name: "subcategories",
-      title: "Podkategorije",
-      type: "array",
-      of: [{ type: "reference", to: [{ type: "subcategory" }] }],
-    },
+    // {
+    //   name: "categories",
+    //   title: "Kategorije",
+    //   type: "array",
+    //   of: [
+    //     {
+    //       type: "reference",
+    //       to: [{ type: "category" }],
+    //     },
+    //   ],
+    // },
   ],
 };
 
-export default category;
+export default subcategory;

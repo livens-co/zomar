@@ -7,6 +7,18 @@ const product = {
   type: "document",
   fields: [
     {
+      name: "productCategory",
+      title: "Vrsta proizvoda",
+      type: "string",
+      options: {
+        list: [
+          { title: "Proizvod s cijenom", value: "priceProduct" },
+          { title: "Proizvod bez cijene", value: "noPriceProduct" },
+        ],
+      },
+      required: true,
+    },
+    {
       name: "title",
       title: "Naziv proizvoda",
       type: "string",
@@ -42,6 +54,21 @@ const product = {
       of: [{ type: "image" }],
     },
     {
+      name: "price",
+      title: "Cijena",
+      type: "number",
+    },
+    {
+      name: "salePrice",
+      title: "Akcijska cijena",
+      type: "number",
+    },
+    {
+      name: "sku",
+      title: "Šifra proizvoda",
+      type: "string",
+    },
+    {
       name: "categories",
       title: "Kategorije",
       type: "array",
@@ -53,6 +80,17 @@ const product = {
       ],
     },
     {
+      name: "subcategories",
+      title: "Potkategorije",
+      type: "array",
+      of: [
+        {
+          type: "reference",
+          to: [{ type: "subcategory" }],
+        },
+      ],
+    },
+    {
       name: "formats",
       title: "Dimenzije",
       type: "array",
@@ -60,6 +98,17 @@ const product = {
         {
           type: "reference",
           to: [{ type: "format" }],
+        },
+      ],
+    },
+    {
+      name: "colors",
+      title: "Boja",
+      type: "array",
+      of: [
+        {
+          type: "reference",
+          to: [{ type: "color" }],
         },
       ],
     },
@@ -80,7 +129,7 @@ const product = {
       type: "object",
       options: {
         collapsible: true,
-        collapsed: false,
+        collapsed: true,
       },
       fields: [
         { name: "mat", type: "boolean", title: "Mat" },

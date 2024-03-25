@@ -7,6 +7,18 @@ const productShop = {
   type: "document",
   fields: [
     {
+      name: "productCategory",
+      title: "Vrsta proizvoda",
+      type: "string",
+      options: {
+        list: [
+          { title: "Proizvod s cijenom", value: "priceProduct" },
+          { title: "Proizvod bez cijene", value: "noPriceProduct" },
+        ],
+      },
+      required: true,
+    },
+    {
       name: "title",
       title: "Naziv proizvoda",
       type: "string",
@@ -68,6 +80,17 @@ const productShop = {
       ],
     },
     {
+      name: "subcategories",
+      title: "Potkategorije",
+      type: "array",
+      of: [
+        {
+          type: "reference",
+          to: [{ type: "subcategory" }],
+        },
+      ],
+    },
+    {
       name: "formats",
       title: "Dimenzije",
       type: "array",
@@ -75,6 +98,17 @@ const productShop = {
         {
           type: "reference",
           to: [{ type: "format" }],
+        },
+      ],
+    },
+    {
+      name: "colors",
+      title: "Boja",
+      type: "array",
+      of: [
+        {
+          type: "reference",
+          to: [{ type: "color" }],
         },
       ],
     },
