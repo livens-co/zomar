@@ -4,8 +4,16 @@ import "./style.scss";
 import { FaArrowLeft, FaArrowRight } from "react-icons/fa6";
 
 import { HiMenu } from "react-icons/hi";
+import getCategories from "@/sanity/actions/get-categories";
+import { Category } from "@/types";
 
-const CategoryPage = async() => {
+export const revalidate = 1;
+
+const CategoryPage = async () => {
+  const categories: Category[] = await getCategories();
+
+  console.log(categories)
+  
   return (
     <div className="categoriesPage">
       <div className="header">

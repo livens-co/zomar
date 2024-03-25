@@ -2,7 +2,7 @@ import { createClient, groq } from "next-sanity";
 import { Category, Subcategory } from "@/types";
 import clientConfig from "../config/client-config";
 
-export default async function getSubcategoriesByCategory(
+export default async function getSubcategoriesByCategoryShop(
   categorySlug: string
 ): Promise<Subcategory[]> {
   try {
@@ -20,7 +20,7 @@ export default async function getSubcategoriesByCategory(
           _id,
           title,
           'slug': slug.current,
-          'products': *[_type == "products" && references(^._id) && ( productCategory == "noPriceProduct")] {
+          'products': *[_type == "products" && references(^._id) && ( productCategory == "priceProduct")] {
         _id,
       title,
       

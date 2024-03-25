@@ -3,6 +3,7 @@ import "./style.scss";
 import { Category, Product } from "@/types";
 import getCategories from "@/sanity/actions/get-categories";
 import Link from "next/link";
+import getCategoriesShop from "@/sanity/actions/get-categories-shop";
 
 export const revalidate = 1;
 
@@ -10,7 +11,7 @@ const ShopPage = async () => {
   // const products: Product[] = await getProducts();
 
   // console.log(products);
-  const categories: Category[] = await getCategories();
+  const categories: Category[] = await getCategoriesShop();
 
   console.log(categories);
 
