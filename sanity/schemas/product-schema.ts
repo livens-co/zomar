@@ -140,6 +140,10 @@ const product = {
         { name: "mraz", type: "boolean", title: "Otpornost na mraz" },
         { name: "unutarnja", type: "boolean", title: "Unutarnja" },
         { name: "vanjska", type: "boolean", title: "Vanjska" },
+        { name: "sjaj", type: "boolean", title: "Sjaj" },
+        { name: "satinado", type: "boolean", title: "Satinado" },
+        { name: "klasican", type: "boolean", title: "Klasičan rez" },
+        { name: "gres", type: "boolean", title: "Gres" },
         {
           name: "class",
           title: "Klasa",

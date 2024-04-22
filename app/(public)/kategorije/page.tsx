@@ -6,13 +6,18 @@ import { FaArrowLeft, FaArrowRight } from "react-icons/fa6";
 import { HiMenu } from "react-icons/hi";
 import getCategories from "@/sanity/actions/get-categories";
 import { Category } from "@/types";
+import Link from "next/link";
 
 export const revalidate = 1;
 
 const CategoryPage = async () => {
   const categories: Category[] = await getCategories();
 
-  console.log(categories)
+  const categoriesWithProd = categories.filter(
+    (category) => category?.products.length > 0
+  )
+
+  console.log(categoriesWithProd)
   
   return (
     <div className="categoriesPage">
@@ -30,123 +35,24 @@ const CategoryPage = async () => {
 
       {/* COLLECTIONS */}
       <div className="collectionsGrid">
-        <div className="collectionCard">
+        {categoriesWithProd.map(c=>(
+
+          <Link className="collectionCard" href={`/kategorije/${c.slug}`} key={c._id}>
           <div className="image">
             <Image
               src="/test/bahrein1.jpeg"
               width={200}
               height={400}
               alt="Bahrein"
-            />
+              />
           </div>
           <div className="title">
-            <h2>Allesandria</h2>
+            <h2>{c.title}</h2>
           </div>
-        </div>
-        <div className="collectionCard">
-          <div className="image">
-            <Image
-              src="/test/bahrein1.jpeg"
-              width={200}
-              height={400}
-              alt="Bahrein"
-            />
-          </div>
-          <div className="title">
-            <h2>Allesandria</h2>
-          </div>
-        </div>
-        <div className="collectionCard">
-          <div className="image">
-            <Image
-              src="/test/bahrein1.jpeg"
-              width={200}
-              height={400}
-              alt="Bahrein"
-            />
-          </div>
-          <div className="title">
-            <h2>Allesandria</h2>
-          </div>
-        </div>
-        <div className="collectionCard">
-          <div className="image">
-            <Image
-              src="/test/bahrein1.jpeg"
-              width={200}
-              height={400}
-              alt="Bahrein"
-            />
-          </div>
-          <div className="title">
-            <h2>Allesandria</h2>
-          </div>
-        </div>
-        <div className="collectionCard">
-          <div className="image">
-            <Image
-              src="/test/bahrein1.jpeg"
-              width={200}
-              height={400}
-              alt="Bahrein"
-            />
-          </div>
-          <div className="title">
-            <h2>Allesandria</h2>
-          </div>
-        </div>
-        <div className="collectionCard">
-          <div className="image">
-            <Image
-              src="/test/bahrein1.jpeg"
-              width={200}
-              height={400}
-              alt="Bahrein"
-            />
-          </div>
-          <div className="title">
-            <h2>Allesandria</h2>
-          </div>
-        </div>
-        <div className="collectionCard">
-          <div className="image">
-            <Image
-              src="/test/bahrein1.jpeg"
-              width={200}
-              height={400}
-              alt="Bahrein"
-            />
-          </div>
-          <div className="title">
-            <h2>Allesandria</h2>
-          </div>
-        </div>
-        <div className="collectionCard">
-          <div className="image">
-            <Image
-              src="/test/bahrein1.jpeg"
-              width={200}
-              height={400}
-              alt="Bahrein"
-            />
-          </div>
-          <div className="title">
-            <h2>Allesandria</h2>
-          </div>
-        </div>
-        <div className="collectionCard">
-          <div className="image">
-            <Image
-              src="/test/bahrein1.jpeg"
-              width={200}
-              height={400}
-              alt="Bahrein"
-            />
-          </div>
-          <div className="title">
-            <h2>Allesandria</h2>
-          </div>
-        </div>
+        </Link>
+              ))}
+        
+       
       </div>
       <div className="pagination">
         <button className="prevBtn">

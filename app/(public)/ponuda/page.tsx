@@ -13,13 +13,17 @@ const ShopPage = async () => {
   // console.log(products);
   const categories: Category[] = await getCategoriesShop();
 
-  console.log(categories);
+  const categoriesWithProd = categories.filter(
+    (category) => category?.products.length > 0
+  )
+
+  console.log(categoriesWithProd)
 
   return (
     <div>
       sve kategorije
       <ul>
-        {categories.map((category) => (
+        {categoriesWithProd.map((category) => (
           <Link key={category._id} href={`ponuda/${category.slug}`}>
             {category.title}
             {/* <ul>

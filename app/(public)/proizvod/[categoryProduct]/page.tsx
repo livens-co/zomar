@@ -9,6 +9,7 @@ import bahrein1 from "../../../../public/test/bahrein1.jpeg";
 import bahrein2 from "../../../../public/test/bahrein2.jpeg";
 import bahrein3 from "../../../../public/test/bahrein3.jpeg";
 import bahrein4 from "../../../../public/test/bahrein4.jpeg";
+import ProductImages from "@/components/ProductImages";
 
 const images = [bahrein1, bahrein2, bahrein3, bahrein4];
 
@@ -21,30 +22,51 @@ const CategoryProductPage = () => {
           Proizvodi <FaAngleRight /> Porcelux <FaAngleRight />{" "}
           <span>Bahrein</span>
         </div>
-        {/* TITLE */}
-        <h1>Bahrein</h1>
-        {/* COLLECTION NAME */}
+       
+        {/* <h1>Bahrein</h1>
+        
         <h3>Kolekcija</h3>
         <div className="collection">
           <h2>Porcelux</h2>
           <p>Excellence in polished and satin matte finish</p>
-        </div>
+        </div> */}
       </header>
-      {/* IMAGE CAROUSEL */}
-      <Slider data={images} />
+
+      <main>
+      {/* IMAGE GALLERY */}
+      <div className="galleryColumn">
+
+      <ProductImages data={images} />
+      </div>
+
+      <div className="sideColumn">
+        {/* BRAND */}
+
+        {/* PROIZVOD */}
+
+        {/* ŠIFRA PROIZVODA */}
+
+        {/* CIJENE */}
+
+        {/* KONTAKT */}
+      </div>
+
+      </main>
+
+
       <div className="productDetails">
         {/* PRODUCT SPECIFICATIONS (DIMENSIONS, TECH SPEC, MATERIAL...) */}
         <h3>Podaci o proizvodu</h3>
         <div className="productTabs">
-          <Tabs defaultValue="sizes" className="w-[600px] align-middle">
+          <Tabs defaultValue="description" className="w-[600px] align-middle">
             <TabsList className="tabList align-middle">
-              <TabsTrigger value="sizes" className="tabTitle">Dimeznije</TabsTrigger>
-              <TabsTrigger value="data" className="tabTitle">Tehnički podaci</TabsTrigger>
-              <TabsTrigger value="docs" className="tabTitle">Dokumentacija</TabsTrigger>
+              <TabsTrigger value="description" className="tabTitle">Opis proizvoda</TabsTrigger>
+              <TabsTrigger value="size" className="tabTitle">Dimenzije</TabsTrigger>
+              <TabsTrigger value="details" className="tabTitle">Tehnički podaci</TabsTrigger>
             </TabsList>
-            <TabsContent value="sizes" className="tabContent">Dimenzije proizvoda</TabsContent>
-            <TabsContent value="data" className="tabContent">Tehnički podaci proizvoda</TabsContent>
-            <TabsContent value="docs" className="tabContent">Download dokumenti</TabsContent>
+            <TabsContent value="description" className="tabContent">Opis proizvoda</TabsContent>
+            <TabsContent value="size" className="tabContent">Dimenzije</TabsContent>
+            <TabsContent value="details" className="tabContent">Tehnički podaci</TabsContent>
           </Tabs>
         </div>
         {/* <p>Dimenzije | Tehnicki podaci | Dokumentacija</p> */}
