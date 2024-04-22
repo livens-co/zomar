@@ -16,13 +16,15 @@ import "swiper/css/thumbs";
 import { FreeMode, Navigation, Thumbs } from "swiper/modules";
 
 import Image, { StaticImageData } from "next/image";
+import { Swiper as SwiperType } from "swiper/types";
+
 
 interface ProductImagesProps {
   data: StaticImageData[];
 }
 
 const ProductImages: React.FC<ProductImagesProps> = ({ data }) => {
-  const [thumbsSwiper, setThumbsSwiper] = useState<Swiper | null>(null);
+  const [thumbsSwiper, setThumbsSwiper] = useState<SwiperType | null>(null);
 
   return (
     <>
