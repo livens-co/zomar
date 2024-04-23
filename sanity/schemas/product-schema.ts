@@ -102,6 +102,11 @@ const product = {
       ],
     },
     {
+      name: "colorList",
+      title: "Boje",
+      type: "string",
+    },
+    {
       name: "colors",
       title: "Boja",
       type: "array",
@@ -144,6 +149,7 @@ const product = {
         { name: "satinado", type: "boolean", title: "Satinado" },
         { name: "klasican", type: "boolean", title: "Klasičan rez" },
         { name: "gres", type: "boolean", title: "Gres" },
+        { name: "sugar", type: "boolean", title: "Sugar Effect" },
         {
           name: "class",
           title: "Klasa",
