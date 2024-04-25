@@ -20,7 +20,8 @@ import { Swiper as SwiperType } from "swiper/types";
 
 
 interface ProductImagesProps {
-  data: StaticImageData[];
+  // data: StaticImageData[];
+  data: string[];
 }
 
 const ProductImages: React.FC<ProductImagesProps> = ({ data }) => {
@@ -39,7 +40,7 @@ const ProductImages: React.FC<ProductImagesProps> = ({ data }) => {
       >
         {data.map((image, index) => (
           <SwiperSlide className="swiperSlide" key={index}>
-            <Image src={image} alt="Images " />
+            <Image src={image} alt="Images " width={600} height={400}/>
           </SwiperSlide>
         ))}
       </Swiper>
@@ -56,7 +57,7 @@ const ProductImages: React.FC<ProductImagesProps> = ({ data }) => {
       >
         {data.map((image, index) => (
           <SwiperSlide className="swiperSlide" key={index}>
-            <Image src={image} alt="Images " />
+            <Image src={image} alt="Images " width={600} height={400}/>
           </SwiperSlide>
         ))}
       </Swiper>

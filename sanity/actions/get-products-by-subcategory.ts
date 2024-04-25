@@ -15,7 +15,7 @@ export default async function getProductsBySubcategory(
       title,
       productCategory,
       'slug': slug.current,
-      'images': images[0].asset->url,
+      'images': images[].asset->url,
       'categories': categories[]->{
         title,
         slug,

@@ -2,7 +2,7 @@ import { createClient, groq } from "next-sanity";
 import { Product } from "@/types";
 import clientConfig from "../config/client-config";
 
-export default async function getProduct(slug: string): Promise<Product[]> {
+export default async function getProduct(slug: string): Promise<Product | null> {
   return createClient(clientConfig).fetch(
     groq`*[_type == "products" && slug.current == $slug][0] {
       _id,
@@ -12,6 +12,12 @@ export default async function getProduct(slug: string): Promise<Product[]> {
       'images': images[].asset->url,
       'categories': categories[]->{
         title,
+        'slug': slug.current,
+        _id
+      },
+      'subcategories': subcategories[]->{
+        title,
+        'slug': slug.current,
         _id
       },
       'formats': formats[]->{
@@ -31,7 +37,7 @@ export default async function getProduct(slug: string): Promise<Product[]> {
         'mraz': tags.mraz,
         'unutarnja': tags.unutarnja,
         'vanjska': tags.vanjska,
-        'class': tags.class
+        'class': tags.class 
       }
     }
     `,

@@ -1,7 +1,9 @@
-import { Subcategory } from "@/types";
+import { Category, Subcategory } from "@/types";
 import "./style.scss";
 import getSubcategoriesByCategory from "@/sanity/actions/get-subcategories";
 import Link from "next/link";
+import getCategoryBySlug from "@/sanity/actions/get-category";
+import Image from "next/image";
 
 interface CategoryPageProps {
   params: {
@@ -10,6 +12,13 @@ interface CategoryPageProps {
 }
 
 const CategoryPage: React.FC<CategoryPageProps> = async ({ params }) => {
+  const category: Category | null = await getCategoryBySlug(params.category);
+
+  if (!category) {
+    // Handle case where category is not found
+    return <div>Category not found</div>;
+  }
+
   const subcategories: Subcategory[] = await getSubcategoriesByCategory(
     params.category
   );
@@ -18,21 +27,33 @@ const CategoryPage: React.FC<CategoryPageProps> = async ({ params }) => {
     (subcategory) => subcategory?.products.length > 0
   );
 
-  console.log(subcategoriesWithProd)
-
   return (
-<>
-    <div>CategoryPage Single</div>
-    <ul>
-      {subcategoriesWithProd.map((sc) => (
-        <Link key={sc._id} href={`/kategorije/${params.category}/${sc.slug}`}>
-          {sc.title}
-        </Link>
-      ))}
-    </ul>
-</>
-  )
-  
+    <div className="categoryPage">
+      <div className="categoryPageTitle">{category?.title}</div>
+
+      <div className="categoryGrid">
+        {subcategoriesWithProd.map((sc) => (
+          <Link
+            className="categoryCard"
+            key={sc._id}
+            href={`/kategorije/${params.category}/${sc.slug}`}
+          >
+            <div className="image">
+              <Image
+                src="/test/bahrein1.jpeg"
+                width={200}
+                height={400}
+                alt="Bahrein"
+              />
+            </div>
+            <div className="title">
+              <h2>{sc.title}</h2>
+            </div>
+          </Link>
+        ))}
+      </div>
+    </div>
+  );
 };
 
 export default CategoryPage;

@@ -77,6 +77,7 @@ export interface Subcategory {
 }
 
 export interface Format {
+  _id: string;
   title: string;
   slug: string;
   products: Product[];

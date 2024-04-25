@@ -15,10 +15,10 @@ const CategoryPage = async () => {
 
   const categoriesWithProd = categories.filter(
     (category) => category?.products.length > 0
-  )
+  );
 
-  console.log(categoriesWithProd)
-  
+  console.log(categoriesWithProd);
+
   return (
     <div className="categoriesPage">
       <div className="header">
@@ -35,24 +35,25 @@ const CategoryPage = async () => {
 
       {/* COLLECTIONS */}
       <div className="collectionsGrid">
-        {categoriesWithProd.map(c=>(
-
-          <Link className="collectionCard" href={`/kategorije/${c.slug}`} key={c._id}>
-          <div className="image">
-            <Image
-              src="/test/bahrein1.jpeg"
-              width={200}
-              height={400}
-              alt="Bahrein"
+        {categoriesWithProd.map((c) => (
+          <Link
+            className="collectionCard"
+            href={`/kategorije/${c.slug}`}
+            key={c._id}
+          >
+            <div className="image">
+              <Image
+                src="/test/bahrein1.jpeg"
+                width={200}
+                height={400}
+                alt="Bahrein"
               />
-          </div>
-          <div className="title">
-            <h2>{c.title}</h2>
-          </div>
-        </Link>
-              ))}
-        
-       
+            </div>
+            <div className="title">
+              <h2>{c.title}</h2>
+            </div>
+          </Link>
+        ))}
       </div>
       <div className="pagination">
         <button className="prevBtn">
@@ -64,7 +65,7 @@ const CategoryPage = async () => {
         </button>
       </div>
     </div>
-  )
-}
+  );
+};
 
-export default CategoryPage
+export default CategoryPage;
