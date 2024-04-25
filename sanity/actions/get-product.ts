@@ -24,6 +24,7 @@ export default async function getProduct(slug: string): Promise<Product | null> 
         title,
         _id
       },
+      colorList,
       'brands': brands[]->{
         title,
         _id
@@ -37,6 +38,11 @@ export default async function getProduct(slug: string): Promise<Product | null> 
         'mraz': tags.mraz,
         'unutarnja': tags.unutarnja,
         'vanjska': tags.vanjska,
+        'sjaj': tags.sjaj,
+        'satinado': tags.satinado,
+        'klasican': tags.klasican,
+        'gres': tags.gres,
+        'sugar': tags.sugar,
         'class': tags.class 
       }
     }

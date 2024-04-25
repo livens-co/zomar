@@ -15,6 +15,7 @@ export interface Product {
   formats: Format[];
   colors: Color[];
   brands: Brand[];
+  colorList: string;
   tags: {
     mat: boolean;
     protuklizna: boolean;
@@ -24,6 +25,11 @@ export interface Product {
     mraz: boolean;
     unutarnja: boolean;
     vanjska: boolean;
+    sjaj: boolean;
+    satinado: boolean;
+    klasican: boolean;
+    gres: boolean;
+    sugar: boolean;
     class: string;
   };
 }

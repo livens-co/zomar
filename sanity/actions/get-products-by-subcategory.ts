@@ -4,7 +4,7 @@ import clientConfig from "../config/client-config";
 
 export default async function getProductsBySubcategory(
   slug: string
-): Promise<Product[]> {
+): Promise<Product[] | null> {
   try {
     const response: Subcategory = await createClient(clientConfig).fetch(
       groq`*[_type == "subcategory" && slug.current == $slug][0] {

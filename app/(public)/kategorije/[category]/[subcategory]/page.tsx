@@ -1,8 +1,10 @@
-import { Product } from "@/types";
+import { Product, Subcategory } from "@/types";
 import "./style.scss";
 import getProductsBySubcategory from "@/sanity/actions/get-products-by-subcategory";
 import Link from "next/link";
 import Image from "next/image";
+import subcategory from "@/sanity/schemas/subcategory-schema";
+import getSubategoryBySlug from "@/sanity/actions/get-subcategory";
 
 export const revalidate = 1;
 
@@ -13,17 +15,24 @@ interface SubcategoryPageProps {
 }
 
 const SubcategoryPage: React.FC<SubcategoryPageProps> = async ({ params }) => {
-  const products: Product[] = await getProductsBySubcategory(
+  const subcategory: Subcategory | null = await getSubategoryBySlug(params.subcategory);
+
+  if (!subcategory) {
+    // Handle case where category is not found
+    return <div>Potkategorija nije pronađena</div>;
+  }
+
+  const products: Product[] | null = await getProductsBySubcategory(
     params.subcategory
   );
 
-  // console.log(products.images[0]);
+  // console.log(subcategory);
 
   return (
     <div className="subcategoryPage">
-      <div className="subcategoryPageTitle">SubcategoryPage</div>
+      <div className="subcategoryPageTitle">{subcategory?.title}</div>
       <div className="productsGrid">
-        {products.map((product) => (
+        {products?.map((product) => (
           <Link
             key={product.slug}
             href={`/proizvod/${product.slug}`}

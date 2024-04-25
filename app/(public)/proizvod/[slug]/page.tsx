@@ -9,6 +9,9 @@ import getProduct from "@/sanity/actions/get-product";
 import { Product } from "@/types";
 import { PortableText } from "@portabletext/react";
 import Link from "next/link";
+import getProductsBySubcategory from "@/sanity/actions/get-products-by-subcategory";
+import Image from "next/image";
+import RecommendedProducts from "@/components/RecommendedProducts";
 
 interface ProductPageProps {
   params: {
@@ -20,12 +23,21 @@ const ProductPage: React.FC<ProductPageProps> = async ({
   params: { slug },
 }) => {
   const product: Product | null = await getProduct(slug);
+  let recommendedProducts: Product[] = [];
 
-  if (!product) {
+  if (product) {
+    recommendedProducts =
+      (await getProductsBySubcategory(product.subcategories[0].slug)) ?? [];
+
+    // Filter out the current product from recommended products
+    recommendedProducts = recommendedProducts.filter(
+      (recommendedProduct) => recommendedProduct._id !== product._id
+    );
+  } else {
     return <div>Proizvod nije pronađen</div>;
   }
 
-  console.log(product);
+  // console.log(recommendedProducts);
 
   return (
     <div className="collectionProductPage">
@@ -43,14 +55,6 @@ const ProductPage: React.FC<ProductPageProps> = async ({
           </Link>
           <FaAngleRight /> <span>{product?.title}</span>
         </div>
-
-        {/* <h1>Bahrein</h1>
-        
-        <h3>Kolekcija</h3>
-        <div className="collection">
-          <h2>Porcelux</h2>
-          <p>Excellence in polished and satin matte finish</p>
-        </div> */}
       </header>
       <main>
         {/* IMAGE GALLERY */}
@@ -59,36 +63,126 @@ const ProductPage: React.FC<ProductPageProps> = async ({
         </div>
 
         <div className="sideColumn">
-         
           <div className="brand">
             <p>{product?.brands?.[0]?.title || ""}</p>
           </div>
           <div className="title">
             <p>{product?.title}</p>
           </div>
-          
 
           {/* OPIS */}
           <PortableText value={product?.description} />
 
-          <div className="line"/>
+          <div className="line" />
 
           {/* DIMENZIJE */}
-          <p>
+          <div>
             Dimenzije:{" "}
             <ul>
               {product?.formats.map((f) => (
                 <li key={f._id}>{f.title} cm</li>
               ))}
             </ul>
-          </p>
+          </div>
 
-          {/* KONTAKT */}
+          {/* BOJE */}
+          {product.colorList && <p>Boje: {product.colorList}</p>}
         </div>
       </main>
       <div className="productDetails">
-        {/* PRODUCT SPECIFICATIONS (DIMENSIONS, TECH SPEC, MATERIAL...) */}
         <h3>Karakteristike proizvoda</h3>
+        <div className="productDetailsGrid">
+          {/* MAT */}
+          <div className="tag">
+            <p>Mat: {product.tags?.mat ? <span>da</span> : <span>ne</span>}</p>
+          </div>
+
+          {/* PROTUKLIZNA */}
+          <div className="tag">
+            <p>
+              Protuklizna:{" "}
+              {product.tags?.protuklizna ? <span>da</span> : <span>ne</span>}
+            </p>
+          </div>
+
+          {/* ZIDNA */}
+          <div className="tag">
+            <p>
+              Zidna: {product.tags?.zidna ? <span>da</span> : <span>ne</span>}
+            </p>
+          </div>
+
+          {/* PODNA */}
+          <div className="tag">
+            <p>
+              Podna: {product.tags?.podna ? <span>da</span> : <span>ne</span>}
+            </p>
+          </div>
+
+          {/* RETIFICIRANA */}
+          <div className="tag">
+            <p>
+              Retificirana:{" "}
+              {product.tags?.retificirana ? <span>da</span> : <span>ne</span>}
+            </p>
+          </div>
+
+          {/* UNUTARNJA */}
+          <div className="tag">
+            <p>
+              Unutarnja:{" "}
+              {product.tags?.unutarnja ? <span>da</span> : <span>ne</span>}
+            </p>
+          </div>
+
+          {/* VANJSKA */}
+          <div className="tag">
+            <p>
+              Vanjska:{" "}
+              {product.tags?.vanjska ? <span>da</span> : <span>ne</span>}
+            </p>
+          </div>
+
+          {/* SJAJ */}
+          <div className="tag">
+            <p>
+              Sjaj: {product.tags?.sjaj ? <span>da</span> : <span>ne</span>}
+            </p>
+          </div>
+
+          {/* SATINADO */}
+          <div className="tag">
+            <p>
+              Satinado:{" "}
+              {product.tags?.satinado ? <span>da</span> : <span>ne</span>}
+            </p>
+          </div>
+
+          {/* KLASICAN REZ */}
+          <div className="tag">
+            <p>
+              Klasičan rez:{" "}
+              {product.tags?.klasican ? <span>da</span> : <span>ne</span>}
+            </p>
+          </div>
+
+          {/* GRES */}
+          <div className="tag">
+            <p>
+              Gres: {product.tags?.gres ? <span>da</span> : <span>ne</span>}
+            </p>
+          </div>
+
+          {/* SUGAR EFFECT */}
+          <div className="tag">
+            <p>
+              Suggar effect:{" "}
+              {product.tags?.sugar ? <span>da</span> : <span>ne</span>}
+            </p>
+          </div>
+        </div>
+        {/* KLASA */}
+
         {/* <div className="productTabs">
           <Tabs defaultValue="description" className="w-[600px] align-middle">
             <TabsList className="tabList align-middle">
@@ -120,7 +214,34 @@ const ProductPage: React.FC<ProductPageProps> = async ({
       </div>
 
       {/* RECOMMENDED PRODUCTS FORM COLLECTION */}
-      <h3>Proizvodi iz kolekcije</h3>
+      {/* <div className="recommendedProducts">
+        <h3>Preporučeni proizvodi</h3>
+
+        <div className="recommendedProductsGrid">
+          {recommendedProducts
+            ?.map((product) => (
+              <Link
+                key={product._id}
+                href={`/proizvod/${product.slug}`}
+                className="recommendedProductCard"
+              >
+                <div className="image">
+                  <Image
+                    src={product.images[0]?.toString()}
+                    width={200}
+                    height={400}
+                    alt={product.title}
+                  />
+                </div>
+                <div className="title">
+                  <h2>{product.title}</h2>
+                </div>
+              </Link>
+            ))
+            .slice(0, 4)}
+        </div>
+      </div> */}
+      <RecommendedProducts recommendedProducts={recommendedProducts} />
     </div>
   );
 };
