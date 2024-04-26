@@ -1,4 +1,6 @@
-// 'use client'
+"use client";
+
+import { useEffect, useState } from "react";
 
 import { Product, Subcategory } from "@/types";
 import "./style.scss";
@@ -9,8 +11,7 @@ import getSubategoryBySlug from "@/sanity/actions/get-subcategory";
 import ProductFilter from "@/components/ProductFilter";
 import PaginationControls from "@/components/PaginationControls";
 
-
-export const revalidate = 1;
+// export const revalidate = 1;
 
 interface SubcategoryPageProps {
   params: {
@@ -20,29 +21,120 @@ interface SubcategoryPageProps {
   searchParams: { [key: string]: string | string[] | undefined };
 }
 
-const SubcategoryPage: React.FC<SubcategoryPageProps> =  async ({
+// const SubcategoryPage: React.FC<SubcategoryPageProps> =  async ({
+//   params,
+//   searchParams,
+// }) => {
+
+//   const subcategory: Subcategory | null =  await getSubategoryBySlug(
+//     params.subcategory
+//   );
+
+//   if (!subcategory) {
+//     // Handle case where category is not found
+//     return <div>Potkategorija nije pronađena</div>;
+//   }
+
+//   const products: Product[] | null =  await getProductsBySubcategory(
+//     params.subcategory,
+//     {
+//       selectedTags: [],
+//     }
+//   );
+
+//   const page = searchParams["page"] ?? "1";
+//   const per_page = searchParams["per_page"] ?? "12";
+
+//   const start = (Number(page) - 1) * Number(per_page);
+//   const end = start + Number(per_page);
+
+//   const entries = products?.slice(start, end);
+
+//   return (
+//     <div className="subcategoryPage">
+//       <div className="subcategoryPageTitle">{subcategory?.title}</div>
+//       {/* FILTERS */}
+
+//       {/* <ProductFilter onTagsChange={onTagsChange}/> */}
+//       <div className="productsGrid">
+//         {entries?.map((product) => (
+//           <Link
+//             key={product.slug}
+//             href={`/proizvod/${product.slug}`}
+//             className="productCard"
+//           >
+//             <div className="image">
+//               <Image
+//                 src={product.images[0]?.toString()}
+//                 width={200}
+//                 height={400}
+//                 alt="Bahrein"
+//               />
+//             </div>
+//             <div className="title">
+//               <h2>{product.title}</h2>
+//             </div>
+//           </Link>
+//         ))}
+//       </div>
+//       <div>
+//         {/* <PaginationControls
+//           hasNextPage={end < products?.length}
+//           hasPrevPage={start > 0}
+//           productNum={products?.length}
+//         /> */}
+//         <PaginationControls
+//           hasNextPage={end < (products?.length ?? 0)}
+//           hasPrevPage={start > 0}
+//           productNum={products?.length ?? 0}
+//           subcategory={params.subcategory}
+//           category={params.category}
+//         />
+//       </div>
+//     </div>
+//   );
+// };
+
+// export default SubcategoryPage;
+
+const SubcategoryPage: React.FC<SubcategoryPageProps> = ({
   params,
   searchParams,
 }) => {
- 
-  
-  const subcategory: Subcategory | null =  await getSubategoryBySlug(
-    params.subcategory
-  );
+  const [products, setProducts] = useState<Product[] | null>(null);
+  const [subcategory, setSubcategory] = useState<Subcategory | null>(null);
+  const [selectedTags, setSelectedTags] = useState<string[]>([]);
 
-  if (!subcategory) {
-    // Handle case where category is not found
-    return <div>Potkategorija nije pronađena</div>;
-  }
+  const handleTagsChange = (tags: string[]) => {
+    setSelectedTags(tags);
+    // Here you can perform any additional logic based on the selected tags
+    console.log("Selected tags:", tags);
+  };
 
-  
+  useEffect(() => {
+    const fetchData = async () => {
+      const subcategory: Subcategory | null = await getSubategoryBySlug(
+        params.subcategory
+      );
 
-  const products: Product[] | null =  await getProductsBySubcategory(
-    params.subcategory,
-    {
-      selectedTags: [],
-    }
-  );
+      if (!subcategory) {
+        // Handle case where category is not found
+        return <div>Potkategorija nije pronađena</div>;
+      }
+
+      const products: Product[] | null = await getProductsBySubcategory(
+        params.subcategory,
+        {
+          selectedTags,
+        }
+      );
+
+      setProducts(products);
+      setSubcategory(subcategory);
+    };
+
+    fetchData();
+  }, [params.category, params.subcategory, searchParams, selectedTags]);
 
   const page = searchParams["page"] ?? "1";
   const per_page = searchParams["per_page"] ?? "12";
@@ -52,15 +144,14 @@ const SubcategoryPage: React.FC<SubcategoryPageProps> =  async ({
 
   const entries = products?.slice(start, end);
 
- 
-  
+  // console.log(products)
 
   return (
     <div className="subcategoryPage">
       <div className="subcategoryPageTitle">{subcategory?.title}</div>
       {/* FILTERS */}
 
-      {/* <ProductFilter onTagsChange={onTagsChange}/> */}
+      <ProductFilter onTagsChange={handleTagsChange} />
       <div className="productsGrid">
         {entries?.map((product) => (
           <Link
@@ -84,10 +175,10 @@ const SubcategoryPage: React.FC<SubcategoryPageProps> =  async ({
       </div>
       <div>
         {/* <PaginationControls
-          hasNextPage={end < products?.length}
-          hasPrevPage={start > 0}
-          productNum={products?.length}
-        /> */}
+            hasNextPage={end < products?.length}
+            hasPrevPage={start > 0}
+            productNum={products?.length}
+          /> */}
         <PaginationControls
           hasNextPage={end < (products?.length ?? 0)}
           hasPrevPage={start > 0}
