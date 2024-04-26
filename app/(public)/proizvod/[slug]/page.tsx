@@ -2,15 +2,12 @@ import "./style.scss";
 
 import { FaAngleRight } from "react-icons/fa6";
 
-import { Tabs, TabsContent, TabsList, TabsTrigger } from "@/components/ui/tabs";
-
 import ProductImages from "@/components/ProductImages";
 import getProduct from "@/sanity/actions/get-product";
 import { Product } from "@/types";
 import { PortableText } from "@portabletext/react";
 import Link from "next/link";
 import getProductsBySubcategory from "@/sanity/actions/get-products-by-subcategory";
-import Image from "next/image";
 import RecommendedProducts from "@/components/RecommendedProducts";
 
 interface ProductPageProps {
@@ -36,8 +33,6 @@ const ProductPage: React.FC<ProductPageProps> = async ({
   } else {
     return <div>Proizvod nije pronađen</div>;
   }
-
-  // console.log(recommendedProducts);
 
   return (
     <div className="collectionProductPage">
@@ -214,33 +209,7 @@ const ProductPage: React.FC<ProductPageProps> = async ({
       </div>
 
       {/* RECOMMENDED PRODUCTS FORM COLLECTION */}
-      {/* <div className="recommendedProducts">
-        <h3>Preporučeni proizvodi</h3>
 
-        <div className="recommendedProductsGrid">
-          {recommendedProducts
-            ?.map((product) => (
-              <Link
-                key={product._id}
-                href={`/proizvod/${product.slug}`}
-                className="recommendedProductCard"
-              >
-                <div className="image">
-                  <Image
-                    src={product.images[0]?.toString()}
-                    width={200}
-                    height={400}
-                    alt={product.title}
-                  />
-                </div>
-                <div className="title">
-                  <h2>{product.title}</h2>
-                </div>
-              </Link>
-            ))
-            .slice(0, 4)}
-        </div>
-      </div> */}
       <RecommendedProducts recommendedProducts={recommendedProducts} />
     </div>
   );

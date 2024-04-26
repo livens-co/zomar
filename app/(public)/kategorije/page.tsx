@@ -17,7 +17,7 @@ const CategoryPage = async () => {
     (category) => category?.products.length > 0
   );
 
-  console.log(categoriesWithProd);
+  // console.log(categoriesWithProd);
 
   return (
     <div className="categoriesPage">

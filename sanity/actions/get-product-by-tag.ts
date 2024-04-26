@@ -1,8 +1,8 @@
 import { createClient, groq } from "next-sanity";
-import { Product } from "@/types";
+import { Product, Subcategory } from "@/types";
 import clientConfig from "../config/client-config";
 
-export default async function getProducts(): Promise<Product[]> {
+export default async function getProductsByTag(): Promise<Product[]> {
   try {
     const products: Product[] = await createClient(clientConfig).fetch(
       groq`*[_type == "products" && (
@@ -52,3 +52,5 @@ export default async function getProducts(): Promise<Product[]> {
     throw error; // Propagate the error if needed
   }
 }
+
+
