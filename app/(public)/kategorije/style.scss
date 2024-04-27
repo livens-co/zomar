@@ -21,32 +21,7 @@
     }
   }
 
-  .filterBar {
-    display: flex;
-    width: 100%;
-    background-color: var(--quaternary);
-    justify-content: center;
-
-    .innerContainer {
-      width: 100%;
-      max-width: 1200px;
-      height: 100%;
-      display: flex;
-      align-items: center;
-      gap: 1rem;
-      padding: 1rem 2rem;
-
-      svg {
-        color: #545454;
-        font-size: 1.5rem;
-      }
-
-      p {
-        font-weight: 600;
-        color: #545454;
-      }
-    }
-  }
+  
 
   .collectionsGrid {
     width: 100%;

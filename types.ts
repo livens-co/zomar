@@ -90,6 +90,7 @@ export interface Format {
 }
 
 export interface Brand {
+  _id: string;
   title: string;
   slug: string;
   products: Product[];

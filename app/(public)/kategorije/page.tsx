@@ -25,13 +25,7 @@ const CategoryPage = async () => {
         <h1>Kolekcije</h1>
       </div>
 
-      {/* FILTERS */}
-      <div className="filterBar">
-        <div className="innerContainer">
-          <HiMenu />
-          <p>Prikaži filtere</p>
-        </div>
-      </div>
+      
 
       {/* COLLECTIONS */}
       <div className="collectionsGrid">
