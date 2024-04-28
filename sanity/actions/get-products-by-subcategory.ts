@@ -89,10 +89,13 @@ export default async function getProductsBySubcategory(
     }
 
     // Apply format filtering if selectedFormats are specified
+    // if (selectedFormats && selectedFormats.length > 0) {
+    //   selectedFormats.forEach((formatId) => {
+    //     products = filterProductsByFormatId(products, formatId);
+    //   });
+    // }
     if (selectedFormats && selectedFormats.length > 0) {
-      selectedFormats.forEach((formatId) => {
-        products = filterProductsByFormatId(products, formatId);
-      });
+      products = filterProductsByFormatId(products, selectedFormats);
     }
 
     return products;

@@ -1,7 +1,10 @@
 import { Product } from "@/types";
 
 // Function to filter products by brand IDs
-const filterProductsByBrandId = (products: Product[] | null, brandIds: string[]): Product[] => {
+const filterProductsByBrandId = (
+  products: Product[] | null,
+  brandIds: string[]
+): Product[] => {
   if (!products || !brandIds || brandIds.length === 0) {
     return []; // Return an empty array if no products or brand IDs are provided
   }

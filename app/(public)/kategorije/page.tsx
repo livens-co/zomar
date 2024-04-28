@@ -3,7 +3,6 @@ import "./style.scss";
 
 import { FaArrowLeft, FaArrowRight } from "react-icons/fa6";
 
-import { HiMenu } from "react-icons/hi";
 import getCategories from "@/sanity/actions/get-categories";
 import { Category } from "@/types";
 import Link from "next/link";
@@ -17,15 +16,11 @@ const CategoryPage = async () => {
     (category) => category?.products.length > 0
   );
 
-  // console.log(categoriesWithProd);
-
   return (
     <div className="categoriesPage">
       <div className="header">
         <h1>Kolekcije</h1>
       </div>
-
-      
 
       {/* COLLECTIONS */}
       <div className="collectionsGrid">

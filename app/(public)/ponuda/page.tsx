@@ -8,16 +8,11 @@ import getCategoriesShop from "@/sanity/actions/get-categories-shop";
 export const revalidate = 1;
 
 const ShopPage = async () => {
-  // const products: Product[] = await getProducts();
-
-  // console.log(products);
   const categories: Category[] = await getCategoriesShop();
 
   const categoriesWithProd = categories.filter(
     (category) => category?.products.length > 0
-  )
-
-  console.log(categoriesWithProd)
+  );
 
   return (
     <div>

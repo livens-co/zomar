@@ -1,8 +1,11 @@
 import { Product } from "@/types";
 
 // Function to filter products by format ID
-const filterProductsByFormatId = (products: Product[] | null, formatId: string): Product[] => {
-  if (!products) {
+const filterProductsByFormatId = (
+  products: Product[] | null,
+  formatId: string[]
+): Product[] => {
+  if (!products || !formatId || formatId.length === 0) {
     return []; // Return an empty array if products is null
   }
 
@@ -10,7 +13,8 @@ const filterProductsByFormatId = (products: Product[] | null, formatId: string):
   const filteredProducts = products.filter((product) => {
     if (product.formats && product.formats.length > 0) {
       // Check if the format ID exists in the product's formats array
-      return product.formats.some((format) => format._id === formatId);
+      // return product.formats.some((format) => format._id === formatId);
+      return product.formats.some((format) => formatId.includes(format._id));
     }
     return false;
   });

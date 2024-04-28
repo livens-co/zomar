@@ -39,23 +39,16 @@ const SubcategoryPage: React.FC<SubcategoryPageProps> = ({
   const handleTagsChange = (selectedTags: string[]) => {
     setSelectedTags(selectedTags);
     // Here you can perform any additional logic based on the selected tags
-    // console.log("Selected tags:", selectedTags);
   };
 
   const handleBrandsChange = (selectedBrands: string[]) => {
     setSelectedBrands(selectedBrands);
     // Here you can perform any additional logic based on the selected brands
-    console.log("Selected brands:", selectedBrands);
   };
-  
-  
- 
-  
 
   const handleFormatsChange = (selectedFormats: string[]) => {
     setSelectedFormats(selectedFormats);
     // Here you can perform any additional logic based on the selected formats
-    console.log("Selected formats:", selectedFormats);
   };
 
   useEffect(() => {
@@ -104,37 +97,6 @@ const SubcategoryPage: React.FC<SubcategoryPageProps> = ({
   const end = start + Number(per_page);
 
   const entries = products?.slice(start, end);
-
-  console.log(products?.length)
-//   console.log(products?.map((product) =>
-//   product?.brands ? product.brands.map((brand) => brand._id) : []
-// ));
-
-
-
-// // Function to filter products by brand ID
-// const filterProductsByBrandId = (products: Product[] | null, brandId: string): Product[] | null => {
-//   if (!products) {
-//     return null;
-//   }
-
-//   // Filter products by brand ID
-//   const filteredProducts = products.filter((product) => {
-//     if (product.brands && product.brands.length > 0) {
-//       // Check if the brand ID exists in the product's brands array
-//       return product.brands.some((brand) => brand._id === brandId);
-//     }
-//     return false;
-//   });
-
-//   return filteredProducts.length > 0 ? filteredProducts : null;
-// };
-
-// // Example usage:
-// const filteredByBrands = filterProductsByBrandId(products, '1303814d-eeb7-422f-ae97-4ad61c7b3f6c');
-
-// console.log(filteredByBrands);
-
 
   return (
     <div className="subcategoryPage">
