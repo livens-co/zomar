@@ -5,12 +5,14 @@ import Link from "next/link";
 import getCategoryBySlug from "@/sanity/actions/get-category";
 import Image from "next/image";
 
+export const revalidate = 1;
+
 interface CategoryPageProps {
   params: {
     category: string;
   };
 }
-
+ 
 const CategoryPage: React.FC<CategoryPageProps> = async ({ params }) => {
   const category: Category | null = await getCategoryBySlug(params.category);
 
