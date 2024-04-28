@@ -113,20 +113,26 @@ const ProductFilters: React.FC<ProductFiltersProps> = ({
   };
 
   // ADD ON BUTTON CLICK FILTER
-  useEffect(() => {
+  // useEffect(() => {
+  //   onTagsChange(filterTags);
+  //   onBrandsChange(filterBrands);
+  //   onFormatsChange(filterFormats);
+  // }, [
+  //   filterTags,
+  //   onTagsChange,
+  //   onBrandsChange,
+  //   filterBrands,
+  //   onFormatsChange,
+  //   filterFormats,
+  // ]);
+
+  const handleFilterButtonClick = () => {
     onTagsChange(filterTags);
     onBrandsChange(filterBrands);
     onFormatsChange(filterFormats);
-  }, [
-    filterTags,
-    onTagsChange,
-    onBrandsChange,
-    filterBrands,
-    onFormatsChange,
-    filterFormats,
-  ]);
+  };
 
-  // console.log(filterBrands);
+  // console.log();
 
   return (
     <div className="filtersComponent">
@@ -195,7 +201,7 @@ const ProductFilters: React.FC<ProductFiltersProps> = ({
             </div>
           </div>
         </div>
-        <button onClick={() => {}}>Filter</button>
+        <button onClick={handleFilterButtonClick}>Filter</button>
       </div>
     </div>
   );
