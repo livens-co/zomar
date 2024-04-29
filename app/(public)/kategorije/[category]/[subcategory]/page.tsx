@@ -33,7 +33,6 @@ const SubcategoryPage: React.FC<SubcategoryPageProps> = ({
 
   const [selectedTags, setSelectedTags] = useState<string[]>([]);
   const [selectedBrands, setSelectedBrands] = useState<string[]>([]);
-
   const [selectedFormats, setSelectedFormats] = useState<string[]>([]);
 
   const handleTagsChange = (selectedTags: string[]) => {
@@ -114,7 +113,7 @@ const SubcategoryPage: React.FC<SubcategoryPageProps> = ({
       <div className="productsGrid">
         {entries?.map((product) => (
           <Link
-            key={product.slug}
+            key={product._id}
             href={`/proizvod/${product.slug}`}
             className="productCard"
           >

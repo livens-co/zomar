@@ -75,8 +75,6 @@ const ProductFilters: React.FC<ProductFiltersProps> = ({
   brands,
   formats,
 }) => {
-  // const [filters, setFilters] = useState<string[]>([]);
-
   const [filterTags, setFilterTags] = useState<string[]>([]);
   const [filterBrands, setFilterBrands] = useState<string[]>([]);
   const [filterFormats, setFilterFormats] = useState<string[]>([]);
@@ -132,7 +130,7 @@ const ProductFilters: React.FC<ProductFiltersProps> = ({
           <h4>Vrste pločica</h4>
           <div className="filterContainer">
             <div className="filterContainerInner">
-              <ul>
+              {/* <ul>
                 {tagsList.map((tag) => (
                   <li key={tag.id}>
                     <input
@@ -143,7 +141,22 @@ const ProductFilters: React.FC<ProductFiltersProps> = ({
                     <label htmlFor={tag.id}>{tag.name}</label>
                   </li>
                 ))}
-              </ul>
+              </ul> */}
+              {tagsList.map((tag) => (
+                <div className="checkbox-container" key={tag.id}>
+                  <input
+                    type="checkbox"
+                    id={tag.id}
+                    onChange={handleTagsChange}
+                  />
+                  <label htmlFor={tag.id}>
+                    <div className="checkbox">
+                      <div className="checkbox-inner"></div>
+                    </div>
+                    <p>{tag.name}</p>
+                  </label>
+                </div>
+              ))}
             </div>
           </div>
         </div>
@@ -153,14 +166,27 @@ const ProductFilters: React.FC<ProductFiltersProps> = ({
             <div className="filterContainerInner">
               <ul>
                 {brands?.map((brand) => (
-                  <li key={brand._id}>
-                    <input
-                      type="checkbox"
-                      id={brand._id}
-                      onChange={handleBrandChange}
-                    />
-                    <label htmlFor={brand._id}>{brand.title}</label>
-                  </li>
+                  // <li key={brand._id}>
+                  //   <input
+                  //     type="checkbox"
+                  //     id={brand._id}
+                  //     onChange={handleBrandChange}
+                  //   />
+                  //   <label htmlFor={brand._id}>{brand.title}</label>
+                  // </li>
+                  <div className="checkbox-container" key={brand._id}>
+                  <input
+                    type="checkbox"
+                    id={brand._id}
+                    onChange={handleBrandChange}
+                  />
+                  <label htmlFor={brand._id}>
+                    <div className="checkbox">
+                      <div className="checkbox-inner"></div>
+                    </div>
+                    <p>{brand.title}</p>
+                  </label>
+                </div>
                 ))}
               </ul>
             </div>
@@ -172,14 +198,27 @@ const ProductFilters: React.FC<ProductFiltersProps> = ({
             <div className="filterContainerInner">
               <ul>
                 {formats?.map((format) => (
-                  <li key={format._id}>
-                    <input
-                      type="checkbox"
-                      id={format._id}
-                      onChange={handleFormatChange}
-                    />
-                    <label htmlFor={format._id}>{format.title}</label>
-                  </li>
+                  // <li key={format._id}>
+                  //   <input
+                  //     type="checkbox"
+                  //     id={format._id}
+                  //     onChange={handleFormatChange}
+                  //   />
+                  //   <label htmlFor={format._id}>{format.title}</label>
+                  // </li>
+                  <div className="checkbox-container" key={format._id}>
+                  <input
+                    type="checkbox"
+                    id={format._id}
+                    onChange={handleFormatChange}
+                  />
+                  <label htmlFor={format._id}>
+                    <div className="checkbox">
+                      <div className="checkbox-inner"></div>
+                    </div>
+                    <p>{format.title}</p>
+                  </label>
+                </div>
                 ))}
               </ul>
             </div>
