@@ -116,6 +116,25 @@ const ProductFilters: React.FC<ProductFiltersProps> = ({
     onFormatsChange(filterFormats);
   };
 
+  const handleRemoveFiltersClick = () => {
+    setFilterTags([]);
+    setFilterBrands([]);
+    setFilterFormats([]);
+
+    // Uncheck all checkboxes
+    const checkboxes = document.querySelectorAll<HTMLInputElement>(
+      'input[type="checkbox"]'
+    );
+    checkboxes.forEach((checkbox) => {
+      checkbox.checked = false; // Use type assertion to access checked property
+    });
+
+    // Notify parent components about filter changes
+    onTagsChange([]);
+    onBrandsChange([]);
+    onFormatsChange([]);
+  };
+
   return (
     <div className="filtersComponent">
       <div className="filterBar">
@@ -130,18 +149,6 @@ const ProductFilters: React.FC<ProductFiltersProps> = ({
           <h4>Vrste pločica</h4>
           <div className="filterContainer">
             <div className="filterContainerInner">
-              {/* <ul>
-                {tagsList.map((tag) => (
-                  <li key={tag.id}>
-                    <input
-                      type="checkbox"
-                      id={tag.id}
-                      onChange={handleTagsChange}
-                    />
-                    <label htmlFor={tag.id}>{tag.name}</label>
-                  </li>
-                ))}
-              </ul> */}
               {tagsList.map((tag) => (
                 <div className="checkbox-container" key={tag.id}>
                   <input
@@ -166,27 +173,19 @@ const ProductFilters: React.FC<ProductFiltersProps> = ({
             <div className="filterContainerInner">
               <ul>
                 {brands?.map((brand) => (
-                  // <li key={brand._id}>
-                  //   <input
-                  //     type="checkbox"
-                  //     id={brand._id}
-                  //     onChange={handleBrandChange}
-                  //   />
-                  //   <label htmlFor={brand._id}>{brand.title}</label>
-                  // </li>
                   <div className="checkbox-container" key={brand._id}>
-                  <input
-                    type="checkbox"
-                    id={brand._id}
-                    onChange={handleBrandChange}
-                  />
-                  <label htmlFor={brand._id}>
-                    <div className="checkbox">
-                      <div className="checkbox-inner"></div>
-                    </div>
-                    <p>{brand.title}</p>
-                  </label>
-                </div>
+                    <input
+                      type="checkbox"
+                      id={brand._id}
+                      onChange={handleBrandChange}
+                    />
+                    <label htmlFor={brand._id}>
+                      <div className="checkbox">
+                        <div className="checkbox-inner"></div>
+                      </div>
+                      <p>{brand.title}</p>
+                    </label>
+                  </div>
                 ))}
               </ul>
             </div>
@@ -198,33 +197,32 @@ const ProductFilters: React.FC<ProductFiltersProps> = ({
             <div className="filterContainerInner">
               <ul>
                 {formats?.map((format) => (
-                  // <li key={format._id}>
-                  //   <input
-                  //     type="checkbox"
-                  //     id={format._id}
-                  //     onChange={handleFormatChange}
-                  //   />
-                  //   <label htmlFor={format._id}>{format.title}</label>
-                  // </li>
                   <div className="checkbox-container" key={format._id}>
-                  <input
-                    type="checkbox"
-                    id={format._id}
-                    onChange={handleFormatChange}
-                  />
-                  <label htmlFor={format._id}>
-                    <div className="checkbox">
-                      <div className="checkbox-inner"></div>
-                    </div>
-                    <p>{format.title}</p>
-                  </label>
-                </div>
+                    <input
+                      type="checkbox"
+                      id={format._id}
+                      onChange={handleFormatChange}
+                    />
+                    <label htmlFor={format._id}>
+                      <div className="checkbox">
+                        <div className="checkbox-inner"></div>
+                      </div>
+                      <p>{format.title}</p>
+                    </label>
+                  </div>
                 ))}
               </ul>
             </div>
           </div>
         </div>
-        <button onClick={handleFilterButtonClick}>Pretraži</button>
+        <div className="filterButtons">
+          <button onClick={handleRemoveFiltersClick} className="removeButton">
+            Ukloni filtere
+          </button>
+          <button onClick={handleFilterButtonClick} className="submitButton">
+            Pretraži
+          </button>
+        </div>
       </div>
     </div>
   );
