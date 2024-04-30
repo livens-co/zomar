@@ -7,6 +7,8 @@ export default function getCategoryBySlug(slug: string): Promise<Category | null
     groq`*[_type == "category" && slug.current == $slug][0] {
     _id,
     title,
+    'image': image.asset->url,
+    description
   }`,
     { slug }
   )

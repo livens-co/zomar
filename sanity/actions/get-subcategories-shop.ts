@@ -15,6 +15,7 @@ export default async function getSubcategoriesByCategoryShop(
       groq`*[_type == "category" && slug.current == $categorySlug ][0] {
         _id,
         title,
+        'image': image.asset->url,
         'slug': slug.current,
         'subcategories': subcategories[]->{
           _id,

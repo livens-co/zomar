@@ -5,21 +5,20 @@ import clientConfig from "../config/client-config";
 export default function getCategoriesShop(): Promise<Category[]> {
   return createClient(clientConfig).fetch(
     groq`*[_type == "category"] | order(_createdAt desc) {
-    _id,
-    title,
-    'slug': slug.current,
-    'products': *[_type == "products" && references(^._id) && ( productCategory == "priceProduct")] {
-        _id,
-      title,
-      
-      
-      },
-    'subcategories': subcategories[]->{
       _id,
       title,
-      slug
-      
-    }
+      'image': image.asset->url,
+      'slug': slug.current,
+      'products': *[_type == "products" && references(^._id) && ( productCategory == "priceProduct")] {
+          _id,
+        title,
+        slug
+        },
+      'subcategories': subcategories[]->{
+        _id,
+        title,
+        slug  
+      }
   }`
   );
 }

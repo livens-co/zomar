@@ -38,7 +38,7 @@ const ProductImages: React.FC<ProductImagesProps> = ({ data }) => {
         modules={[FreeMode, Navigation, Thumbs]}
         className="productImageComponent"
       >
-        {data.map((image, index) => (
+        {data?.map((image, index) => (
           <SwiperSlide className="swiperSlide" key={index}>
             <Image src={image} alt="Images " width={600} height={400}/>
           </SwiperSlide>

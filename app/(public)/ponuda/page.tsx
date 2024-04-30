@@ -1,4 +1,4 @@
-import getProducts from "@/sanity/actions/get-products";
+
 import "./style.scss";
 import { Category, Product } from "@/types";
 import getCategories from "@/sanity/actions/get-categories";

@@ -7,7 +7,7 @@ import "./style.scss";
 import getProductsBySubcategory from "@/sanity/actions/get-products-by-subcategory";
 import Link from "next/link";
 import Image from "next/image";
-import getSubategoryBySlug from "@/sanity/actions/get-subcategory";
+import getSubcategoryBySlug from "@/sanity/actions/get-subcategory";
 import PaginationControls from "@/components/PaginationControls";
 
 import ProductFilters from "@/components/ProductFilters";
@@ -52,7 +52,7 @@ const SubcategoryPage: React.FC<SubcategoryPageProps> = ({
 
   useEffect(() => {
     const fetchData = async () => {
-      const subcategory: Subcategory | null = await getSubategoryBySlug(
+      const subcategory: Subcategory | null = await getSubcategoryBySlug(
         params.subcategory
       );
 
@@ -97,6 +97,8 @@ const SubcategoryPage: React.FC<SubcategoryPageProps> = ({
 
   const entries = products?.slice(start, end);
 
+  const productsNum = products?.length
+
   return (
     <div className="subcategoryPage">
       <div className="subcategoryPageTitle">{subcategory?.title}</div>
@@ -108,6 +110,7 @@ const SubcategoryPage: React.FC<SubcategoryPageProps> = ({
         onFormatsChange={handleFormatsChange}
         brands={brands}
         formats={formats}
+        productsNum={productsNum}
       />
 
       <div className="productsGrid">

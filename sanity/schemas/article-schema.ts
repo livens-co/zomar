@@ -1,20 +1,20 @@
 import { normalize } from "normalize-diacritics";
 import { isUniqueAcrossAllDocuments } from "@/lib/isUniqueAcrossAllDocuments";
 
-const subcategory = {
-  name: "subcategory",
-  title: "Potkategorije",
+const article = {
+  name: "article",
+  title: "Novosti",
   type: "document",
   fields: [
     {
       name: "title",
-      title: "Naziv potkategorije",
+      title: "Naslov",
       type: "string",
       required: true,
     },
     {
       name: "slug",
-      title: "URL potkategorije",
+      title: "URL nastavak",
       type: "slug",
       options: {
         source: "title",
@@ -30,6 +30,14 @@ const subcategory = {
       required: true,
     },
     {
+      name: "date",
+      title: "Datum",
+      type: "date",
+      options: {
+        dateFormat: "D.M.YYYY",
+      },
+    },
+    {
       name: "image",
       title: "Naslovna slika",
       type: "image",
@@ -40,11 +48,17 @@ const subcategory = {
     },
     {
       name: "description",
-      title: "Opis kategorije",
+      title: "Kratki opis",
+      type: "string",
+    },
+    {
+      name: "body",
+      title: "Članak",
       type: "array",
-      of: [{ type: "block" }],
+      of: [{ type: "block" }, { type: "image" }],
+      required: true,
     },
   ],
 };
 
-export default subcategory;
+export default article;

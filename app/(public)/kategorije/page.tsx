@@ -19,7 +19,7 @@ const CategoryPage = async () => {
   return (
     <div className="categoriesPage">
       <div className="header">
-        <h1>Kolekcije</h1>
+        <h1>Kategorije</h1>
       </div>
 
       {/* COLLECTIONS */}

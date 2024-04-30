@@ -30,10 +30,19 @@ const category = {
       required: true,
     },
     {
-      name: "images",
-      title: "Slike",
+      name: "image",
+      title: "Naslovna slika",
+      type: "image",
+      options: {
+        hotspot: true,
+      },
+      required: true,
+    },
+    {
+      name: "description",
+      title: "Opis kategorije",
       type: "array",
-      of: [{ type: "image" }],
+      of: [{ type: "block" }],
     },
     {
       name: "subcategories",

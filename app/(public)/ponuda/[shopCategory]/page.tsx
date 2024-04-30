@@ -1,6 +1,5 @@
-import { Category, ProductShop, Subcategory } from "@/types";
+import { Category,  Subcategory } from "@/types";
 import "./style.scss";
-import getProductsByCategory from "@/sanity/actions/get-products-by-category";
 import getCategories from "@/sanity/actions/get-categories";
 import getSubcategoriesByCategory from "@/sanity/actions/get-subcategories";
 import Link from "next/link";

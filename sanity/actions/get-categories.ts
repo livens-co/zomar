@@ -7,18 +7,17 @@ export default function getCategories(): Promise<Category[]> {
     groq`*[_type == "category"] | order(_createdAt desc) {
     _id,
     title,
+    'image': image.asset->url,
     'slug': slug.current,
     'products': *[_type == "products" && references(^._id) && ( productCategory == "noPriceProduct")] {
         _id,
       title,
-      
-      
+      slug
       },
     'subcategories': subcategories[]->{
       _id,
       title,
-      slug
-      
+      slug  
     }
   }`
   );

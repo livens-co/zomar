@@ -107,17 +107,6 @@ const product = {
       type: "string",
     },
     {
-      name: "colors",
-      title: "Boja",
-      type: "array",
-      of: [
-        {
-          type: "reference",
-          to: [{ type: "color" }],
-        },
-      ],
-    },
-    {
       name: "brands",
       title: "Brend",
       type: "array",

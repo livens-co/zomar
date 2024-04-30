@@ -11,6 +11,7 @@ interface ProductFiltersProps {
   onFormatsChange: (selectedFormats: string[]) => void;
   brands: Brand[] | null;
   formats: Format[] | null;
+  productsNum?: number | [];
 }
 
 const tagsList = [
@@ -74,6 +75,7 @@ const ProductFilters: React.FC<ProductFiltersProps> = ({
   onFormatsChange,
   brands,
   formats,
+  productsNum
 }) => {
   const [filterTags, setFilterTags] = useState<string[]>([]);
   const [filterBrands, setFilterBrands] = useState<string[]>([]);
@@ -142,9 +144,15 @@ const ProductFilters: React.FC<ProductFiltersProps> = ({
           <HiMenu />
           <p>Filteri</p>
         </div>
+        <div className="productNumber">
+          <p>Broj proizvoda:</p> <span>{productsNum}</span>
+        </div>
       </div>
 
       <div className="filtersContainer">
+        <div className="filtersContainerInner">
+
+        
         <div className="filterColumn">
           <h4>Vrste pločica</h4>
           <div className="filterContainer">
@@ -223,6 +231,7 @@ const ProductFilters: React.FC<ProductFiltersProps> = ({
             Pretraži
           </button>
         </div>
+      </div>
       </div>
     </div>
   );

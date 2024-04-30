@@ -13,7 +13,6 @@ export interface Product {
   categories: Category[];
   subcategories: Subcategory[];
   formats: Format[];
-  colors: Color[];
   brands: Brand[];
   colorList: string;
   tags: {
@@ -34,52 +33,23 @@ export interface Product {
   };
 }
 
-export interface ProductShop {
-  _id: string;
-  productCategory: string;
-  title: string;
-  slug: string;
-  description: PortableTextBlock[];
-  images: string[];
-  price: number;
-  salePrice: number;
-  sku: string;
-  categories: Category[];
-  subcategories: Subcategory[];
-  formats: Format[];
-  colors: Color[];
-  brands: Brand[];
-  tags: {
-    mat: boolean;
-    protuklizna: boolean;
-    zidna: boolean;
-    podna: boolean;
-    retificirana: boolean;
-    mraz: boolean;
-    unutarnja: boolean;
-    vanjska: boolean;
-    class: string;
-  };
-}
-
 export interface Category {
   _id: string;
   title: string;
   slug: string;
+  image: string;
+  description: PortableTextBlock[];
   products: Product[];
   subcategories: Subcategory[];
 }
-
-// export interface Subcategory extends Category {
-//   subcategories: Subcategory[];
-// }
 
 export interface Subcategory {
   _id: string;
   title: string;
   slug: string;
+  image: string;
+  description: PortableTextBlock[];
   products: Product[];
-  // categories: Category[];
 }
 
 export interface Format {
@@ -96,8 +66,19 @@ export interface Brand {
   products: Product[];
 }
 
-export interface Color {
+export interface Article {
+  _id: string;
   title: string;
   slug: string;
-  products: Product[];
+  date: string;
+  image: string;
+  description: string;
+  body: PortableTextBlock[];
+}
+
+export interface Billboard {
+  _id: string;
+  title: string;
+  image: string;
+  description: string;
 }

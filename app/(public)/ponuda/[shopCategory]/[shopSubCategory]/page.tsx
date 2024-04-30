@@ -8,14 +8,14 @@ export const revalidate = 1;
 
 interface ShopSubcategoryPageProps {
   params: {
-    shopSubcategory: string;
+    shopSubcategory: string; 
   };
 }
 
 const ShopSubcategoryPage: React.FC<ShopSubcategoryPageProps> = async ({
   params,
 }) => {
-  const products: Product[] = await getProductsBySubcategoryShop(
+  const products: Product[] | null = await getProductsBySubcategoryShop(
     params.shopSubcategory
   );
 
@@ -23,7 +23,7 @@ const ShopSubcategoryPage: React.FC<ShopSubcategoryPageProps> = async ({
     <>
       <div>ShopSubcategoryPage</div>
       <ul>
-        {products.map((product) => (
+        {products?.map((product) => (
           <Link key={product.slug} href={`/proizvod/${product.slug}`}>
             {product.title}
           </Link>

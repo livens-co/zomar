@@ -10,6 +10,8 @@ import Link from "next/link";
 import getProductsBySubcategory from "@/sanity/actions/get-products-by-subcategory";
 import RecommendedProducts from "@/components/RecommendedProducts";
 
+export const revalidate = 1;
+
 interface ProductPageProps {
   params: {
     slug: string;
@@ -74,7 +76,7 @@ const ProductPage: React.FC<ProductPageProps> = async ({
           <div>
             Dimenzije:{" "}
             <ul>
-              {product?.formats.map((f) => (
+              {product?.formats?.map((f) => (
                 <li key={f._id}>{f.title} cm</li>
               ))}
             </ul>
