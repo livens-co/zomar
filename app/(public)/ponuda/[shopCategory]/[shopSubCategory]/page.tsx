@@ -1,4 +1,4 @@
-"use client";
+// "use client";
 
 import { Brand, Format, Product, Subcategory } from "@/types";
 import "./style.scss";
@@ -12,6 +12,8 @@ import PaginationControls from "@/components/PaginationControls";
 import Image from "next/image";
 import ProductFilters from "@/components/ProductFilters";
 
+export const revalidate = 1;
+
 interface ShopSubcategoryPageProps {
   params: {
     shopSubcategory: string;
@@ -20,103 +22,105 @@ interface ShopSubcategoryPageProps {
   searchParams: { [key: string]: string | string[] | undefined };
 }
 
-const ShopSubcategoryPage: React.FC<ShopSubcategoryPageProps> = ({
+const ShopSubcategoryPage: React.FC<ShopSubcategoryPageProps> = async({
   params,
   searchParams,
 }) => {
-  const [products, setProducts] = useState<Product[] | null>(null);
-  const [subcategory, setSubcategory] = useState<Subcategory | null>(null);
-  const [brands, setBrands] = useState<Brand[] | null>(null);
-  const [formats, setFormats] = useState<Format[] | null>(null);
+  const products: Product[] | null = await getProductsBySubcategoryShop(params.shopSubcategory)
+  const subcategory: Subcategory | null= await getSubcategoryBySlug(params.shopSubcategory)
+  // const [products, setProducts] = useState<Product[] | null>(null);
+  // const [subcategory, setSubcategory] = useState<Subcategory | null>(null);
+  // const [brands, setBrands] = useState<Brand[] | null>(null);
+  // const [formats, setFormats] = useState<Format[] | null>(null);
 
-  const [selectedTags, setSelectedTags] = useState<string[]>([]);
-  const [selectedBrands, setSelectedBrands] = useState<string[]>([]);
-  const [selectedFormats, setSelectedFormats] = useState<string[]>([]);
+  // const [selectedTags, setSelectedTags] = useState<string[]>([]);
+  // const [selectedBrands, setSelectedBrands] = useState<string[]>([]);
+  // const [selectedFormats, setSelectedFormats] = useState<string[]>([]);
 
-  const handleTagsChange = (selectedTags: string[]) => {
-    setSelectedTags(selectedTags);
-    // Here you can perform any additional logic based on the selected tags
-  };
+  // const handleTagsChange = (selectedTags: string[]) => {
+  //   setSelectedTags(selectedTags);
+  //   // Here you can perform any additional logic based on the selected tags
+  // };
 
-  const handleBrandsChange = (selectedBrands: string[]) => {
-    setSelectedBrands(selectedBrands);
-    // Here you can perform any additional logic based on the selected brands
-  };
+  // const handleBrandsChange = (selectedBrands: string[]) => {
+  //   setSelectedBrands(selectedBrands);
+  //   // Here you can perform any additional logic based on the selected brands
+  // };
 
-  const handleFormatsChange = (selectedFormats: string[]) => {
-    setSelectedFormats(selectedFormats);
-    // Here you can perform any additional logic based on the selected formats
-  };
+  // const handleFormatsChange = (selectedFormats: string[]) => {
+  //   setSelectedFormats(selectedFormats);
+  //   // Here you can perform any additional logic based on the selected formats
+  // };
 
-  useEffect(() => {
-    const fetchData = async () => {
-      const subcategory: Subcategory | null = await getSubcategoryBySlug(
-        params.shopSubcategory
-      );
+  // useEffect(() => {
+  //   const fetchData = async () => {
+  //     const subcategory: Subcategory | null = await getSubcategoryBySlug(
+  //       params.shopSubcategory
+  //     );
 
-      if (!subcategory) {
-        // Handle case where category is not found
-        return <div>Potkategorija nije pronađena</div>;
-      }
+  //     if (!subcategory) {
+  //       // Handle case where category is not found
+  //       return <div>Potkategorija nije pronađena</div>;
+  //     }
 
-      const products: Product[] | null = await getProductsBySubcategoryShop(
-        params.shopSubcategory,
-        // subcategory.slug,
-        {
-          selectedTags,
-          selectedBrands,
-          selectedFormats,
-        }
-      );
+  //     const products: Product[] | null = await getProductsBySubcategoryShop(
+  //       params.shopSubcategory,
+  //       // subcategory.slug,
+  //       {
+  //         selectedTags,
+  //         selectedBrands,
+  //         selectedFormats,
+  //       }
+  //     );
 
-      const brands: Brand[] | null = await getBrands();
-      const formats: Format[] | null = await getFormats();
+  //     const brands: Brand[] | null = await getBrands();
+  //     const formats: Format[] | null = await getFormats();
 
-      setProducts(products);
-      setSubcategory(subcategory);
-      setBrands(brands);
-      setFormats(formats);
-    };
+  //     setProducts(products);
+  //     setSubcategory(subcategory);
+  //     setBrands(brands);
+  //     setFormats(formats);
+  //   };
 
-    fetchData();
-  }, [
-    params.shopCategory,
-    params.shopSubcategory,
-    searchParams,
-    selectedTags,
-    selectedBrands,
-    selectedFormats,
-  ]);
+  //   fetchData();
+  // }, [
+  //   params.shopCategory,
+  //   params.shopSubcategory,
+  //   searchParams,
+  //   selectedTags,
+  //   selectedBrands,
+  //   selectedFormats,
+  // ]);
 
-  const page = searchParams["page"] ?? "1";
-  const per_page = searchParams["per_page"] ?? "12";
+  // const page = searchParams["page"] ?? "1";
+  // const per_page = searchParams["per_page"] ?? "12";
 
-  const start = (Number(page) - 1) * Number(per_page);
-  const end = start + Number(per_page);
+  // const start = (Number(page) - 1) * Number(per_page);
+  // const end = start + Number(per_page);
 
-  const entries = products?.slice(start, end);
+  // const entries = products?.slice(start, end);
 
-  const productsNum = products?.length;
+  // const productsNum = products?.length;
 
-  // console.log("page", params.shopCategory, params.shopSubcategory);
-  console.log(subcategory?.slug)
+  // // console.log("page", params.shopCategory, params.shopSubcategory);
+  // console.log(subcategory?.slug)
 
   return (
     <div className="shopSubcategoryPage">
       <div className="subcategoryPageTitle">{subcategory?.title}</div>
 
       {/* FILTERS */}
-      <ProductFilters
+      {/* <ProductFilters
         onTagsChange={handleTagsChange}
         onBrandsChange={handleBrandsChange}
         onFormatsChange={handleFormatsChange}
         brands={brands}
         formats={formats}
         productsNum={productsNum}
-      />
+      /> */}
 
       <div className="productsGrid">
-        {entries?.map((product) => (
+        {products?.map((product) => (
           <Link
             key={product._id}
             href={`/proizvod/${product.slug}`}

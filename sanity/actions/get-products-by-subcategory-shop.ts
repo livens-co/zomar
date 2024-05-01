@@ -11,7 +11,7 @@ export interface FilterOptions {
 }
 
 export default async function getProductsBySubcategoryShop(
-  subcategorySlug: string,
+  slug: string,
   options: FilterOptions = {}
 ): Promise<Product[] | null> {
   const { selectedTags, selectedBrands, selectedFormats } = options;
@@ -23,7 +23,7 @@ export default async function getProductsBySubcategoryShop(
       .join(" || ");
 
     const response: Subcategory = await createClient(clientConfig).fetch(
-      groq`*[_type == "subcategory" && slug.current == $subcategorySlug][0] {
+      groq`*[_type == "subcategory" && slug.current == $slug][0] {
         title,
         'slug': slug.current,
         'products': *[_type == "products" && references(^._id) && productCategory == "priceProduct"
@@ -78,7 +78,7 @@ export default async function getProductsBySubcategoryShop(
           }
         }
       }`,
-      { subcategorySlug }
+      { slug }
     );
 
     let products: Product[] = response?.products || [];
@@ -98,7 +98,7 @@ export default async function getProductsBySubcategoryShop(
       products = filterProductsByFormatId(products, selectedFormats);
     }
 
-    console.log('func', subcategorySlug)
+    console.log('func', slug)
 
     return products;
   } catch (error) {
