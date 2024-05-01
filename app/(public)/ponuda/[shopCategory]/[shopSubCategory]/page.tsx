@@ -120,7 +120,7 @@ const ShopSubcategoryPage: React.FC<ShopSubcategoryPageProps> = async ({
 
   return (
     <div className="shopSubcategoryPage">
-      <div className="subcategoryPageTitle">{subcategory?.title}</div>
+      <div className="subcategoryPageTitle">{params?.shopSubcategory}</div>
 
       {/* FILTERS */}
       {/* <ProductFilters
