@@ -18,7 +18,7 @@ export const revalidate = 1;
 interface ShopSubcategoryPageProps {
   params: {
     shopSubcategory: string; 
-    category: string;
+    shopCategory: string;
   };
   searchParams: { [key: string]: string | string[] | undefined };
 }
@@ -82,7 +82,7 @@ const ShopSubcategoryPage: React.FC<ShopSubcategoryPageProps> = ({
 
     fetchData();
   }, [
-    params.category,
+    params.shopCategory,
     params.shopSubcategory,
     searchParams,
     selectedTags,
@@ -143,7 +143,7 @@ const ShopSubcategoryPage: React.FC<ShopSubcategoryPageProps> = ({
           hasPrevPage={start > 0}
           productNum={products?.length ?? 0}
           subcategory={params.shopSubcategory}
-          category={params.category}
+          category={params.shopCategory}
         />
       </div>
     </div>
