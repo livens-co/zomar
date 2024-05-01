@@ -19,8 +19,8 @@ export const revalidate = 1;
 
 interface ShopSubcategoryPageProps {
   params: {
-    shopSubcategory: string;
-    shopCategory: string;
+    subcategory: string;
+    category: string;
   };
   searchParams: { [key: string]: string | string[] | undefined };
 }
@@ -30,9 +30,9 @@ const ShopSubcategoryPage: React.FC<ShopSubcategoryPageProps> = async ({
   searchParams,
 }) => {
   // const products: Product[] = await getProductsShop()
-  // const subcategory: Subcategory | null = await getSubcategoryBySlug(params.shopSubcategory)
+  const subcategory: Subcategory | null = await getSubcategoryBySlug(params.subcategory)
   const products: Product[] | null = await getProductsBySubcategoryShop(
-    params.shopSubcategory
+    params.subcategory
   );
   // const products: Product[] = await getProductsBySubcategoryShop(
   //   params.shopSubcategory
@@ -116,11 +116,11 @@ const ShopSubcategoryPage: React.FC<ShopSubcategoryPageProps> = async ({
 
   // // console.log("page", params.shopCategory, params.shopSubcategory);
   // console.log('PRICE:', params.shopSubcategory);
-  console.log(products);
+  // console.log(products);
 
   return (
     <div className="shopSubcategoryPage">
-      <div className="subcategoryPageTitle">{params?.shopSubcategory}</div>
+      <div className="subcategoryPageTitle">{subcategory?.title}</div>
 
       {/* FILTERS */}
       {/* <ProductFilters

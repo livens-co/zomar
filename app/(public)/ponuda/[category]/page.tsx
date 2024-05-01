@@ -9,7 +9,7 @@ export const revalidate = 1;
 
 interface ShopCategoryPageProps {
   params: {
-    shopCategory: string;
+    category: string;
   };
 }
 
@@ -17,7 +17,7 @@ const ShopCategoryPage: React.FC<ShopCategoryPageProps> = async ({
   params,
 }) => {
   const category: Category | null = await getCategoryBySlug(
-    params.shopCategory
+    params.category
   );
 
   if (!category) {
@@ -26,7 +26,7 @@ const ShopCategoryPage: React.FC<ShopCategoryPageProps> = async ({
   }
 
   const subcategories: Subcategory[] = await getSubcategoriesByCategoryShop(
-    params.shopCategory
+    params.category
   );
 
   const subcategoriesWithProd = subcategories.filter(
@@ -42,7 +42,7 @@ const ShopCategoryPage: React.FC<ShopCategoryPageProps> = async ({
           <Link
             className="categoryCard"
             key={sc._id}
-            href={`/ponuda/${params.shopCategory}/${sc.slug}`}
+            href={`/ponuda/${params.category}/${sc.slug}`}
           >
             <div className="image">
               <Image
