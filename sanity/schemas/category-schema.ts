@@ -46,7 +46,7 @@ const category = {
     },
     {
       name: "subcategories",
-      title: "Podkategorije",
+      title: "Potkategorije",
       type: "array",
       of: [{ type: "reference", to: [{ type: "subcategory" }] }],
     },
