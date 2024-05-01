@@ -13,6 +13,7 @@ import Image from "next/image";
 import ProductFilters from "@/components/ProductFilters";
 import subcategory from "@/sanity/schemas/subcategory-schema";
 import getProductsBySubcategory from "@/sanity/actions/get-products-by-subcategory";
+import getProductsShop from "@/sanity/actions/get-products-shop";
 
 export const revalidate = 1;
 
@@ -28,10 +29,11 @@ const ShopSubcategoryPage: React.FC<ShopSubcategoryPageProps> = async ({
   params,
   searchParams,
 }) => {
-  const subcategory: Subcategory | null = await getSubcategoryBySlug(params.shopSubcategory)
-  const products: Product[] | null = await getProductsBySubcategoryShop(
-    params.shopSubcategory
-  );
+  const products: Product[] = await getProductsShop()
+  // const subcategory: Subcategory | null = await getSubcategoryBySlug(params.shopSubcategory)
+  // const products: Product[] | null = await getProductsBySubcategoryShop(
+  //   params.shopSubcategory
+  // );
   // const products: Product[] = await getProductsBySubcategoryShop(
   //   params.shopSubcategory
   // );
