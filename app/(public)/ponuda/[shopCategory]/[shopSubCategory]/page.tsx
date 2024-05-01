@@ -30,7 +30,7 @@ const ShopSubcategoryPage: React.FC<ShopSubcategoryPageProps> = async ({
   searchParams,
 }) => {
   // const products: Product[] = await getProductsShop()
-  const subcategory: Subcategory | null = await getSubcategoryBySlug(params.shopSubcategory)
+  // const subcategory: Subcategory | null = await getSubcategoryBySlug(params.shopSubcategory)
   const products: Product[] | null = await getProductsBySubcategoryShop(
     `${params.shopSubcategory}`
   );
