@@ -4,13 +4,14 @@ import { Brand, Format, Product, Subcategory } from "@/types";
 import "./style.scss";
 import Link from "next/link";
 import getProductsBySubcategoryShop from "@/sanity/actions/get-products-by-subcategory-shop";
-import { useEffect, useState } from "react";
+// import { useEffect, useState } from "react";
 import getSubcategoryBySlug from "@/sanity/actions/get-subcategory";
 import getBrands from "@/sanity/actions/get-brands";
 import getFormats from "@/sanity/actions/get-formats";
 import PaginationControls from "@/components/PaginationControls";
 import Image from "next/image";
 import ProductFilters from "@/components/ProductFilters";
+import subcategory from "@/sanity/schemas/subcategory-schema";
 
 export const revalidate = 1;
 
@@ -22,12 +23,17 @@ interface ShopSubcategoryPageProps {
   searchParams: { [key: string]: string | string[] | undefined };
 }
 
-const ShopSubcategoryPage: React.FC<ShopSubcategoryPageProps> = async({
+const ShopSubcategoryPage: React.FC<ShopSubcategoryPageProps> = async ({
   params,
   searchParams,
 }) => {
-  const products: Product[] | null = await getProductsBySubcategoryShop(params.shopSubcategory)
-  const subcategory: Subcategory | null= await getSubcategoryBySlug(params.shopSubcategory)
+  
+  const products: Product[] | null = await getProductsBySubcategoryShop(
+    params.shopSubcategory
+  );
+  // const subcategory: Subcategory | null = await getSubcategoryBySlug(
+  //   params.shopSubcategory
+  // );
   // const [products, setProducts] = useState<Product[] | null>(null);
   // const [subcategory, setSubcategory] = useState<Subcategory | null>(null);
   // const [brands, setBrands] = useState<Brand[] | null>(null);
@@ -103,7 +109,7 @@ const ShopSubcategoryPage: React.FC<ShopSubcategoryPageProps> = async({
   // const productsNum = products?.length;
 
   // // console.log("page", params.shopCategory, params.shopSubcategory);
-  // console.log(subcategory?.slug)
+  console.log(params.shopSubcategory)
 
   return (
     <div className="shopSubcategoryPage">
