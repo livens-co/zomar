@@ -53,11 +53,11 @@ const ShopSubcategoryPage: React.FC<ShopSubcategoryPageProps> = ({
 
   useEffect(() => {
     const fetchData = async () => {
-      const subcategory: Subcategory | null = await getSubcategoryBySlug(
+      const shopSubcategory: Subcategory | null = await getSubcategoryBySlug(
         params.shopSubcategory
       );
 
-      if (!subcategory) {
+      if (!shopSubcategory) {
         // Handle case where category is not found
         return <div>Potkategorija nije pronađena</div>;
       }
@@ -75,7 +75,7 @@ const ShopSubcategoryPage: React.FC<ShopSubcategoryPageProps> = ({
       const formats: Format[] | null = await getFormats();
 
       setProducts(products);
-      setSubcategory(subcategory);
+      setSubcategory(shopSubcategory);
       setBrands(brands);
       setFormats(formats);
     };
