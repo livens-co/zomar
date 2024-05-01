@@ -99,7 +99,7 @@ const SubcategoryPage: React.FC<SubcategoryPageProps> = ({
 
   const productsNum = products?.length
 
-  // console.log(subcategory)
+  console.log('NO PRICE:', params.subcategory)
 
   return (
     <div className="subcategoryPage">

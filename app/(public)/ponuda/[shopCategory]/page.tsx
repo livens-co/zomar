@@ -25,8 +25,9 @@ const ShopCategoryPage: React.FC<ShopCategoryPageProps> = async ({
     return <div>Kategorija nije pronađena</div>;
   }
 
-  const subcategories: Subcategory[] | null =
-    await getSubcategoriesByCategoryShop(params.shopCategory);
+  const subcategories: Subcategory[] = await getSubcategoriesByCategoryShop(
+    params.shopCategory
+  );
 
   const subcategoriesWithProd = subcategories.filter(
     (subcategory) => subcategory?.products.length > 0
