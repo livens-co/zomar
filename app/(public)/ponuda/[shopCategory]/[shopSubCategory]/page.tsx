@@ -67,7 +67,7 @@ const ShopSubcategoryPage: React.FC<ShopSubcategoryPageProps> = ({
         {
           selectedTags,
           selectedBrands,
-          selectedFormats,
+          selectedFormats, 
         }
       );
 
@@ -99,6 +99,8 @@ const ShopSubcategoryPage: React.FC<ShopSubcategoryPageProps> = ({
   const entries = products?.slice(start, end);
 
   const productsNum = products?.length
+
+  console.log(params.shopSubcategory)
 
   return (
     <div className="shopSubcategoryPage">

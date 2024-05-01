@@ -9,6 +9,7 @@ export default function getSubcategoryBySlug(
     groq`*[_type == "subcategory" && slug.current == $slug][0] {
     _id,
     title,
+    'slug': slug.current,
     description,
     'images': images[].asset->url,
   }`,

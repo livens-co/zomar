@@ -99,6 +99,8 @@ const SubcategoryPage: React.FC<SubcategoryPageProps> = ({
 
   const productsNum = products?.length
 
+  console.log(subcategory)
+
   return (
     <div className="subcategoryPage">
       <div className="subcategoryPageTitle">{subcategory?.title}</div>
