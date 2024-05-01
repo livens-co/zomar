@@ -27,7 +27,7 @@ export default async function getProductsBySubcategoryShop(
         title,
         'slug': slug.current,
         'products': *[_type == "products" && references(^._id) && productCategory == "priceProduct"
-          ${tagConditions ? `&& (${tagConditions})` : ""}
+          // ${tagConditions ? `&& (${tagConditions})` : ""}
          
 
           
@@ -81,12 +81,12 @@ export default async function getProductsBySubcategoryShop(
       { slug }
     );
 
-    let products: Product[] = response?.products || [];
+    const products: Product[] = response?.products || [];
 
     // Apply brand filtering if selectedBrands are specified
-    if (selectedBrands && selectedBrands.length > 0) {
-      products = filterProductsByBrandId(products, selectedBrands);
-    }
+    // if (selectedBrands && selectedBrands.length > 0) {
+    //   products = filterProductsByBrandId(products, selectedBrands);
+    // }
 
     // Apply format filtering if selectedFormats are specified
     // if (selectedFormats && selectedFormats.length > 0) {
@@ -94,9 +94,9 @@ export default async function getProductsBySubcategoryShop(
     //     products = filterProductsByFormatId(products, formatId);
     //   });
     // }
-    if (selectedFormats && selectedFormats.length > 0) {
-      products = filterProductsByFormatId(products, selectedFormats);
-    }
+    // if (selectedFormats && selectedFormats.length > 0) {
+    //   products = filterProductsByFormatId(products, selectedFormats);
+    // }
 
     return products;
   } catch (error) {
