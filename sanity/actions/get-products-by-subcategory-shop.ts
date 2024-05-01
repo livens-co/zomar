@@ -4,17 +4,17 @@ import clientConfig from "../config/client-config";
 import filterProductsByBrandId from "@/lib/filterProductsByBrandId";
 import filterProductsByFormatId from "@/lib/filterProductsByFormatId";
 
-export interface FilterOptions {
-  selectedTags?: string[]; // Array of selected tag names
-  selectedBrands?: string[]; // Array of selected brand IDs
-  selectedFormats?: string[]; // Array of selected format IDs
-}
+// export interface FilterOptions {
+//   selectedTags?: string[]; // Array of selected tag names
+//   selectedBrands?: string[]; // Array of selected brand IDs
+//   selectedFormats?: string[]; // Array of selected format IDs
+// }
 
 export default async function getProductsBySubcategoryShop(
   slug: string,
-  options: FilterOptions = {}
+  // options: FilterOptions = {}
 ): Promise<Product[]> {
-  const { selectedTags, selectedBrands, selectedFormats } = options;
+  // const { selectedTags, selectedBrands, selectedFormats } = options;
 
   try {
     // Constructing the dynamic tag conditions for the Groq query
