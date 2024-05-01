@@ -1,4 +1,4 @@
-'use client'
+"use client";
 
 import { Brand, Format, Product, Subcategory } from "@/types";
 import "./style.scss";
@@ -14,7 +14,7 @@ import ProductFilters from "@/components/ProductFilters";
 
 interface ShopSubcategoryPageProps {
   params: {
-    shopSubcategory: string; 
+    shopSubcategory: string;
     shopCategory: string;
   };
   searchParams: { [key: string]: string | string[] | undefined };
@@ -50,21 +50,22 @@ const ShopSubcategoryPage: React.FC<ShopSubcategoryPageProps> = ({
 
   useEffect(() => {
     const fetchData = async () => {
-      const shopSubcategory: Subcategory | null = await getSubcategoryBySlug(
+      const subcategory: Subcategory | null = await getSubcategoryBySlug(
         params.shopSubcategory
       );
 
-      if (!shopSubcategory) {
+      if (!subcategory) {
         // Handle case where category is not found
         return <div>Potkategorija nije pronađena</div>;
       }
 
       const products: Product[] | null = await getProductsBySubcategoryShop(
-        params.shopSubcategory,
+        // params.shopSubcategory,
+        subcategory.slug,
         {
           selectedTags,
           selectedBrands,
-          selectedFormats, 
+          selectedFormats,
         }
       );
 
@@ -72,7 +73,7 @@ const ShopSubcategoryPage: React.FC<ShopSubcategoryPageProps> = ({
       const formats: Format[] | null = await getFormats();
 
       setProducts(products);
-      setSubcategory(shopSubcategory);
+      setSubcategory(subcategory);
       setBrands(brands);
       setFormats(formats);
     };
@@ -95,9 +96,10 @@ const ShopSubcategoryPage: React.FC<ShopSubcategoryPageProps> = ({
 
   const entries = products?.slice(start, end);
 
-  const productsNum = products?.length
+  const productsNum = products?.length;
 
-  console.log('page', params.shopCategory, params.shopSubcategory)
+  // console.log("page", params.shopCategory, params.shopSubcategory);
+  console.log(subcategory?.slug)
 
   return (
     <div className="shopSubcategoryPage">
@@ -135,13 +137,15 @@ const ShopSubcategoryPage: React.FC<ShopSubcategoryPageProps> = ({
         ))}
       </div>
       <div>
-        <PaginationControls
+        {/* ROUTE MUST BE FOR PONUDA */}
+
+        {/* <PaginationControls
           hasNextPage={end < (products?.length ?? 0)}
           hasPrevPage={start > 0}
           productNum={products?.length ?? 0}
           subcategory={params.shopSubcategory}
           category={params.shopCategory}
-        />
+        /> */}
       </div>
     </div>
   );

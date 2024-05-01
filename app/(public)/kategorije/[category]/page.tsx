@@ -12,7 +12,7 @@ interface CategoryPageProps {
     category: string;
   };
 }
- 
+
 const CategoryPage: React.FC<CategoryPageProps> = async ({ params }) => {
   const category: Category | null = await getCategoryBySlug(params.category);
 
