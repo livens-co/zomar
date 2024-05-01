@@ -23,7 +23,7 @@ export default async function getProductsBySubcategoryShop(
       .join(" || ");
 
     const response: Subcategory = await createClient(clientConfig).fetch(
-      groq`*[_type == "subcategory" && slug.current == "$slug"][0] {
+      groq`*[_type == "subcategory" && slug.current == $slug][0] {
         title,
         'slug': slug.current,
         'products': *[_type == "products" && references(^._id) && productCategory == "priceProduct"
