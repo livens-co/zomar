@@ -98,6 +98,8 @@ export default async function getProductsBySubcategoryShop(
       products = filterProductsByFormatId(products, selectedFormats);
     }
 
+    console.log('func', slug)
+
     return products;
   } catch (error) {
     console.error("Error fetching products by subcategory:", error);

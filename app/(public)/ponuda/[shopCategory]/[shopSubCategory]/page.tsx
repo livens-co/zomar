@@ -100,21 +100,21 @@ const ShopSubcategoryPage: React.FC<ShopSubcategoryPageProps> = ({
 
   const productsNum = products?.length
 
-  console.log(params.shopSubcategory)
+  console.log('page', params.shopSubcategory)
 
   return (
     <div className="shopSubcategoryPage">
       <div className="subcategoryPageTitle">{subcategory?.title}</div>
 
       {/* FILTERS */}
-      {/* <ProductFilters
+      <ProductFilters
         onTagsChange={handleTagsChange}
         onBrandsChange={handleBrandsChange}
         onFormatsChange={handleFormatsChange}
         brands={brands}
         formats={formats}
         productsNum={productsNum}
-      /> */}
+      />
 
       <div className="productsGrid">
         {entries?.map((product) => (
