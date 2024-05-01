@@ -29,11 +29,11 @@ const ShopSubcategoryPage: React.FC<ShopSubcategoryPageProps> = async ({
   params,
   searchParams,
 }) => {
-  const products: Product[] = await getProductsShop()
+  // const products: Product[] = await getProductsShop()
   // const subcategory: Subcategory | null = await getSubcategoryBySlug(params.shopSubcategory)
-  // const products: Product[] | null = await getProductsBySubcategoryShop(
-  //  `${params.shopSubcategory}`
-  // );
+  const products: Product[] | null = await getProductsBySubcategoryShop(
+    params.shopSubcategory
+  );
   // const products: Product[] = await getProductsBySubcategoryShop(
   //   params.shopSubcategory
   // );
@@ -116,7 +116,7 @@ const ShopSubcategoryPage: React.FC<ShopSubcategoryPageProps> = async ({
 
   // // console.log("page", params.shopCategory, params.shopSubcategory);
   // console.log('PRICE:', params.shopSubcategory);
-  console.log(products)
+  console.log(products);
 
   return (
     <div className="shopSubcategoryPage">
