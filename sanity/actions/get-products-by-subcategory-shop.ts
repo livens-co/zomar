@@ -81,7 +81,7 @@ export default async function getProductsBySubcategoryShop(
       { slug }
     );
 
-    const products: Product[] = response?.products || [];
+    const products: Product[] = response?.products;
 
     // Apply brand filtering if selectedBrands are specified
     // if (selectedBrands && selectedBrands.length > 0) {
