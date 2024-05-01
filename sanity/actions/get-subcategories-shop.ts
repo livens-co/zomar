@@ -8,7 +8,7 @@ export default async function getSubcategoriesByCategoryShop(
   try {
     if (!categorySlug) {
       throw new Error("Category slug is required.");
-    }
+    } 
 
     // Fetch the category based on the provided slug
     const category: Category | null = await createClient(clientConfig).fetch(

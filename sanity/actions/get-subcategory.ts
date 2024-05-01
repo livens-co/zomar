@@ -2,7 +2,7 @@ import { createClient, groq } from "next-sanity";
 import { Subcategory } from "@/types";
 import clientConfig from "../config/client-config";
 
-export default function getSubcategoryBySlug(
+export default async function getSubcategoryBySlug(
   slug: string
 ): Promise<Subcategory | null> {
   return createClient(clientConfig).fetch(
