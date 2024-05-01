@@ -6,7 +6,7 @@ const config = {
   projectId,
   dataset,
   apiVersion,
-  useCdn: true,
+  useCdn: false,
 };
 
 export default config;
