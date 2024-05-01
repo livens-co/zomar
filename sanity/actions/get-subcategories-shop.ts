@@ -3,16 +3,16 @@ import { Category, Subcategory } from "@/types";
 import clientConfig from "../config/client-config";
 
 export default async function getSubcategoriesByCategoryShop(
-  slug: string
+  categorySlug: string
 ): Promise<Subcategory[]> {
   try {
-    if (!slug) {
+    if (!categorySlug) {
       throw new Error("Category slug is required.");
     } 
 
     // Fetch the category based on the provided slug
     const category: Category | null = await createClient(clientConfig).fetch(
-      groq`*[_type == "category" && slug.current == $slug ][0] {
+      groq`*[_type == "category" && slug.current == $categorySlug ][0] {
         _id,
         title,
         'image': image.asset->url,
@@ -29,7 +29,7 @@ export default async function getSubcategoriesByCategoryShop(
       }
         },
       }`,
-      { slug }
+      { categorySlug }
     );
 
     if (!category) {
