@@ -18,7 +18,7 @@ const CategoryPage: React.FC<CategoryPageProps> = async ({ params }) => {
 
   if (!category) {
     // Handle case where category is not found
-    return <div>Category not found</div>;
+    return <div>Kategorija nije pronađena</div>;
   }
 
   const subcategories: Subcategory[] = await getSubcategoriesByCategory(

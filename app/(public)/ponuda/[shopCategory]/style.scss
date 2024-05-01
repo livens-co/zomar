@@ -1,0 +1,50 @@
+.shopCategoryPage {
+  width: 100%;
+  min-height: 100vh;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  padding-bottom: 4rem;
+  
+
+  .categoryPageTitle {
+    font-size: 2rem;
+    margin-top: 3rem;
+  }
+
+  .categoryGrid {
+    width: 100%;
+    max-width: 1200px;
+    display: grid;
+    grid-template-columns: repeat(5, 1fr);
+    gap: 2rem 3rem;
+    align-content: center;
+    justify-items: center;
+    padding: 4rem 2rem;
+
+    .categoryCard {
+      width: 100%;
+      height: fit-content;
+
+      .image {
+        aspect-ratio: 1/1;
+
+        img {
+          height: 100%;
+          width: 100%;
+          object-fit: cover;
+        }
+      }
+
+      .title {
+        width: 100%;
+        padding: 0.5rem 0.25rem;
+
+        h2 {
+          font-weight: 600;
+          color: var(--tertiary);
+        }
+      }
+    }
+  }
+}

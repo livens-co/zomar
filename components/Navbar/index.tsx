@@ -25,7 +25,7 @@ const navLinks = [
   },
   {
     name: "Novosti",
-    path: "/",
+    path: "/novosti",
   },
   {
     name: "Kontakt",

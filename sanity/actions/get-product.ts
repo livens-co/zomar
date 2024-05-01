@@ -6,6 +6,7 @@ export default async function getProduct(slug: string): Promise<Product | null> 
   return createClient(clientConfig).fetch(
     groq`*[_type == "products" && slug.current == $slug][0] {
       _id,
+      productCategory,
       title,
       'slug': slug.current,
       description,

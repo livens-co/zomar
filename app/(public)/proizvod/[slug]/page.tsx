@@ -36,17 +36,32 @@ const ProductPage: React.FC<ProductPageProps> = async ({
     return <div>Proizvod nije pronađen</div>;
   }
 
+
+  const getPathLink = (productCategory: string | undefined): string => {
+    if (productCategory === "priceProduct") {
+      return "ponuda";
+    } else if (productCategory === "noPriceProduct") {
+      return "kategorije";
+    }
+    
+    return ""; 
+  };
+
+  const pathLink = `${getPathLink(product.productCategory)}`
+
+
+
   return (
     <div className="collectionProductPage">
       <header>
         {/* PATH */}
         <div className="path">
-          <Link href={`/kategorije/${product?.categories[0]?.slug}`}>
+          <Link href={`/${pathLink}/${product?.categories[0]?.slug}`}>
             {product?.categories[0]?.title}
           </Link>
           <FaAngleRight />
           <Link
-            href={`/kategorije/${product?.categories[0]?.slug}/${product?.subcategories[0]?.slug}`}
+            href={`/${getPathLink(product.productCategory)}/${product?.categories[0]?.slug}/${product?.subcategories[0]?.slug}`}
           >
             {product?.subcategories[0]?.title}
           </Link>

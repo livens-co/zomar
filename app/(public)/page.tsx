@@ -9,10 +9,20 @@ import bahrein3 from "../../public/test/bahrein3.jpeg";
 import bahrein4 from "../../public/test/bahrein4.jpeg";
 import Image from "next/image";
 import Link from "next/link";
+import { Article, Billboard, Category, Product } from "@/types";
+import getCategories from "@/sanity/actions/get-categories";
+import getArticles from "@/sanity/actions/get-articles";
+import getBillboards from "@/sanity/actions/get-billboards";
+import getProductsShop from "@/sanity/actions/get-products-shop";
 
 const images = [bahrein1, bahrein2, bahrein3, bahrein4];
 
 const HomePage = async () => {
+  const billboards: Billboard[] | [] = await getBillboards();
+  const categories: Category[] | [] = await getCategories();
+  const articles: Article[] | [] = await getArticles();
+  const products: Product[] | [] = await getProductsShop()
+
   return (
     <div className="homePage">
       {/* SLIDER */}

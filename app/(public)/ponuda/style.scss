@@ -1,0 +1,91 @@
+.shopPage {
+  width: 100%;
+  min-height: 100vh;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  padding-bottom: 4rem;
+
+  .header {
+    width: 100%;
+    max-width: 1200px;
+    padding: 4rem 2rem;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+
+    h1 {
+      font-size: 3rem;
+      font-weight: 600;
+      color: var(--tertiary);
+    }
+  }
+
+  
+
+  .collectionsGrid {
+    width: 100%;
+    max-width: 1200px;
+    display: grid;
+    grid-template-columns: repeat(3, 1fr);
+    gap: 3rem;
+    align-content: center;
+    justify-items: center;
+    padding: 4rem 2rem;
+
+    .collectionCard {
+      width: 100%;
+      height: fit-content;
+
+      .image {
+        aspect-ratio: 1/1;
+
+        img {
+          height: 100%;
+          width: 100%;
+          object-fit: cover;
+        }
+      }
+
+      .title {
+        width: 100%;
+        padding: 0.5rem 0.25rem;
+
+        h2 {
+          font-weight: 600;
+          color: var(--tertiary);
+        }
+      }
+    }
+  }
+
+  .pagination {
+    display: flex;
+    gap: 1rem;
+    align-items: center;
+
+    button {
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      height: 2rem;
+      width: 2rem;
+      border-radius: 50%;
+      background-color: transparent;
+      border: 1px solid var(--tertiary);
+
+      svg {
+        font-size: 1rem;
+        color: var(--tertiary);
+      }
+    }
+
+    .pages{
+      height: fit-content;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      line-height: 1;
+    }
+  }
+}

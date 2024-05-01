@@ -1,9 +1,9 @@
-import { Category,  Subcategory } from "@/types";
+import { Category, Subcategory } from "@/types";
 import "./style.scss";
-import getCategories from "@/sanity/actions/get-categories";
-import getSubcategoriesByCategory from "@/sanity/actions/get-subcategories";
 import Link from "next/link";
 import getSubcategoriesByCategoryShop from "@/sanity/actions/get-subcategories-shop";
+import getCategoryBySlug from "@/sanity/actions/get-category";
+import Image from "next/image";
 
 export const revalidate = 1;
 
@@ -16,25 +16,48 @@ interface ShopCategoryPageProps {
 const ShopCategoryPage: React.FC<ShopCategoryPageProps> = async ({
   params,
 }) => {
-  const subcategories: Subcategory[] = await getSubcategoriesByCategoryShop(
+  const category: Category | null = await getCategoryBySlug(
     params.shopCategory
   );
+
+  if (!category) {
+    // Handle case where category is not found
+    return <div>Kategorija nije pronađena</div>;
+  }
+
+  const subcategories: Subcategory[] | null =
+    await getSubcategoriesByCategoryShop(params.shopCategory);
 
   const subcategoriesWithProd = subcategories.filter(
     (subcategory) => subcategory?.products.length > 0
   );
 
   return (
-    <>
-      <div>potkategorije u kategoriji</div>
-      <ul>
+    <div className="shopCategoryPage">
+      <div className="categoryPageTitle">{category?.title}</div>
+
+      <div className="categoryGrid">
         {subcategoriesWithProd.map((sc) => (
-          <Link key={sc._id} href={`/ponuda/${params.shopCategory}/${sc.slug}`}>
-            {sc.title}
+          <Link
+            className="categoryCard"
+            key={sc._id}
+            href={`/ponuda/${params.shopCategory}/${sc.slug}`}
+          >
+            <div className="image">
+              <Image
+                src="/test/bahrein1.jpeg"
+                width={200}
+                height={400}
+                alt="Bahrein"
+              />
+            </div>
+            <div className="title">
+              <h2>{sc.title}</h2>
+            </div>
           </Link>
         ))}
-      </ul>
-    </>
+      </div>
+    </div>
   );
 };
 
