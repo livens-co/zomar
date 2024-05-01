@@ -2,7 +2,6 @@
 
 import { Brand, Format, Product, Subcategory } from "@/types";
 import "./style.scss";
-import getProductsBySubcategory from "@/sanity/actions/get-products-by-subcategory";
 import Link from "next/link";
 import getProductsBySubcategoryShop from "@/sanity/actions/get-products-by-subcategory-shop";
 import { useEffect, useState } from "react";
@@ -12,8 +11,6 @@ import getFormats from "@/sanity/actions/get-formats";
 import PaginationControls from "@/components/PaginationControls";
 import Image from "next/image";
 import ProductFilters from "@/components/ProductFilters";
-
-export const revalidate = 1;
 
 interface ShopSubcategoryPageProps {
   params: {
@@ -100,7 +97,7 @@ const ShopSubcategoryPage: React.FC<ShopSubcategoryPageProps> = ({
 
   const productsNum = products?.length
 
-  console.log('page', params.shopSubcategory)
+  console.log('page', params.shopCategory, params.shopSubcategory)
 
   return (
     <div className="shopSubcategoryPage">
