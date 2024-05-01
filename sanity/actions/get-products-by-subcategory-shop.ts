@@ -13,7 +13,7 @@ export interface FilterOptions {
 export default async function getProductsBySubcategoryShop(
   slug: string,
   options: FilterOptions = {}
-): Promise<Product[] | null> {
+): Promise<Product[] > {
   const { selectedTags, selectedBrands, selectedFormats } = options;
 
   try {

@@ -27,8 +27,7 @@ const ShopSubcategoryPage: React.FC<ShopSubcategoryPageProps> = async ({
   params,
   searchParams,
 }) => {
-  
-  const products: Product[] | null = await getProductsBySubcategoryShop(
+  const products: Product[] = await getProductsBySubcategoryShop(
     params.shopSubcategory
   );
   // const subcategory: Subcategory | null = await getSubcategoryBySlug(
@@ -109,7 +108,7 @@ const ShopSubcategoryPage: React.FC<ShopSubcategoryPageProps> = async ({
   // const productsNum = products?.length;
 
   // // console.log("page", params.shopCategory, params.shopSubcategory);
-  console.log(params.shopSubcategory)
+  console.log(params.shopSubcategory);
 
   return (
     <div className="shopSubcategoryPage">
