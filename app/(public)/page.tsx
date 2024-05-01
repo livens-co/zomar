@@ -15,18 +15,20 @@ import getArticles from "@/sanity/actions/get-articles";
 import getBillboards from "@/sanity/actions/get-billboards";
 import getProductsShop from "@/sanity/actions/get-products-shop";
 
-const images = [bahrein1, bahrein2, bahrein3, bahrein4];
-
 const HomePage = async () => {
   const billboards: Billboard[] | [] = await getBillboards();
   const categories: Category[] | [] = await getCategories();
   const articles: Article[] | [] = await getArticles();
-  const products: Product[] | [] = await getProductsShop()
+  const products: Product[] | [] = await getProductsShop();
+
+  const categoriesWithProd = categories.filter(
+    (category) => category?.products.length > 0
+  );
 
   return (
     <div className="homePage">
       {/* SLIDER */}
-      <Slider data={images} />
+      <Slider data={billboards} />
 
       {/* O NAMA - prissmacer */}
       <div className="aboutUs">
@@ -53,41 +55,30 @@ const HomePage = async () => {
       {/* KOLEKCIJE SLIDER -prostoria */}
       <div className="collections">
         <div className="title">
-          <h1>Kolekcije</h1>
+          <h1>Kategorije</h1>
         </div>
         <div className="collectionsSlider">
-          <div className="sliderCard">
-            <div className="image">
-              <Image src={bahrein1} width={200} height={400} alt="Bahrein" />
-            </div>
-            <div className="title">
-              <h2>Porcelux</h2>
-            </div>
-          </div>
-          <div className="sliderCard">
-            <div className="image">
-              <Image src={bahrein2} width={200} height={400} alt="Bahrein" />
-            </div>
-            <div className="title">
-              <h2>Porcelux</h2>
-            </div>
-          </div>
-          <div className="sliderCard">
-            <div className="image">
-              <Image src={bahrein3} width={200} height={400} alt="Bahrein" />
-            </div>
-            <div className="title">
-              <h2>Porcelux</h2>
-            </div>
-          </div>
-          <div className="sliderCard">
-            <div className="image">
-              <Image src={bahrein4} width={200} height={400} alt="Bahrein" />
-            </div>
-            <div className="title">
-              <h2>Porcelux</h2>
-            </div>
-          </div>
+          {categoriesWithProd
+            .map((category) => (
+              <Link
+                href={`/kategorije/${category.slug}`}
+                className="sliderCard"
+                key={category._id}
+              >
+                <div className="image">
+                  <Image
+                    src={bahrein1}
+                    width={200}
+                    height={400}
+                    alt="Bahrein"
+                  />
+                </div>
+                <div className="title">
+                  <h2>{category.title}</h2>
+                </div>
+              </Link>
+            ))
+            .slice(0, 4)}
         </div>
       </div>
 
@@ -125,42 +116,28 @@ const HomePage = async () => {
             <h1>Proizvodi</h1>
           </div>
           <div className="productsContainer">
-            <div className="productCard">
-              <div className="image">
-                <Image src={bahrein1} width={200} height={400} alt="Bahrein" />
-              </div>
-              <div className="content">
-                <h3>Boston Gris 20x60</h3>
-                <h4>€ 10.60</h4>
-              </div>
-            </div>
-            <div className="productCard">
-              <div className="image">
-                <Image src={bahrein1} width={200} height={400} alt="Bahrein" />
-              </div>
-              <div className="content">
-                <h3>Boston Gris 20x60</h3>
-                <h4>€ 10.60</h4>
-              </div>
-            </div>
-            <div className="productCard">
-              <div className="image">
-                <Image src={bahrein1} width={200} height={400} alt="Bahrein" />
-              </div>
-              <div className="content">
-                <h3>Boston Gris 20x60</h3>
-                <h4>€ 10.60</h4>
-              </div>
-            </div>
-            <div className="productCard">
-              <div className="image">
-                <Image src={bahrein1} width={200} height={400} alt="Bahrein" />
-              </div>
-              <div className="content">
-                <h3>Boston Gris 20x60</h3>
-                <h4>€ 10.60</h4>
-              </div>
-            </div>
+            {products
+              .map((product) => (
+                <Link
+                  href={`/proizvod/${product.slug}`}
+                  className="productCard"
+                  key={product._id}
+                >
+                  <div className="image">
+                    <Image
+                      src={product.images[0].toString()}
+                      width={200}
+                      height={400}
+                      alt="Bahrein"
+                    />
+                  </div>
+                  <div className="content">
+                    <h3>{product.title}</h3>
+                    <h4>€ {product?.price}</h4>
+                  </div>
+                </Link>
+              ))
+              .slice(0, 4)}
           </div>
         </div>
       </div>
@@ -171,39 +148,25 @@ const HomePage = async () => {
           <h1>Novosti</h1>
         </div>
         <div className="newsSlider">
-          <div className="articleCard">
-            <div className="image">
-              <Image src={bahrein1} width={200} height={400} alt="Bahrein" />
-            </div>
-            <div className="title">
-              <p>
-                Zomar Keramika otvara novi odjel veleprodaja sanitarija i
-                keramičkih pločica
-              </p>
-            </div>
-          </div>
-          <div className="articleCard">
-            <div className="image">
-              <Image src={bahrein1} width={200} height={400} alt="Bahrein" />
-            </div>
-            <div className="title">
-              <p>
-                Zomar Keramika otvara novi odjel veleprodaja sanitarija i
-                keramičkih pločica
-              </p>
-            </div>
-          </div>
-          <div className="articleCard">
-            <div className="image">
-              <Image src={bahrein1} width={200} height={400} alt="Bahrein" />
-            </div>
-            <div className="title">
-              <p>
-                Zomar Keramika otvara novi odjel veleprodaja sanitarija i
-                keramičkih pločica
-              </p>
-            </div>
-          </div>
+          {articles.map((article) => (
+            <Link
+              href={`/novosti/${article.slug}`}
+              className="articleCard"
+              key={article._id}
+            >
+              <div className="image">
+                <Image
+                  src={article.image}
+                  width={200}
+                  height={400}
+                  alt="Bahrein"
+                />
+              </div>
+              <div className="title">
+                <p>{article.title}</p>
+              </div>
+            </Link>
+          ))}
         </div>
       </div>
     </div>

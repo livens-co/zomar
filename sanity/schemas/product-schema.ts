@@ -118,6 +118,11 @@ const product = {
       ],
     },
     {
+      name: "isFeatured",
+      title: "Prikazan na početnoj stranici",
+      type: "boolean",
+    },
+    {
       name: "tags",
       title: "Vrsta pločice",
       type: "object",

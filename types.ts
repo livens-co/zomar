@@ -15,6 +15,7 @@ export interface Product {
   formats: Format[];
   brands: Brand[];
   colorList: string;
+  isFeatured: boolean;
   tags: {
     mat: boolean;
     protuklizna: boolean;

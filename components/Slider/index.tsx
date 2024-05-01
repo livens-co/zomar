@@ -14,10 +14,11 @@ import "./style.scss";
 import "swiper/css";
 import "swiper/css/navigation";
 import "swiper/css/pagination";
-import Image, { StaticImageData } from "next/image";
+import Image from "next/image";
+import { Billboard } from "@/types";
 
 interface SliderProps {
-  data: StaticImageData[];
+  data: Billboard[];
 }
 
 const Slider: React.FC<SliderProps> = ({ data }) => {
@@ -37,9 +38,10 @@ const Slider: React.FC<SliderProps> = ({ data }) => {
         }}
         className="swiperComponent"
       >
-        {data.map((image, index) => (
-          <SwiperSlide className="swiperSlide" key={index}>
-            <Image src={image} alt="Images " />
+        {data.map((billboard) => (
+          <SwiperSlide className="swiperSlide" key={billboard._id}>
+            <Image src={billboard.image} alt="Images " width={800} height={300} />
+            <h1>{billboard.title}</h1>
           </SwiperSlide>
         ))}
       </Swiper>

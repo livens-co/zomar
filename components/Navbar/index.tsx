@@ -29,7 +29,7 @@ const navLinks = [
   },
   {
     name: "Kontakt",
-    path: "/",
+    path: "/kontakt",
   },
 ];
 

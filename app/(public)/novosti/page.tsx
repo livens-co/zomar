@@ -40,6 +40,7 @@ const NewsPage: React.FC<NewsPageProps> = async ({ searchParams }) => {
           productNum={articles?.length ?? 0}
           subcategory={''}
           category={''}
+          mainRoute="novosti"
         />
       </div>
     </div>

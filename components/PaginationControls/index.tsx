@@ -12,6 +12,7 @@ interface PaginationControlsProps {
   productNum?: number;
   subcategory: string;
   category: string;
+  mainRoute: string;
 }
 
 const PaginationControls: React.FC<PaginationControlsProps> = ({
@@ -20,6 +21,7 @@ const PaginationControls: React.FC<PaginationControlsProps> = ({
   productNum = 0,
   subcategory,
   category,
+  mainRoute
 }) => {
   const router = useRouter();
   const searchParams = useSearchParams();
@@ -38,7 +40,7 @@ const PaginationControls: React.FC<PaginationControlsProps> = ({
           disabled={!hasPrevPage}
           onClick={() =>
             router.push(
-              `/kategorije/${category}/${subcategory}?page=${Number(page) - 1}`
+              `/${mainRoute}/${category}/${subcategory}?page=${Number(page) - 1}`
             )
           }
         >
@@ -50,7 +52,7 @@ const PaginationControls: React.FC<PaginationControlsProps> = ({
           disabled={!hasNextPage}
           onClick={() => {
             router.push(
-              `/kategorije/${category}/${subcategory}?page=${Number(page) + 1}`
+              `/${mainRoute}/${category}/${subcategory}?page=${Number(page) + 1}`
             );
           }}
         >

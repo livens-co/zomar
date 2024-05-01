@@ -97,9 +97,7 @@ const SubcategoryPage: React.FC<SubcategoryPageProps> = ({
 
   const entries = products?.slice(start, end);
 
-  const productsNum = products?.length
-
-  console.log('NO PRICE:', params.subcategory)
+  const productsNum = products?.length;
 
   return (
     <div className="subcategoryPage">
@@ -143,6 +141,7 @@ const SubcategoryPage: React.FC<SubcategoryPageProps> = ({
           productNum={products?.length ?? 0}
           subcategory={params.subcategory}
           category={params.category}
+          mainRoute="kategorije"
         />
       </div>
     </div>

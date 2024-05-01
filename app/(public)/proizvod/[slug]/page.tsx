@@ -9,6 +9,7 @@ import { PortableText } from "@portabletext/react";
 import Link from "next/link";
 import getProductsBySubcategory from "@/sanity/actions/get-products-by-subcategory";
 import RecommendedProducts from "@/components/RecommendedProducts";
+import { Tabs, TabsContent, TabsList, TabsTrigger } from "@/components/ui/tabs";
 
 export const revalidate = 1;
 
@@ -36,20 +37,17 @@ const ProductPage: React.FC<ProductPageProps> = async ({
     return <div>Proizvod nije pronađen</div>;
   }
 
-
   const getPathLink = (productCategory: string | undefined): string => {
     if (productCategory === "priceProduct") {
       return "ponuda";
     } else if (productCategory === "noPriceProduct") {
       return "kategorije";
     }
-    
-    return ""; 
+
+    return "";
   };
 
-  const pathLink = `${getPathLink(product.productCategory)}`
-
-
+  const pathLink = `${getPathLink(product.productCategory)}`;
 
   return (
     <div className="collectionProductPage">
@@ -61,7 +59,9 @@ const ProductPage: React.FC<ProductPageProps> = async ({
           </Link>
           <FaAngleRight />
           <Link
-            href={`/${getPathLink(product.productCategory)}/${product?.categories[0]?.slug}/${product?.subcategories[0]?.slug}`}
+            href={`/${getPathLink(product.productCategory)}/${
+              product?.categories[0]?.slug
+            }/${product?.subcategories[0]?.slug}`}
           >
             {product?.subcategories[0]?.title}
           </Link>
@@ -87,146 +87,174 @@ const ProductPage: React.FC<ProductPageProps> = async ({
 
           <div className="line" />
 
-          {/* DIMENZIJE */}
-          <div>
-            Dimenzije:{" "}
-            <ul>
-              {product?.formats?.map((f) => (
-                <li key={f._id}>{f.title} cm</li>
-              ))}
-            </ul>
-          </div>
+          {/* CIJENA */}
 
-          {/* BOJE */}
-          {product.colorList && <p>Boje: {product.colorList}</p>}
+          {/* KONTAKT BUTTON */}
+          <div className="productContactButton">
+            <p>Pošalji upit</p>
+          </div>
         </div>
       </main>
       <div className="productDetails">
-        <h3>Karakteristike proizvoda</h3>
-        <div className="productDetailsGrid">
-          {/* MAT */}
-          <div className="tag">
-            <p>Mat: {product.tags?.mat ? <span>da</span> : <span>ne</span>}</p>
-          </div>
+        <div className="productDetailsInner">
+          <h3>Detalji proizvoda</h3>
 
-          {/* PROTUKLIZNA */}
-          <div className="tag">
-            <p>
-              Protuklizna:{" "}
-              {product.tags?.protuklizna ? <span>da</span> : <span>ne</span>}
-            </p>
-          </div>
+          <div className="productTabs">
+            <Tabs defaultValue="description" className="tabsSection">
+              <TabsList className="tabList align-middle">
+                <TabsTrigger value="description" className="tabTitle">
+                  Karakteristike
+                </TabsTrigger>
+                <TabsTrigger value="size" className="tabTitle">
+                  Dimenzije
+                </TabsTrigger>
+                <TabsTrigger value="colors" className="tabTitle">
+                  Boje
+                </TabsTrigger>
+              </TabsList>
+              <TabsContent value="description" className="tabContent">
+                <div className="productDetailsGrid">
+                  {/* MAT */}
+                  <div className="tag">
+                    <p>
+                      Mat:{" "}
+                      {product.tags?.mat ? <span>da</span> : <span>ne</span>}
+                    </p>
+                  </div>
 
-          {/* ZIDNA */}
-          <div className="tag">
-            <p>
-              Zidna: {product.tags?.zidna ? <span>da</span> : <span>ne</span>}
-            </p>
-          </div>
+                  {/* PROTUKLIZNA */}
+                  <div className="tag">
+                    <p>
+                      Protuklizna:{" "}
+                      {product.tags?.protuklizna ? (
+                        <span>da</span>
+                      ) : (
+                        <span>ne</span>
+                      )}
+                    </p>
+                  </div>
 
-          {/* PODNA */}
-          <div className="tag">
-            <p>
-              Podna: {product.tags?.podna ? <span>da</span> : <span>ne</span>}
-            </p>
-          </div>
+                  {/* ZIDNA */}
+                  <div className="tag">
+                    <p>
+                      Zidna:{" "}
+                      {product.tags?.zidna ? <span>da</span> : <span>ne</span>}
+                    </p>
+                  </div>
 
-          {/* RETIFICIRANA */}
-          <div className="tag">
-            <p>
-              Retificirana:{" "}
-              {product.tags?.retificirana ? <span>da</span> : <span>ne</span>}
-            </p>
-          </div>
+                  {/* PODNA */}
+                  <div className="tag">
+                    <p>
+                      Podna:{" "}
+                      {product.tags?.podna ? <span>da</span> : <span>ne</span>}
+                    </p>
+                  </div>
 
-          {/* UNUTARNJA */}
-          <div className="tag">
-            <p>
-              Unutarnja:{" "}
-              {product.tags?.unutarnja ? <span>da</span> : <span>ne</span>}
-            </p>
-          </div>
+                  {/* RETIFICIRANA */}
+                  <div className="tag">
+                    <p>
+                      Retificirana:{" "}
+                      {product.tags?.retificirana ? (
+                        <span>da</span>
+                      ) : (
+                        <span>ne</span>
+                      )}
+                    </p>
+                  </div>
 
-          {/* VANJSKA */}
-          <div className="tag">
-            <p>
-              Vanjska:{" "}
-              {product.tags?.vanjska ? <span>da</span> : <span>ne</span>}
-            </p>
-          </div>
+                  {/* UNUTARNJA */}
+                  <div className="tag">
+                    <p>
+                      Unutarnja:{" "}
+                      {product.tags?.unutarnja ? (
+                        <span>da</span>
+                      ) : (
+                        <span>ne</span>
+                      )}
+                    </p>
+                  </div>
 
-          {/* SJAJ */}
-          <div className="tag">
-            <p>
-              Sjaj: {product.tags?.sjaj ? <span>da</span> : <span>ne</span>}
-            </p>
-          </div>
+                  {/* VANJSKA */}
+                  <div className="tag">
+                    <p>
+                      Vanjska:{" "}
+                      {product.tags?.vanjska ? (
+                        <span>da</span>
+                      ) : (
+                        <span>ne</span>
+                      )}
+                    </p>
+                  </div>
 
-          {/* SATINADO */}
-          <div className="tag">
-            <p>
-              Satinado:{" "}
-              {product.tags?.satinado ? <span>da</span> : <span>ne</span>}
-            </p>
-          </div>
+                  {/* SJAJ */}
+                  <div className="tag">
+                    <p>
+                      Sjaj:{" "}
+                      {product.tags?.sjaj ? <span>da</span> : <span>ne</span>}
+                    </p>
+                  </div>
 
-          {/* KLASICAN REZ */}
-          <div className="tag">
-            <p>
-              Klasičan rez:{" "}
-              {product.tags?.klasican ? <span>da</span> : <span>ne</span>}
-            </p>
-          </div>
+                  {/* SATINADO */}
+                  <div className="tag">
+                    <p>
+                      Satinado:{" "}
+                      {product.tags?.satinado ? (
+                        <span>da</span>
+                      ) : (
+                        <span>ne</span>
+                      )}
+                    </p>
+                  </div>
 
-          {/* GRES */}
-          <div className="tag">
-            <p>
-              Gres: {product.tags?.gres ? <span>da</span> : <span>ne</span>}
-            </p>
-          </div>
+                  {/* KLASICAN REZ */}
+                  <div className="tag">
+                    <p>
+                      Klasičan rez:{" "}
+                      {product.tags?.klasican ? (
+                        <span>da</span>
+                      ) : (
+                        <span>ne</span>
+                      )}
+                    </p>
+                  </div>
 
-          {/* SUGAR EFFECT */}
-          <div className="tag">
-            <p>
-              Suggar effect:{" "}
-              {product.tags?.sugar ? <span>da</span> : <span>ne</span>}
-            </p>
+                  {/* GRES */}
+                  <div className="tag">
+                    <p>
+                      Gres:{" "}
+                      {product.tags?.gres ? <span>da</span> : <span>ne</span>}
+                    </p>
+                  </div>
+
+                  {/* SUGAR EFFECT */}
+                  <div className="tag">
+                    <p>
+                      Suggar effect:{" "}
+                      {product.tags?.sugar ? <span>da</span> : <span>ne</span>}
+                    </p>
+                  </div>
+                </div>
+              </TabsContent>
+              <TabsContent value="size" className="tabContent">
+                <ul>
+                  {product?.formats?.map((f) => (
+                    <li key={f._id}>{f.title} cm </li>
+                  ))}
+                </ul>
+              </TabsContent>
+              <TabsContent value="colors" className="tabContent">
+                {product.colorList && (
+                  <>
+                    <span>Dostupne boje:</span> <p>{product.colorList}</p>
+                  </>
+                )}
+              </TabsContent>
+            </Tabs>
           </div>
         </div>
-        {/* KLASA */}
 
-        {/* <div className="productTabs">
-          <Tabs defaultValue="description" className="w-[600px] align-middle">
-            <TabsList className="tabList align-middle">
-              <TabsTrigger value="description" className="tabTitle">
-                Opis proizvoda
-              </TabsTrigger>
-              <TabsTrigger value="size" className="tabTitle">
-                Dimenzije
-              </TabsTrigger>
-              <TabsTrigger value="details" className="tabTitle">
-                Tehnički podaci
-              </TabsTrigger>
-            </TabsList>
-            <TabsContent value="description" className="tabContent">
-              <PortableText value={product?.description} />
-            </TabsContent>
-            <TabsContent value="size" className="tabContent">
-              <ul>
-                {product?.formats.map((f) => (
-                  <li key={f._id}>{f.title} cm</li>
-                ))}
-              </ul>
-            </TabsContent>
-            <TabsContent value="details" className="tabContent">
-              Tehnički podaci
-            </TabsContent>
-          </Tabs>
-        </div> */}
+        {/* RECOMMENDED PRODUCTS FORM COLLECTION */}
       </div>
-
-      {/* RECOMMENDED PRODUCTS FORM COLLECTION */}
-
       <RecommendedProducts recommendedProducts={recommendedProducts} />
     </div>
   );
