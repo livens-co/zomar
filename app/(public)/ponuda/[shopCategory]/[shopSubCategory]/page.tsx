@@ -60,8 +60,8 @@ const ShopSubcategoryPage: React.FC<ShopSubcategoryPageProps> = ({
       }
 
       const products: Product[] | null = await getProductsBySubcategoryShop(
-        // params.shopSubcategory,
-        subcategory.slug,
+        params.shopSubcategory,
+        // subcategory.slug,
         {
           selectedTags,
           selectedBrands,
