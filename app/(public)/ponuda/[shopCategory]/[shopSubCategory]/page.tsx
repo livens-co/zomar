@@ -12,6 +12,7 @@ import PaginationControls from "@/components/PaginationControls";
 import Image from "next/image";
 import ProductFilters from "@/components/ProductFilters";
 import subcategory from "@/sanity/schemas/subcategory-schema";
+import getProductsBySubcategory from "@/sanity/actions/get-products-by-subcategory";
 
 export const revalidate = 1;
 
@@ -27,9 +28,12 @@ const ShopSubcategoryPage: React.FC<ShopSubcategoryPageProps> = async ({
   params,
   searchParams,
 }) => {
-  const products: Product[] = await getProductsBySubcategoryShop(
+  const products: Product[] | null= await getProductsBySubcategory(
     params.shopSubcategory
   );
+  // const products: Product[] = await getProductsBySubcategoryShop(
+  //   params.shopSubcategory
+  // );
   // const subcategory: Subcategory | null = await getSubcategoryBySlug(
   //   params.shopSubcategory
   // );
