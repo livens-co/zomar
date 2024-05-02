@@ -54,10 +54,10 @@ const CategoryPage = async () => {
           </Link>
         ))}
       </div>
-      <div className="recommendedProducts">
-        {/* <h1>Preporučeni proizvodi</h1> */}
-        {/* <RecommendedProducts/> */}
-      </div>
+      {/* <div className="recommendedProducts">
+        <h1>Preporučeni proizvodi</h1>
+        <RecommendedProducts/>
+      </div> */}
       {/* <div className="pagination">
         <button className="prevBtn">
           <FaArrowLeft />

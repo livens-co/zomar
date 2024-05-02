@@ -142,7 +142,7 @@ const SubcategoryPage: React.FC<SubcategoryPageProps> = ({
                 src={product.images[0]?.toString()}
                 width={200}
                 height={400}
-                alt="Bahrein"
+                alt={product.title}
               />
             </div>
             <div className="title">
