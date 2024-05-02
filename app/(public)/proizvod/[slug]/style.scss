@@ -98,6 +98,32 @@
         margin: 0.5rem 0;
       }
 
+      .price {
+        width: 100%;
+        display: flex;
+        flex-direction: column;
+        gap: 0.5rem;
+        margin-top: 1rem;
+
+        .row {
+          display: flex;
+          justify-content: space-between;
+
+          h3 {
+            font-size: 1.15rem;
+            font-weight: 600;
+          }
+
+          .regularPrice{
+            text-decoration: line-through;
+          }
+
+          .salePrice {
+            color: red;
+          }
+        }
+      }
+
       .productContactButton {
         width: 100%;
         background-color: var(--quaternary);
@@ -108,13 +134,11 @@
         justify-content: center;
         margin-top: 2rem;
         cursor: pointer;
-      
 
-        p{
+        p {
           font-weight: 600;
           color: var(--white);
         }
-
       }
     }
   }
@@ -220,16 +244,15 @@
             min-height: 7rem;
             margin-top: 2rem;
             // background-color: aliceblue;
-            
 
             span {
               font-weight: 600;
             }
 
-            ul{
-            width: 600px;
+            ul {
+              width: 600px;
 
-              li{
+              li {
                 list-style: disc;
               }
             }

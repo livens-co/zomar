@@ -11,7 +11,7 @@ export default async function getSubcategoryBySlug(
     title,
     'slug': slug.current,
     description,
-    'images': images[].asset->url,
+    'image': image.asset->url,
   }`,
     { subcategorySlug }
   );

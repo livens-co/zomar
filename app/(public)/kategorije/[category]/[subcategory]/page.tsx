@@ -13,6 +13,7 @@ import PaginationControls from "@/components/PaginationControls";
 import ProductFilters from "@/components/ProductFilters";
 import getBrands from "@/sanity/actions/get-brands";
 import getFormats from "@/sanity/actions/get-formats";
+import { PortableText } from "@portabletext/react";
 
 interface SubcategoryPageProps {
   params: {
@@ -101,7 +102,23 @@ const SubcategoryPage: React.FC<SubcategoryPageProps> = ({
 
   return (
     <div className="subcategoryPage">
-      <div className="subcategoryPageTitle">{subcategory?.title}</div>
+      <div className="header">
+        <div className="image">
+          <Image
+            priority
+            src={subcategory?.image || ""}
+            width={600}
+            height={400}
+            alt={subcategory?.title || ""}
+          />
+          <div className="overlay" />
+        </div>
+        <h1>{subcategory?.title}</h1>
+      </div>
+
+      <div className="subcategoryDescription">
+        <PortableText value={subcategory?.description || []} />
+      </div>
 
       {/* FILTERS */}
       <ProductFilters

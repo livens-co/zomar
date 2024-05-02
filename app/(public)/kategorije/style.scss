@@ -8,20 +8,45 @@
 
   .header {
     width: 100%;
-    max-width: 1200px;
+    // max-width: 1200px;
+    height: 20rem;
     padding: 4rem 2rem;
     display: flex;
     align-items: center;
     justify-content: center;
+    position: relative;
 
+    .image {
+      position: absolute;
+      top: 0;
+      left: 0;
+      width: 100%;
+      height: 100%;
+
+      img {
+        width: 100%;
+        height: 100%;
+        object-fit: cover;
+      }
+
+      .overlay {
+        top: 0;
+        left: 0;
+        position: absolute;
+        width: 100%;
+        height: 100%;
+        opacity: 0.3;
+        background-color: black;
+      }
+    }
     h1 {
+      position: relative;
       font-size: 3rem;
       font-weight: 600;
-      color: var(--tertiary);
+      color: var(--white);
+      z-index: inherit;
     }
   }
-
-  
 
   .collectionsGrid {
     width: 100%;
@@ -39,11 +64,13 @@
 
       .image {
         aspect-ratio: 1/1;
-
+        overflow: hidden;
+        
         img {
           height: 100%;
           width: 100%;
           object-fit: cover;
+          transition: all 300ms ease;
         }
       }
 
@@ -52,8 +79,17 @@
         padding: 0.5rem 0.25rem;
 
         h2 {
+          font-size: 1.25rem;
           font-weight: 600;
           color: var(--tertiary);
+        }
+      }
+
+      &:hover {
+        .image {
+          img {
+            transform: scale(1.05);
+          }
         }
       }
     }
@@ -80,7 +116,7 @@
       }
     }
 
-    .pages{
+    .pages {
       height: fit-content;
       display: flex;
       align-items: center;

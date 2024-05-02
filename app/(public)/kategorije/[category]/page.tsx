@@ -28,11 +28,22 @@ const CategoryPage: React.FC<CategoryPageProps> = async ({ params }) => {
   const subcategoriesWithProd = subcategories.filter(
     (subcategory) => subcategory?.products.length > 0
   );
+ 
 
   return (
     <div className="categoryPage">
-      <div className="categoryPageTitle">{category?.title}</div>
-
+      <div className="header">
+        <div className="image">
+          <Image
+            src={category.image}
+            width={600}
+            height={400}
+            alt="Bahrein"
+          />
+          <div className="overlay"/>
+        </div>
+        <h1>{category?.title}</h1>
+      </div>
       <div className="categoryGrid">
         {subcategoriesWithProd.map((sc) => (
           <Link
@@ -42,10 +53,10 @@ const CategoryPage: React.FC<CategoryPageProps> = async ({ params }) => {
           >
             <div className="image">
               <Image
-                src="/test/bahrein1.jpeg"
+                src={sc.image}
                 width={200}
                 height={400}
-                alt="Bahrein"
+                alt={sc.title}
               />
             </div>
             <div className="title">

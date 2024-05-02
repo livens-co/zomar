@@ -88,7 +88,18 @@ const ProductPage: React.FC<ProductPageProps> = async ({
           <div className="line" />
 
           {/* CIJENA */}
+          <div className="price">
+            <div className="row">
+              <h3 className="regularPriceTitle">Cijena:</h3>
+              <p className="regularPrice">12,50 €/&#13217;</p>
+            </div>
+            <div className="row">
+              <h3 className="salePriceTitle">Akcijska cijena:</h3>
+              <p className="salePrice">10,00 €/&#13217;</p>
+            </div>
+          </div>
 
+          
           {/* KONTAKT BUTTON */}
           <div className="productContactButton">
             <p>Pošalji upit</p>

@@ -6,6 +6,7 @@ import { FaArrowLeft, FaArrowRight } from "react-icons/fa6";
 import getCategories from "@/sanity/actions/get-categories";
 import { Category } from "@/types";
 import Link from "next/link";
+import RecommendedProducts from "@/components/RecommendedProducts";
 
 export const revalidate = 1;
 
@@ -19,6 +20,15 @@ const CategoryPage = async () => {
   return (
     <div className="categoriesPage">
       <div className="header">
+        <div className="image">
+          <Image
+            src="/test/bahrein1.jpeg"
+            width={600}
+            height={400}
+            alt="Bahrein"
+          />
+          <div className="overlay"/>
+        </div>
         <h1>Kategorije</h1>
       </div>
 
@@ -32,10 +42,10 @@ const CategoryPage = async () => {
           >
             <div className="image">
               <Image
-                src="/test/bahrein1.jpeg"
+                src={c.image}
                 width={200}
                 height={400}
-                alt="Bahrein"
+                alt={c.title}
               />
             </div>
             <div className="title">
@@ -44,7 +54,11 @@ const CategoryPage = async () => {
           </Link>
         ))}
       </div>
-      <div className="pagination">
+      <div className="recommendedProducts">
+        {/* <h1>Preporučeni proizvodi</h1> */}
+        {/* <RecommendedProducts/> */}
+      </div>
+      {/* <div className="pagination">
         <button className="prevBtn">
           <FaArrowLeft />
         </button>
@@ -52,7 +66,7 @@ const CategoryPage = async () => {
         <button className="nextBtn">
           <FaArrowRight />
         </button>
-      </div>
+      </div> */}
     </div>
   );
 };

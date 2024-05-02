@@ -20,11 +20,11 @@ export default async function getSubcategoriesByCategory(
         'subcategories': subcategories[]->{
           _id,
           title,
+          'image': image.asset->url,
           'slug': slug.current,
           'products': *[_type == "products" && references(^._id) && ( productCategory == "noPriceProduct")] {
         _id,
       title,
-      
       
       }
         },
