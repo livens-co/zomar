@@ -13,7 +13,8 @@ import getProductsShop from "@/sanity/actions/get-products-shop";
 import ProductCard from "@/components/ProductCard";
 import getProductsBySubcategory from "@/sanity/actions/get-products-by-subcategory";
 import getSubcategoriesByCategory from "@/sanity/actions/get-subcategories";
-import CategoryCard from "@/components/CategoryCard";
+import ArticleCard from "@/components/ArticleCard";
+import SubCategoryCard from "@/components/SubCategoryCard";
 
 const HomePage = async () => {
   const billboards: Billboard[] | [] = await getBillboards();
@@ -24,8 +25,8 @@ const HomePage = async () => {
     "keramika"
   );
 
-  const categoriesWithProd = subcategories.filter(
-    (category) => category?.products.length > 0
+  const subcategoriesWithProd = subcategories.filter(
+    (subcategory) => subcategory?.products.length > 0
   );
 
   return (
@@ -55,26 +56,26 @@ const HomePage = async () => {
         </div>
       </div>
 
-      {/* KOLEKCIJE SLIDER -prostoria */}
       <div className="collections">
         <div className="title">
           <h1>Kategorije</h1>
         </div>
         <div className="collectionsSlider">
-          {categoriesWithProd
-            .map((category) => (
-              <CategoryCard
-                category={category}
-                subcategoryUrl="keramika"
-                categoryUrl="kategorije"
-                key={category._id}
-              />
-            ))
-            .slice(0, 4)}
+          <div className="collectionsSliderContainer">
+            {subcategoriesWithProd
+              .map((subcategory) => (
+                <SubCategoryCard
+                  subcategory={subcategory}
+                  subcategoryUrl="keramika"
+                  categoryUrl="kategorije"
+                  key={subcategory._id}
+                />
+              ))
+              .slice(0, 10)}
+          </div>
         </div>
       </div>
 
-      {/* PREMIUM KOLEKCIJA - prostoria, u sredistu pozornosti */}
       <div className="featuredCollection">
         <div className="image">
           <Image
@@ -124,26 +125,12 @@ const HomePage = async () => {
         <div className="title">
           <h1>Novosti</h1>
         </div>
-        <div className="newsSlider">
-          {articles.map((article) => (
-            <Link
-              href={`/novosti/${article.slug}`}
-              className="articleCard"
-              key={article._id}
-            >
-              <div className="image">
-                <Image
-                  src={article.image}
-                  width={200}
-                  height={400}
-                  alt={article.title}
-                />
-              </div>
-              <div className="title">
-                <p>{article.title}</p>
-              </div>
-            </Link>
-          ))}
+        <div className="newsContainer">
+          {articles
+            .map((article) => (
+              <ArticleCard article={article} key={article._id} />
+            ))
+            .slice(0, 4)}
         </div>
       </div>
     </div>

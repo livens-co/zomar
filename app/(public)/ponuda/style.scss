@@ -33,30 +33,30 @@
     justify-items: center;
     padding: 4rem 2rem;
 
-    .collectionCard {
-      width: 100%;
-      height: fit-content;
+    // .collectionCard {
+    //   width: 100%;
+    //   height: fit-content;
 
-      .image {
-        aspect-ratio: 1/1;
+    //   .image {
+    //     aspect-ratio: 1/1;
 
-        img {
-          height: 100%;
-          width: 100%;
-          object-fit: cover;
-        }
-      }
+    //     img {
+    //       height: 100%;
+    //       width: 100%;
+    //       object-fit: cover;
+    //     }
+    //   }
 
-      .title {
-        width: 100%;
-        padding: 0.5rem 0.25rem;
+    //   .title {
+    //     width: 100%;
+    //     padding: 0.5rem 0.25rem;
 
-        h2 {
-          font-weight: 600;
-          color: var(--tertiary);
-        }
-      }
-    }
+    //     h2 {
+    //       font-weight: 600;
+    //       color: var(--tertiary);
+    //     }
+    //   }
+    // }
   }
 
   .pagination {

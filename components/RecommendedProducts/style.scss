@@ -1,6 +1,6 @@
 .recommendedProducts {
   width: 100%;
-  max-width: 1100px;
+  max-width: 1200px;
   padding: 2rem 2rem;
   display: flex;
   flex-direction: column;
@@ -15,9 +15,16 @@
     line-height: 1;
   }
 
-  .recommendedProductsGrid {
+  .recommendedProductsContainer {
     width: 100%;
-    display: grid;
-    grid-template-columns: repeat(4, 1fr);
+    display: flex;
+    overflow: hidden;
+
+    .recommendedProductsContainerInner {
+      width: 100%;
+      display: flex;
+      gap: 3rem;
+      overflow-x: auto;
+    }
   }
 }

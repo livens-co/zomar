@@ -1,10 +1,10 @@
-
 import "./style.scss";
 import { Category, Product } from "@/types";
 import Link from "next/link";
 import getCategoriesShop from "@/sanity/actions/get-categories-shop";
 import Image from "next/image";
 import { FaArrowLeft, FaArrowRight } from "react-icons/fa6";
+import CategoryCard from "@/components/CategoryCard";
 
 export const revalidate = 1;
 
@@ -20,30 +20,15 @@ const ShopPage = async () => {
       <div className="header">
         <h1>Ponuda</h1>
       </div>
-      
+
       {/* COLLECTIONS */}
       <div className="collectionsGrid">
-        {categoriesWithProd.map((c) => (
-          <Link
-            className="collectionCard"
-            href={`/ponuda/${c.slug}`}
-            key={c._id}
-          >
-            <div className="image">
-              <Image
-                src="/test/bahrein1.jpeg"
-                width={200}
-                height={400}
-                alt="Bahrein"
-              />
-            </div>
-            <div className="title">
-              <h2>{c.title}</h2>
-            </div>
-          </Link>
+        {categoriesWithProd.map((category) => (
+        
+          <CategoryCard category={category} url="ponuda" key={category._id} />
         ))}
       </div>
-      <div className="pagination">
+      {/* <div className="pagination">
         <button className="prevBtn">
           <FaArrowLeft />
         </button>
@@ -51,7 +36,7 @@ const ShopPage = async () => {
         <button className="nextBtn">
           <FaArrowRight />
         </button>
-      </div>
+      </div> */}
     </div>
   );
 };

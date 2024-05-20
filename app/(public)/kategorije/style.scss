@@ -9,7 +9,7 @@
   .header {
     width: 100%;
     // max-width: 1200px;
-    height: 20rem;
+    height: 16rem;
     padding: 4rem 2rem;
     display: flex;
     align-items: center;
@@ -56,42 +56,17 @@
     gap: 3rem;
     align-content: center;
     justify-items: center;
+    padding: 2rem;
+  }
+
+  .description {
+    width: 90%;
+    max-width: 800px;
     padding: 4rem 2rem;
 
-    .collectionCard {
-      width: 100%;
-      height: fit-content;
-
-      .image {
-        aspect-ratio: 1/1;
-        overflow: hidden;
-        
-        img {
-          height: 100%;
-          width: 100%;
-          object-fit: cover;
-          transition: all 300ms ease;
-        }
-      }
-
-      .title {
-        width: 100%;
-        padding: 0.5rem 0.25rem;
-
-        h2 {
-          font-size: 1.25rem;
-          font-weight: 600;
-          color: var(--tertiary);
-        }
-      }
-
-      &:hover {
-        .image {
-          img {
-            transform: scale(1.05);
-          }
-        }
-      }
+    p {
+      font-size: 1.25rem;
+      text-align: center;
     }
   }
 

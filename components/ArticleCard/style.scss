@@ -1,0 +1,25 @@
+.articleCard {
+  height: fit-content;
+  width: 17rem;
+  background-color: var(--off-white);
+
+  .image {
+    height: 15rem;
+    width: 17rem;
+
+    img {
+      height: 100%;
+      width: 100%;
+      object-fit: cover;
+    }
+  }
+
+  .title {
+    padding: 1rem 0.75rem;
+
+    p {
+      line-height: 1.2;
+      color: var(--primary);
+    }
+  }
+}

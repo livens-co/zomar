@@ -1,10 +1,9 @@
 import { Category, Subcategory } from "@/types";
 import "./style.scss";
-import Link from "next/link";
 import getSubcategoriesByCategoryShop from "@/sanity/actions/get-subcategories-shop";
 import getCategoryBySlug from "@/sanity/actions/get-category";
-import Image from "next/image";
-import CategoryCard from "@/components/CategoryCard";
+
+import SubCategoryCard from "@/components/SubCategoryCard";
 
 export const revalidate = 1;
 
@@ -37,29 +36,12 @@ const ShopCategoryPage: React.FC<ShopCategoryPageProps> = async ({
       <div className="categoryPageTitle">{category?.title}</div>
 
       <div className="categoryGrid">
-        {subcategoriesWithProd.map((sc) => (
-          // <Link
-          //   className="categoryCard"
-          //   key={sc._id}
-          //   href={`/ponuda/${params.category}/${sc.slug}`}
-          // >
-          //   <div className="image">
-          //     <Image
-          //       src="/test/bahrein1.jpeg"
-          //       width={200}
-          //       height={400}
-          //       alt="Bahrein"
-          //     />
-          //   </div>
-          //   <div className="title">
-          //     <h2>{sc.title}</h2>
-          //   </div>
-          // </Link>
-          <CategoryCard
-            category={sc}
+        {subcategoriesWithProd.map((subcategory) => (
+          <SubCategoryCard
+            subcategory={subcategory}
             subcategoryUrl={params.category}
             categoryUrl="ponuda"
-            key={sc._id}
+            key={subcategory._id}
           />
         ))}
       </div>
