@@ -10,6 +10,8 @@ export default async function getProduct(slug: string): Promise<Product | null> 
       title,
       'slug': slug.current,
       description,
+      price,
+      salePrice,
       'images': images[].asset->url,
       'categories': categories[]->{
         title,

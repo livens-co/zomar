@@ -75,11 +75,12 @@ const ProductFilters: React.FC<ProductFiltersProps> = ({
   onFormatsChange,
   brands,
   formats,
-  productsNum
+  productsNum,
 }) => {
   const [filterTags, setFilterTags] = useState<string[]>([]);
   const [filterBrands, setFilterBrands] = useState<string[]>([]);
   const [filterFormats, setFilterFormats] = useState<string[]>([]);
+  const [filtersVisible, setFiltersVisible] = useState<boolean>(false);
 
   const handleTagsChange = (event: React.ChangeEvent<HTMLInputElement>) => {
     const { id, checked } = event.target;
@@ -137,10 +138,14 @@ const ProductFilters: React.FC<ProductFiltersProps> = ({
     onFormatsChange([]);
   };
 
+  const toggleFiltersVisibility = () => {
+    setFiltersVisible(!filtersVisible);
+  };
+
   return (
     <div className="filtersComponent">
       <div className="filterBar">
-        <div className="innerContainer">
+        <div className="innerContainer" onClick={toggleFiltersVisibility}>
           <HiMenu />
           <p>Filteri</p>
         </div>
@@ -149,89 +154,87 @@ const ProductFilters: React.FC<ProductFiltersProps> = ({
         </div>
       </div>
 
-      <div className="filtersContainer">
+      <div className={`filtersContainer ${filtersVisible ? "visible" : ""}`}>
         <div className="filtersContainerInner">
-
-        
-        <div className="filterColumn">
-          <h4>Vrste pločica</h4>
-          <div className="filterContainer">
-            <div className="filterContainerInner">
-              {tagsList.map((tag) => (
-                <div className="checkbox-container" key={tag.id}>
-                  <input
-                    type="checkbox"
-                    id={tag.id}
-                    onChange={handleTagsChange}
-                  />
-                  <label htmlFor={tag.id}>
-                    <div className="checkbox">
-                      <div className="checkbox-inner"></div>
+          <div className="filterColumn">
+            <h4>Vrste pločica</h4>
+            <div className="filterContainer">
+              <div className="filterContainerInner">
+                {tagsList.map((tag) => (
+                  <div className="checkbox-container" key={tag.id}>
+                    <input
+                      type="checkbox"
+                      id={tag.id}
+                      onChange={handleTagsChange}
+                    />
+                    <label htmlFor={tag.id}>
+                      <div className="checkbox">
+                        <div className="checkbox-inner"></div>
+                      </div>
+                      <p>{tag.name}</p>
+                    </label>
+                  </div>
+                ))}
+              </div>
+            </div>
+          </div>
+          <div className="filterColumn">
+            <h4>Brendovi</h4>
+            <div className="filterContainer">
+              <div className="filterContainerInner">
+                <ul>
+                  {brands?.map((brand) => (
+                    <div className="checkbox-container" key={brand._id}>
+                      <input
+                        type="checkbox"
+                        id={brand._id}
+                        onChange={handleBrandChange}
+                      />
+                      <label htmlFor={brand._id}>
+                        <div className="checkbox">
+                          <div className="checkbox-inner"></div>
+                        </div>
+                        <p>{brand.title}</p>
+                      </label>
                     </div>
-                    <p>{tag.name}</p>
-                  </label>
-                </div>
-              ))}
+                  ))}
+                </ul>
+              </div>
             </div>
           </div>
-        </div>
-        <div className="filterColumn">
-          <h4>Brendovi</h4>
-          <div className="filterContainer">
-            <div className="filterContainerInner">
-              <ul>
-                {brands?.map((brand) => (
-                  <div className="checkbox-container" key={brand._id}>
-                    <input
-                      type="checkbox"
-                      id={brand._id}
-                      onChange={handleBrandChange}
-                    />
-                    <label htmlFor={brand._id}>
-                      <div className="checkbox">
-                        <div className="checkbox-inner"></div>
-                      </div>
-                      <p>{brand.title}</p>
-                    </label>
-                  </div>
-                ))}
-              </ul>
+          <div className="filterColumn">
+            <h4>Dimenzije</h4>
+            <div className="filterContainer">
+              <div className="filterContainerInner">
+                <ul>
+                  {formats?.map((format) => (
+                    <div className="checkbox-container" key={format._id}>
+                      <input
+                        type="checkbox"
+                        id={format._id}
+                        onChange={handleFormatChange}
+                      />
+                      <label htmlFor={format._id}>
+                        <div className="checkbox">
+                          <div className="checkbox-inner"></div>
+                        </div>
+                        <p>{format.title}</p>
+                      </label>
+                    </div>
+                  ))}
+                </ul>
+              </div>
             </div>
           </div>
-        </div>
-        <div className="filterColumn">
-          <h4>Dimenzije</h4>
-          <div className="filterContainer">
-            <div className="filterContainerInner">
-              <ul>
-                {formats?.map((format) => (
-                  <div className="checkbox-container" key={format._id}>
-                    <input
-                      type="checkbox"
-                      id={format._id}
-                      onChange={handleFormatChange}
-                    />
-                    <label htmlFor={format._id}>
-                      <div className="checkbox">
-                        <div className="checkbox-inner"></div>
-                      </div>
-                      <p>{format.title}</p>
-                    </label>
-                  </div>
-                ))}
-              </ul>
-            </div>
+          <div className="filterButtons">
+            <button onClick={handleRemoveFiltersClick} className="removeButton">
+              Ukloni filtere
+            </button>
+            <button onClick={handleFilterButtonClick} className="submitButton">
+              Pretraži
+            </button>
           </div>
         </div>
-        <div className="filterButtons">
-          <button onClick={handleRemoveFiltersClick} className="removeButton">
-            Ukloni filtere
-          </button>
-          <button onClick={handleFilterButtonClick} className="submitButton">
-            Pretraži
-          </button>
-        </div>
-      </div>
       </div>
     </div>
   );

@@ -10,6 +10,7 @@ import Link from "next/link";
 import getProductsBySubcategory from "@/sanity/actions/get-products-by-subcategory";
 import RecommendedProducts from "@/components/RecommendedProducts";
 import { Tabs, TabsContent, TabsList, TabsTrigger } from "@/components/ui/tabs";
+import ProductContact from "@/components/ProductContact";
 
 export const revalidate = 1;
 
@@ -18,6 +19,8 @@ interface ProductPageProps {
     slug: string;
   };
 }
+
+
 
 const ProductPage: React.FC<ProductPageProps> = async ({
   params: { slug },
@@ -32,7 +35,7 @@ const ProductPage: React.FC<ProductPageProps> = async ({
     // Filter out the current product from recommended products
     recommendedProducts = recommendedProducts.filter(
       (recommendedProduct) => recommendedProduct._id !== product._id
-    );
+    ).slice(0,6);
   } else {
     return <div>Proizvod nije pronađen</div>;
   }
@@ -49,8 +52,25 @@ const ProductPage: React.FC<ProductPageProps> = async ({
 
   const pathLink = `${getPathLink(product.productCategory)}`;
 
+  type TagKey = keyof typeof product.tags;
+
+  const tags: { key: TagKey; label: string }[] = [
+    { key: "mat", label: "Mat" },
+    { key: "protuklizna", label: "Protuklizna" },
+    { key: "zidna", label: "Zidna" },
+    { key: "podna", label: "Podna" },
+    { key: "retificirana", label: "Retificirana" },
+    { key: "unutarnja", label: "Unutarnja" },
+    { key: "vanjska", label: "Vanjska" },
+    { key: "sjaj", label: "Sjaj" },
+    { key: "satinado", label: "Satinado" },
+    { key: "klasican", label: "Klasičan rez" },
+    { key: "gres", label: "Gres" },
+    { key: "sugar", label: "Sugar Effect" },
+  ];
+
   return (
-    <div className="collectionProductPage">
+    <div className="productPage">
       <header>
         {/* PATH */}
         <div className="path">
@@ -88,22 +108,31 @@ const ProductPage: React.FC<ProductPageProps> = async ({
           <div className="line" />
 
           {/* CIJENA */}
-          <div className="price">
-            <div className="row">
-              <h3 className="regularPriceTitle">Cijena:</h3>
-              <p className="regularPrice">12,50 €/&#13217;</p>
+          {product.price && (
+            <div className="price">
+              {product.salePrice ? (
+                <div className="row">
+                  <h3 className="regularPriceTitle">Cijena:</h3>
+                  <p className="regularPrice" style={{ textDecoration: 'line-through' }}>
+                    {product.price.toFixed(2)} €
+                  </p>
+                  <h3 className="salePriceTitle">Akcijska cijena:</h3>
+                  <p className="salePrice">
+                    {product.salePrice.toFixed(2)} €
+                  </p>
+                </div>
+              ) : (
+                <div className="row">
+                  <h3 className="regularPriceTitle">Cijena:</h3>
+                  <p className="regularPrice">{product.price.toFixed(2)} €</p>
+                </div>
+              )}
             </div>
-            <div className="row">
-              <h3 className="salePriceTitle">Akcijska cijena:</h3>
-              <p className="salePrice">10,00 €/&#13217;</p>
-            </div>
-          </div>
+          )}
 
           
           {/* KONTAKT BUTTON */}
-          <div className="productContactButton">
-            <p>Pošalji upit</p>
-          </div>
+          <ProductContact product={product}/>
         </div>
       </main>
       <div className="productDetails">
@@ -124,127 +153,16 @@ const ProductPage: React.FC<ProductPageProps> = async ({
                 </TabsTrigger>
               </TabsList>
               <TabsContent value="description" className="tabContent">
-                <div className="productDetailsGrid">
-                  {/* MAT */}
-                  <div className="tag">
-                    <p>
-                      Mat:{" "}
-                      {product.tags?.mat ? <span>da</span> : <span>ne</span>}
-                    </p>
-                  </div>
-
-                  {/* PROTUKLIZNA */}
-                  <div className="tag">
-                    <p>
-                      Protuklizna:{" "}
-                      {product.tags?.protuklizna ? (
-                        <span>da</span>
-                      ) : (
-                        <span>ne</span>
-                      )}
-                    </p>
-                  </div>
-
-                  {/* ZIDNA */}
-                  <div className="tag">
-                    <p>
-                      Zidna:{" "}
-                      {product.tags?.zidna ? <span>da</span> : <span>ne</span>}
-                    </p>
-                  </div>
-
-                  {/* PODNA */}
-                  <div className="tag">
-                    <p>
-                      Podna:{" "}
-                      {product.tags?.podna ? <span>da</span> : <span>ne</span>}
-                    </p>
-                  </div>
-
-                  {/* RETIFICIRANA */}
-                  <div className="tag">
-                    <p>
-                      Retificirana:{" "}
-                      {product.tags?.retificirana ? (
-                        <span>da</span>
-                      ) : (
-                        <span>ne</span>
-                      )}
-                    </p>
-                  </div>
-
-                  {/* UNUTARNJA */}
-                  <div className="tag">
-                    <p>
-                      Unutarnja:{" "}
-                      {product.tags?.unutarnja ? (
-                        <span>da</span>
-                      ) : (
-                        <span>ne</span>
-                      )}
-                    </p>
-                  </div>
-
-                  {/* VANJSKA */}
-                  <div className="tag">
-                    <p>
-                      Vanjska:{" "}
-                      {product.tags?.vanjska ? (
-                        <span>da</span>
-                      ) : (
-                        <span>ne</span>
-                      )}
-                    </p>
-                  </div>
-
-                  {/* SJAJ */}
-                  <div className="tag">
-                    <p>
-                      Sjaj:{" "}
-                      {product.tags?.sjaj ? <span>da</span> : <span>ne</span>}
-                    </p>
-                  </div>
-
-                  {/* SATINADO */}
-                  <div className="tag">
-                    <p>
-                      Satinado:{" "}
-                      {product.tags?.satinado ? (
-                        <span>da</span>
-                      ) : (
-                        <span>ne</span>
-                      )}
-                    </p>
-                  </div>
-
-                  {/* KLASICAN REZ */}
-                  <div className="tag">
-                    <p>
-                      Klasičan rez:{" "}
-                      {product.tags?.klasican ? (
-                        <span>da</span>
-                      ) : (
-                        <span>ne</span>
-                      )}
-                    </p>
-                  </div>
-
-                  {/* GRES */}
-                  <div className="tag">
-                    <p>
-                      Gres:{" "}
-                      {product.tags?.gres ? <span>da</span> : <span>ne</span>}
-                    </p>
-                  </div>
-
-                  {/* SUGAR EFFECT */}
-                  <div className="tag">
-                    <p>
-                      Suggar effect:{" "}
-                      {product.tags?.sugar ? <span>da</span> : <span>ne</span>}
-                    </p>
-                  </div>
+              <div className="productDetailsGrid">
+                  {tags.map(({ key, label }) => (
+                    <div className="tag" key={key}>
+                      <p>
+                        {label}: {product.tags?.[key] ? <span>da</span> : <span>ne</span>}
+                      </p>
+                    </div>
+                  ))}
                 </div>
+
               </TabsContent>
               <TabsContent value="size" className="tabContent">
                 <ul>

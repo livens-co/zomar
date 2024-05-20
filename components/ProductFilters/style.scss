@@ -20,6 +20,7 @@
       align-items: center;
       gap: 1rem;
       padding: 1rem 2rem;
+      cursor: pointer;
 
       svg {
         color: #545454;
@@ -45,18 +46,28 @@
   }
 
   .filtersContainer {
+    // display: flex;
+    // justify-content: center;
+    // width: 100%;
+    // background-color: #edeae9;
     display: flex;
     justify-content: center;
     width: 100%;
-
     background-color: #edeae9;
+    max-height: 0;
+    overflow: hidden;
+    transition: max-height 0.3s ease;
+
+    &.visible {
+      max-height: 16rem; /* Adjust this value based on the expected height of your content */
+    }
 
     .filtersContainerInner {
       display: grid;
       gap: 2rem;
       width: 100%;
       max-width: 1200px;
-      height: 16rem;
+      // height: 16rem;
       padding: 1rem 2rem;
       grid-template-columns: repeat(4, 1fr);
 
