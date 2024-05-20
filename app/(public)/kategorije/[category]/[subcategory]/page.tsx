@@ -14,6 +14,7 @@ import ProductFilters from "@/components/ProductFilters";
 import getBrands from "@/sanity/actions/get-brands";
 import getFormats from "@/sanity/actions/get-formats";
 import { PortableText } from "@portabletext/react";
+import ProductCard from "@/components/ProductCard";
 
 interface SubcategoryPageProps {
   params: {
@@ -132,23 +133,7 @@ const SubcategoryPage: React.FC<SubcategoryPageProps> = ({
 
       <div className="productsGrid">
         {entries?.map((product) => (
-          <Link
-            key={product._id}
-            href={`/proizvod/${product.slug}`}
-            className="productCard"
-          >
-            <div className="image">
-              <Image
-                src={product.images[0]?.toString()}
-                width={200}
-                height={400}
-                alt={product.title}
-              />
-            </div>
-            <div className="title">
-              <h2>{product.title}</h2>
-            </div>
-          </Link>
+          <ProductCard product={product} key={product._id}/>
         ))}
       </div>
       <div>

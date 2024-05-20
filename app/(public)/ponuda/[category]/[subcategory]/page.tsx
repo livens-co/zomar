@@ -5,6 +5,7 @@ import getProductsBySubcategoryShop from "@/sanity/actions/get-products-by-subca
 import getSubcategoryBySlug from "@/sanity/actions/get-subcategory";
 import PaginationControls from "@/components/PaginationControls";
 import Image from "next/image";
+import ProductCard from "@/components/ProductCard";
 
 export const revalidate = 1;
 
@@ -44,23 +45,24 @@ const ShopSubcategoryPage: React.FC<ShopSubcategoryPageProps> = async ({
 
       <div className="productsGrid">
         {entries?.map((product) => (
-          <Link
-            key={product._id}
-            href={`/proizvod/${product.slug}`}
-            className="productCard"
-          >
-            <div className="image">
-              <Image
-                src={product.images[0]?.toString()}
-                width={200}
-                height={400}
-                alt="Bahrein"
-              />
-            </div>
-            <div className="title">
-              <h2>{product.title}</h2>
-            </div>
-          </Link>
+          // <Link
+          //   key={product._id}
+          //   href={`/proizvod/${product.slug}`}
+          //   className="productCard"
+          // >
+          //   <div className="image">
+          //     <Image
+          //       src={product.images[0]?.toString()}
+          //       width={200}
+          //       height={400}
+          //       alt="Bahrein"
+          //     />
+          //   </div>
+          //   <div className="title">
+          //     <h2>{product.title}</h2>
+          //   </div>
+          // </Link>
+          <ProductCard product={product} key={product._id}/>
         ))}
       </div>
       <div>

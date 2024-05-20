@@ -4,6 +4,7 @@ import getSubcategoriesByCategory from "@/sanity/actions/get-subcategories";
 import Link from "next/link";
 import getCategoryBySlug from "@/sanity/actions/get-category";
 import Image from "next/image";
+import CategoryCard from "@/components/CategoryCard";
 
 export const revalidate = 1;
 
@@ -28,41 +29,24 @@ const CategoryPage: React.FC<CategoryPageProps> = async ({ params }) => {
   const subcategoriesWithProd = subcategories.filter(
     (subcategory) => subcategory?.products.length > 0
   );
- 
 
   return (
     <div className="categoryPage">
       <div className="header">
         <div className="image">
-          <Image
-            src={category.image}
-            width={600}
-            height={400}
-            alt="Bahrein"
-          />
-          <div className="overlay"/>
+          <Image src={category.image} width={600} height={400} alt={category.title} />
+          <div className="overlay" />
         </div>
         <h1>{category?.title}</h1>
       </div>
       <div className="categoryGrid">
         {subcategoriesWithProd.map((sc) => (
-          <Link
-            className="categoryCard"
+          <CategoryCard
+            category={sc}
+            subcategoryUrl={params.category}
+            categoryUrl="kategorije"
             key={sc._id}
-            href={`/kategorije/${params.category}/${sc.slug}`}
-          >
-            <div className="image">
-              <Image
-                src={sc.image}
-                width={200}
-                height={400}
-                alt={sc.title}
-              />
-            </div>
-            <div className="title">
-              <h2>{sc.title}</h2>
-            </div>
-          </Link>
+          />
         ))}
       </div>
     </div>

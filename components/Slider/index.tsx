@@ -40,8 +40,8 @@ const Slider: React.FC<SliderProps> = ({ data }) => {
       >
         {data.map((billboard) => (
           <SwiperSlide className="swiperSlide" key={billboard._id}>
-            <Image src={billboard.image} alt="Images " width={800} height={300} />
-            <h1>{billboard.title}</h1>
+            <Image src={billboard.image} alt={billboard?.title} width={800} height={300} />
+            <h1>{billboard?.title}</h1>
           </SwiperSlide>
         ))}
       </Swiper>

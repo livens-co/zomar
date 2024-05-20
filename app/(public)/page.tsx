@@ -3,25 +3,28 @@ import "./style.scss";
 
 export const revalidate = 1;
 
-import bahrein1 from "../../public/test/bahrein1.jpeg";
-import bahrein2 from "../../public/test/bahrein2.jpeg";
-import bahrein3 from "../../public/test/bahrein3.jpeg";
-import bahrein4 from "../../public/test/bahrein4.jpeg";
 import Image from "next/image";
 import Link from "next/link";
-import { Article, Billboard, Category, Product } from "@/types";
+import { Article, Billboard, Category, Product, Subcategory } from "@/types";
 import getCategories from "@/sanity/actions/get-categories";
 import getArticles from "@/sanity/actions/get-articles";
 import getBillboards from "@/sanity/actions/get-billboards";
 import getProductsShop from "@/sanity/actions/get-products-shop";
+import ProductCard from "@/components/ProductCard";
+import getProductsBySubcategory from "@/sanity/actions/get-products-by-subcategory";
+import getSubcategoriesByCategory from "@/sanity/actions/get-subcategories";
+import CategoryCard from "@/components/CategoryCard";
 
 const HomePage = async () => {
   const billboards: Billboard[] | [] = await getBillboards();
-  const categories: Category[] | [] = await getCategories();
+  // const categories: Category[] | [] = await getCategories();
   const articles: Article[] | [] = await getArticles();
   const products: Product[] | [] = await getProductsShop();
+  const subcategories: Subcategory[] | [] = await getSubcategoriesByCategory(
+    "keramika"
+  );
 
-  const categoriesWithProd = categories.filter(
+  const categoriesWithProd = subcategories.filter(
     (category) => category?.products.length > 0
   );
 
@@ -30,7 +33,7 @@ const HomePage = async () => {
       {/* SLIDER */}
       <Slider data={billboards} />
 
-      {/* O NAMA - prissmacer */}
+      {/* O NAMA */}
       <div className="aboutUs">
         {/* LOGO */}
         <div className="logo">
@@ -60,23 +63,12 @@ const HomePage = async () => {
         <div className="collectionsSlider">
           {categoriesWithProd
             .map((category) => (
-              <Link
-                href={`/kategorije/${category.slug}`}
-                className="sliderCard"
+              <CategoryCard
+                category={category}
+                subcategoryUrl="keramika"
+                categoryUrl="kategorije"
                 key={category._id}
-              >
-                <div className="image">
-                  <Image
-                    src={bahrein1}
-                    width={200}
-                    height={400}
-                    alt="Bahrein"
-                  />
-                </div>
-                <div className="title">
-                  <h2>{category.title}</h2>
-                </div>
-              </Link>
+              />
             ))
             .slice(0, 4)}
         </div>
@@ -112,32 +104,17 @@ const HomePage = async () => {
       {/* SHOP PROIZVODI */}
       <div className="shop">
         <div className="innerContainer">
-          <div className="title">
+          <div className="containerTitle">
             <h1>Proizvodi</h1>
           </div>
           <div className="productsContainer">
-            {products
-              .map((product) => (
-                <Link
-                  href={`/proizvod/${product.slug}`}
-                  className="productCard"
-                  key={product._id}
-                >
-                  <div className="image">
-                    <Image
-                      src={product.images[0].toString()}
-                      width={200}
-                      height={400}
-                      alt="Bahrein"
-                    />
-                  </div>
-                  <div className="content">
-                    <h3>{product.title}</h3>
-                    <h4>€ {product?.price}</h4>
-                  </div>
-                </Link>
-              ))
-              .slice(0, 4)}
+            <div className="productsContainerInner">
+              {products
+                .map((product) => (
+                  <ProductCard product={product} key={product._id} />
+                ))
+                .slice(0, 10)}
+            </div>
           </div>
         </div>
       </div>
@@ -159,7 +136,7 @@ const HomePage = async () => {
                   src={article.image}
                   width={200}
                   height={400}
-                  alt="Bahrein"
+                  alt={article.title}
                 />
               </div>
               <div className="title">
