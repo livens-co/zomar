@@ -10,7 +10,7 @@ type Props = {
 };
 
 const ProductContact = ({product}: Props) => {
-  const [isModalOpen, setModalOpen] = useState(true);
+  const [isModalOpen, setModalOpen] = useState(false);
 
   const handleContactButtonClick = () => {
     setModalOpen(true);

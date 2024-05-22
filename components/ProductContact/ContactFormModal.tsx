@@ -67,7 +67,7 @@ const ContactFormModal: React.FC<ContactFormModalProps> = ({
             type="tel"
             value={phone}
             onChange={(e) => setPhone(e.target.value)}
-            placeholder="Mobitel"
+            placeholder="Telefon"
           />
 
           <textarea

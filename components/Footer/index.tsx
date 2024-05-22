@@ -52,11 +52,10 @@ const Footer = () => {
         </div>
         {/* POPULARNO */}
         <div className="footerColumn">
-          <h2>Popularno</h2>
+          <h2>Drustvene mreze</h2>
           <div className="links">
-            <p>Plocice</p>
-            <p>Sanitarije</p>
-            <p>Ostalo</p>
+            <p>Instagram</p>
+            <p>Facebook</p>
           </div>
         </div>
       </div>

@@ -4,6 +4,7 @@ import getArticles from "@/sanity/actions/get-articles";
 import Link from "next/link";
 import PaginationControls from "@/components/PaginationControls";
 import Image from "next/image";
+import ArticleCard from "@/components/ArticleCard";
 
 export const revalidate = 1;
 
@@ -38,12 +39,12 @@ const NewsPage: React.FC<NewsPageProps> = async ({ searchParams }) => {
       </div>
       <div className="articleGrid">
         {entries?.map((article) => (
-          <Link href={`/novosti/${article.slug}`} key={article._id}>
-            <h1>{article.title}</h1>
-          </Link>
+          <ArticleCard article={article} key={article._id}/>
         ))}
       </div>
       <div className="pagination">
+
+        {/* ADJUST FOR ARTICLE PAGINATION ROUTE */}
         <PaginationControls
           hasNextPage={end < (articles?.length ?? 0)}
           hasPrevPage={start > 0}
