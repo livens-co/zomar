@@ -3,7 +3,6 @@
 import "./style.scss";
 
 import { useRouter, useSearchParams } from "next/navigation";
-import { FaArrowLeftLong, FaArrowRightLong } from "react-icons/fa6";
 import { FaArrowLeft, FaArrowRight } from "react-icons/fa6";
 
 interface PaginationControlsProps {

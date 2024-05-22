@@ -18,20 +18,20 @@ const ContactPage: React.FC<ContactPageProps> = ({ onSubmit }) => {
   const [phone, setPhone] = useState("");
   const [message, setMessage] = useState("");
 
-  const handleSubmit = (e: React.FormEvent) => {
-    e.preventDefault();
-    // onSubmit({ name, email, phone, message });
-    setName("");
-    setEmail("");
-    setPhone("");
-    setMessage("");
-  };
+  // const handleSubmit = (e: React.FormEvent) => {
+  //   e.preventDefault();
+  //   // onSubmit({ name, email, phone, message });
+  //   setName("");
+  //   setEmail("");
+  //   setPhone("");
+  //   setMessage("");
+  // };
 
   return (
     <div className="contactPage">
       <div className="contactForm">
         <h3>Kontaktirajte nas</h3>
-        <form onSubmit={handleSubmit}>
+        <form onSubmit={()=>{}}>
           <div className="input">
             <p>Ime i prezime</p>
             <input

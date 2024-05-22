@@ -36,7 +36,7 @@ const SubcategoryPage: React.FC<SubcategoryPageProps> = ({
   const [selectedTags, setSelectedTags] = useState<string[]>([]);
   const [selectedBrands, setSelectedBrands] = useState<string[]>([]);
   const [selectedFormats, setSelectedFormats] = useState<string[]>([]);
-
+ 
   const handleTagsChange = (selectedTags: string[]) => {
     setSelectedTags(selectedTags);
     // Here you can perform any additional logic based on the selected tags
