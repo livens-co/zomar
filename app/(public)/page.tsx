@@ -1,24 +1,21 @@
-import Slider from "@/components/Slider";
 import "./style.scss";
 
 export const revalidate = 1;
 
 import Image from "next/image";
 import Link from "next/link";
-import { Article, Billboard, Category, Product, Subcategory } from "@/types";
-import getCategories from "@/sanity/actions/get-categories";
+import { Article, Billboard, Product, Subcategory } from "@/types";
+import Slider from "@/components/Slider";
 import getArticles from "@/sanity/actions/get-articles";
 import getBillboards from "@/sanity/actions/get-billboards";
 import getProductsShop from "@/sanity/actions/get-products-shop";
 import ProductCard from "@/components/ProductCard";
-import getProductsBySubcategory from "@/sanity/actions/get-products-by-subcategory";
 import getSubcategoriesByCategory from "@/sanity/actions/get-subcategories";
 import ArticleCard from "@/components/ArticleCard";
 import SubCategoryCard from "@/components/SubCategoryCard";
 
 const HomePage = async () => {
   const billboards: Billboard[] | [] = await getBillboards();
-  // const categories: Category[] | [] = await getCategories();
   const articles: Article[] | [] = await getArticles();
   const products: Product[] | [] = await getProductsShop();
   const subcategories: Subcategory[] | [] = await getSubcategoriesByCategory(
@@ -31,12 +28,11 @@ const HomePage = async () => {
 
   return (
     <div className="homePage">
-      {/* SLIDER */}
+    
       <Slider data={billboards} />
 
-      {/* O NAMA */}
+ 
       <div className="aboutUs">
-        {/* LOGO */}
         <div className="logo">
           <Image
             src="/zomarLogo.png"
@@ -45,7 +41,6 @@ const HomePage = async () => {
             alt="Zomar interineri"
           />
         </div>
-        {/* TEXT */}
         <div className="text">
           <p>
             Uz savjete našeg stručnog i ljubaznog osoblja nudimo široku paletu

@@ -18,9 +18,27 @@ const ShopPage = async () => {
   return (
     <div className="shopPage">
       <div className="header">
+        <div className="image">
+          <Image
+            src="/test/bahrein1.jpeg"
+            width={600}
+            height={400}
+            alt="Bahrein"
+          />
+          <div className="overlay" />
+        </div>
         <h1>Ponuda</h1>
       </div>
 
+      <div className="description">
+        <p>
+          Lorem ipsum dolor sit amet consectetur adipisicing elit. Neque
+          suscipit quas rem nobis id nesciunt eaque culpa est nemo, praesentium
+          qui quam perspiciatis obcaecati iusto vitae voluptatem animi ratione
+          soluta.
+        </p>
+      </div>
+      
       {/* COLLECTIONS */}
       <div className="collectionsGrid">
         {categoriesWithProd.map((category) => (
