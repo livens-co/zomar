@@ -3,6 +3,7 @@
 import React, { useState } from "react";
 import { Product } from "@/types";
 import { IoClose } from "react-icons/io5";
+import { useToast } from "../ui/use-toast";
 
 interface ContactFormModalProps {
   product: Product;
@@ -13,7 +14,7 @@ interface ContactFormModalProps {
     email: string;
     phone: string;
     message: string;
-    productTitle: string;
+    product: string;
   }) => void;
 }
 
@@ -28,9 +29,14 @@ const ContactFormModal: React.FC<ContactFormModalProps> = ({
   const [phone, setPhone] = useState("");
   const [message, setMessage] = useState("");
 
+  const { toast } = useToast();
+
   const handleSubmit = (e: React.FormEvent) => {
     e.preventDefault();
-    onSubmit({ name, email, phone, message, productTitle: product.title });
+    toast({
+      title: "Poruka poslana.",
+    });
+    onSubmit({ name, email, phone, message, product: product.title });
     setName("");
     setEmail("");
     setPhone("");

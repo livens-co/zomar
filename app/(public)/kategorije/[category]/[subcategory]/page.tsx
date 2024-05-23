@@ -15,6 +15,7 @@ import getBrands from "@/sanity/actions/get-brands";
 import getFormats from "@/sanity/actions/get-formats";
 import { PortableText } from "@portabletext/react";
 import ProductCard from "@/components/ProductCard";
+import { useRouter } from "next/navigation";
 
 interface SubcategoryPageProps {
   params: {
@@ -36,7 +37,9 @@ const SubcategoryPage: React.FC<SubcategoryPageProps> = ({
   const [selectedTags, setSelectedTags] = useState<string[]>([]);
   const [selectedBrands, setSelectedBrands] = useState<string[]>([]);
   const [selectedFormats, setSelectedFormats] = useState<string[]>([]);
- 
+
+  const router = useRouter();
+
   const handleTagsChange = (selectedTags: string[]) => {
     setSelectedTags(selectedTags);
     // Here you can perform any additional logic based on the selected tags
@@ -79,6 +82,15 @@ const SubcategoryPage: React.FC<SubcategoryPageProps> = ({
       setSubcategory(subcategory);
       setBrands(brands);
       setFormats(formats);
+
+      // Check if the current page is out of range after filtering
+      const currentPage = parseInt((searchParams["page"] as string) ?? "1", 10);
+      const totalProducts = products?.length ?? 0;
+      const totalPages = Math.ceil(totalProducts / 12);
+      if (currentPage > totalPages) {
+        // Navigate to the first page if out of range
+        router.push(`/kategorije/${params.category}/${params.subcategory}`);
+      }
     };
 
     fetchData();
@@ -89,13 +101,13 @@ const SubcategoryPage: React.FC<SubcategoryPageProps> = ({
     selectedTags,
     selectedBrands,
     selectedFormats,
+    router,
   ]);
 
-  const page = searchParams["page"] ?? "1";
-  const per_page = searchParams["per_page"] ?? "12";
-
-  const start = (Number(page) - 1) * Number(per_page);
-  const end = start + Number(per_page);
+  const page = parseInt((searchParams["page"] as string) ?? "1", 10);
+  const per_page = parseInt((searchParams["per_page"] as string) ?? "12", 10);
+  const start = (page - 1) * per_page;
+  const end = start + per_page;
 
   const entries = products?.slice(start, end);
 
@@ -133,7 +145,7 @@ const SubcategoryPage: React.FC<SubcategoryPageProps> = ({
 
       <div className="productsGrid">
         {entries?.map((product) => (
-          <ProductCard product={product} key={product._id}/>
+          <ProductCard product={product} key={product._id} />
         ))}
       </div>
       <div>

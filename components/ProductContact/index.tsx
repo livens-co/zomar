@@ -4,6 +4,7 @@ import { useState } from "react";
 import "./style.scss";
 import ContactFormModal from "./ContactFormModal";
 import { Product } from "@/types";
+import { sendProductInquiry } from "@/app/api/sendProductInquiry";
 
 type Props = {
   product: Product
@@ -21,13 +22,15 @@ const ProductContact = ({product}: Props) => {
   };
 
   const handleFormSubmit = async (formData: {
+    name: string;
     email: string;
+    phone: string;
     message: string;
-    productTitle: string;
+    product: string;
   }) => {
-    // await sendContactEmail(formData);
+    await sendProductInquiry(formData)
     setModalOpen(false);
-    console.log(formData)
+  
   };
 
   return (

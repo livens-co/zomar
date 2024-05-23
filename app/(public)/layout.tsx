@@ -3,6 +3,7 @@ import localfont from "next/font/local";
 import "./globals.css";
 import Navbar from "@/components/Navbar";
 import Footer from "@/components/Footer";
+import { Toaster } from "@/components/ui/toaster";
 
 const houschkaPro = localfont({
   src: [
@@ -57,6 +58,7 @@ export default function RootLayout({
           {children}
           </div>
         <Footer />
+        <Toaster/>
       </body>
     </html>
   );

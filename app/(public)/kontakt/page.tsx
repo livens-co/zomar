@@ -1,76 +1,25 @@
 "use client";
 
-import { useState } from "react";
+import { sendEmail } from "@/app/api/sendEmail";
 import "./style.scss";
+import ContactForm from "./ContactForm";
 
-interface ContactPageProps {
-  onSubmit: (formData: {
+const ContactPage = () => {
+  const handleFormSubmit = async (formData: {
     name: string;
     email: string;
     phone: string;
     message: string;
-  }) => void;
-}
+  }) => {
+    await sendEmail(formData);
 
-const ContactPage: React.FC<ContactPageProps> = ({ onSubmit }) => {
-  const [name, setName] = useState("");
-  const [email, setEmail] = useState("");
-  const [phone, setPhone] = useState("");
-  const [message, setMessage] = useState("");
-
-  // const handleSubmit = (e: React.FormEvent) => {
-  //   e.preventDefault();
-  //   // onSubmit({ name, email, phone, message });
-  //   setName("");
-  //   setEmail("");
-  //   setPhone("");
-  //   setMessage("");
-  // };
+  };
 
   return (
     <div className="contactPage">
       <div className="contactForm">
         <h3>Kontaktirajte nas</h3>
-        <form onSubmit={()=>{}}>
-          <div className="input">
-            <p>Ime i prezime</p>
-            <input
-              type="text"
-              value={name}
-              onChange={(e) => setName(e.target.value)}
-              required
-            />
-          </div>
-          <div className="input">
-            <p>Email</p>
-            <input
-              type="email"
-              value={email}
-              onChange={(e) => setEmail(e.target.value)}
-              required
-            />
-          </div>
-          <div className="input">
-            <p>Telefon</p>
-            <input
-              type="tel"
-              value={phone}
-              onChange={(e) => setPhone(e.target.value)}
-            />
-          </div>
-
-          <div className="input">
-            <p>Poruka</p>
-            <textarea
-              name="Poruka"
-              rows={4}
-              required
-              value={message}
-              onChange={(e) => setMessage(e.target.value)}
-            />
-          </div>
-          <button type="submit">Pošalji</button>
-        </form>
+        <ContactForm onSubmit={handleFormSubmit}/>
       </div>
       <div className="contactInfo">
         <h3>Adresa</h3>
