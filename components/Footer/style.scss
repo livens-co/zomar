@@ -1,25 +1,78 @@
 footer {
   width: 100%;
   background-color: var(--quaternary);
-  min-height: 20rem;
-  
+  // min-height: 20rem;
+  align-items: center;
   display: flex;
   flex-direction: column;
-  justify-content: space-between;
-  
-  .footer{
+  // justify-content: space-between;
+
+  .footer {
     width: 100%;
     display: grid;
-    grid-template-columns: repeat(4, 1fr);
-    padding:  2rem;
+    grid-template-columns: 3fr repeat(3, 2fr);
+    padding: 2rem;
+    max-width: 1200px;
 
     .footerColumn {
       display: flex;
       flex-direction: column;
 
+      a{
+        width: fit-content;
+      }
+
+      .logo {
+        margin-bottom: 1rem;
+
+        img {
+          height: 100%;
+          width: auto;
+        }
+      }
+
+      h2 {
+        // font-size: 1.15rem;
+        font-weight: 600;
+        text-transform: uppercase;
+        // margin-bottom: 0.5rem;
+      }
+
       .links {
         display: flex;
         flex-direction: column;
+        margin-top: 0.5rem;
+       
+
+        h3 {
+          font-weight: 600;
+        }
+
+        .navLink {
+          width: fit-content;
+          position: relative;
+          color: var(--black);
+          text-decoration: none;
+          margin-bottom: 0.25rem;
+  
+          &::after {
+            content: "";
+            position: absolute;
+            width: 100%;
+            transform: scaleX(0);
+            height: 0.075em;
+            bottom: 0px;
+            left: 0;
+            background-color: var(--secondary);
+            transform-origin: bottom right;
+            transition: transform 300ms ease-out;
+          }
+  
+          &:hover::after {
+            transform: scaleX(1);
+            transform-origin: bottom left;
+          }
+        }
       }
     }
   }
@@ -28,8 +81,20 @@ footer {
     width: 100%;
     display: flex;
     justify-content: space-between;
-    height: 2rem;
-    background-color: antiquewhite;
-    padding: 0.25rem 1rem;
+    border-top: 0.01em solid #666;
+    padding: 0.5rem 1rem;
+
+    div {
+      display: flex;
+      align-items: center;
+
+      svg {
+        font-size: 1.25rem;
+      }
+
+      a {
+        margin-left: 0.5rem;
+      }
+    }
   }
 }

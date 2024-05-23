@@ -1,6 +1,9 @@
 import Image from "next/image";
 import "./style.scss";
 import Link from "next/link";
+import { BsDot } from "react-icons/bs";
+
+
 
 const Footer = () => {
   return (
@@ -8,7 +11,7 @@ const Footer = () => {
       <div className="footer">
         {/* ZOMAR LOGO */}
         <div className="footerColumn">
-          <Link href="/">
+          <Link href="/" className="logo">
             <Image
               src="/zomarLogo.png"
               width={150}
@@ -18,24 +21,23 @@ const Footer = () => {
           </Link>
           <div className="links">
 
-          <p>Zomar interijeri d.o.o.</p>
+          <h3>Zomar interijeri d.o.o.</h3>
           <p>Križevačka ulica 4A,</p>
           <p>Vrbovec, Hrvatska</p>
           <p>OIB: </p>
-          <p>+385 1</p>
-          <p>info@zomar.hr</p>
+          <a href="tel:#">+385 1</a>
+          <a href="mailto:info@zomar.hr">info@zomar.hr</a>
           </div>
         </div>
         {/* ZOMAR INTERIJERI */}
         <div className="footerColumn">
-          <h2>Zomar interijeri</h2>
+          <h2>Zomar Interijeri</h2>
           <div className="links">
-            <p>O nama</p>
-            <p>Poslovnica</p>
-            <p>Nacini placanja</p>
-            <p>Cesta pitanja</p>
-            <p>pravila privatnosti</p>
-            <p>Kolacici</p>
+            <Link href={'/o-nama'} className="navLink">O nama</Link>
+            <Link href={'/'}  className="navLink">Načini plaćanja</Link>
+            <Link href={'/'} className="navLink">Česta pitanja</Link>
+            <Link href={'/politika-privatnosti'} className="navLink">Pravila privatnosti</Link>
+            <Link href={'/politika-privatnosti'} className="navLink">Kolačići</Link>
 
           </div>
         </div>
@@ -43,16 +45,16 @@ const Footer = () => {
         <div className="footerColumn">
           <h2>Kupci</h2>
           <div className="links">
-            <p>Kategorije</p>
-            <p>Novosti</p>
-            <p>Spiana</p>
-            <p>Outlet</p>
-            <p>Katalozi</p>
+            <Link href={'/kategorije'} className="navLink">Kategorije</Link>
+            <Link href={'/novosti'} className="navLink">Novosti</Link>
+            <Link href={'/'} className="navLink">Spiana</Link>
+            <Link href={'/ponuda'} className="navLink">Outlet</Link>
+      
           </div>
         </div>
         {/* POPULARNO */}
         <div className="footerColumn">
-          <h2>Drustvene mreze</h2>
+          <h2>Društvene mreže</h2>
           <div className="links">
             <p>Instagram</p>
             <p>Facebook</p>
@@ -60,8 +62,8 @@ const Footer = () => {
         </div>
       </div>
       <div className="copy">
-        <div>Zomar interijeri r 2024 Sva prava pridrzana</div>
-        <div>Developed by Livens</div>
+        <div>&copy; 2024 <BsDot/> Zomar interijeri</div>
+        <div>Developed by <Link href={'https://livens.co/'} target="_blank">Livens</Link></div>
       </div>
     </footer>
   );
