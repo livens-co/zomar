@@ -1,30 +1,96 @@
+// .productImageComponent {
+//   width: 100%;
+//   // max-width: 30rem;
+
+//   height: 25rem;
+//   margin-bottom: 1rem;
+//   display: flex;
+//   align-items: center;
+//   justify-content: center;
+ 
+
+//   .swiperSlide {
+//     text-align: center;
+//     font-size: 18px;
+//     background: #d6d6d6;
+   
+  
+//     /* Center slide text vertically */
+//     display: flex;
+//     justify-content: center;
+//     align-items: center;
+
+//      img {
+//       display: block;
+//       width: 100%;
+//       height: 100%;
+//       object-fit: cover;
+//     }
+//   }
+
+//   .swiper-pagination-bullet {
+//     width: 2rem;
+//     height: 4px;
+//     text-align: center;
+//    border-radius: 2px;
+//     color: #000;
+//     opacity: 1;
+//     background: rgba(255, 255, 255, 0.5);
+//   }
+
+//   .swiper-pagination-bullet-active {
+//     color: #fff;
+//     background: var(--secondary);
+//   }
+
+//   .swiper-button-prev, .swiper-button-next {
+//     color: var(--secondary);
+//   }
+// }
+
+// .productImageThumbComponent {
+//   width: 100%;
+//   // max-width: 30rem;
+//   height: 7rem;
+//   margin-bottom: 1rem;
+//   display: flex;
+//   align-items: center;
+//   justify-content: center;
+
+//   .swiperSlide {
+//     img{
+//       width: 100%;
+//       height: 100%;
+//       object-fit: cover;
+//     }
+//   }
+// }
+
+
 .productImageComponent {
   width: 100%;
-  // max-width: 30rem;
-
   height: 25rem;
   margin-bottom: 1rem;
   display: flex;
   align-items: center;
   justify-content: center;
- 
 
   .swiperSlide {
     text-align: center;
     font-size: 18px;
     background: #d6d6d6;
-   
-  
+
     /* Center slide text vertically */
     display: flex;
     justify-content: center;
     align-items: center;
 
-     img {
+    img {
       display: block;
       width: 100%;
       height: 100%;
       object-fit: cover;
+      cursor: pointer; /* Added for full screen functionality */
     }
   }
 
@@ -32,7 +98,7 @@
     width: 2rem;
     height: 4px;
     text-align: center;
-   border-radius: 2px;
+    border-radius: 2px;
     color: #000;
     opacity: 1;
     background: rgba(255, 255, 255, 0.5);
@@ -43,14 +109,14 @@
     background: var(--secondary);
   }
 
-  .swiper-button-prev, .swiper-button-next {
+  .swiper-button-prev,
+  .swiper-button-next {
     color: var(--secondary);
   }
 }
 
 .productImageThumbComponent {
   width: 100%;
-  // max-width: 30rem;
   height: 7rem;
   margin-bottom: 1rem;
   display: flex;
@@ -58,75 +124,47 @@
   justify-content: center;
 
   .swiperSlide {
-    img{
+    img {
       width: 100%;
       height: 100%;
       object-fit: cover;
+      cursor: pointer; /* Added for full screen functionality */
     }
   }
 }
 
-// .swiper {
-//   width: 100%;
-//   height: 100%;
-// }
+.clickableImage {
+  cursor: pointer;
+}
 
-// .swiper-slide {
-//   text-align: center;
-//   font-size: 18px;
-//   background: #fff;
+.modalOverlay {
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: 100vw;
+  height: 100vh;
+  background: rgba(0, 0, 0, 0.8);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  z-index: 1000;
+}
 
-//   /* Center slide text vertically */
-//   display: flex;
-//   justify-content: center;
-//   align-items: center;
-// }
+.modalContent {
+  position: relative;
+  width: 80%;
+  height: 80%;
+}
 
-// .swiper-slide img {
-//   display: block;
-//   width: 100%;
-//   height: 100%;
-//   object-fit: cover;
-// }
+.fullScreenSwiper {
+  width: 100%;
+  height: 100%;
 
-
-
-// .swiper {
-//   width: 30rem;
-//   height: 450px;
-//   margin-left: auto;
-//   margin-right: auto;
-// }
-
-// .swiper-slide {
-//   background-size: cover;
-//   background-position: center;
-// }
-
-// .mySwiper2 {
-//   height: 80%;
-//   width: 100%;
-// }
-
-// .mySwiper {
-//   height: 20%;
-//   box-sizing: border-box;
-//   padding: 10px 0;
-// }
-
-// .mySwiper .swiper-slide {
-//   width: 25%;
-//   height: 100%;
-//   opacity: 0.4;
-// }
-
-// .mySwiper .swiper-slide-thumb-active {
-//   opacity: 1;
-// }
-
-// .swiper-slide img {
-//   display: block;
-//   width: 100%;
-//   height: 100%;
-//   object-fit: cover;
-// }
+  .swiperSlide {
+    img {
+      object-fit: contain;
+      width: 100%;
+      height: 100%;
+    }
+  }
+}

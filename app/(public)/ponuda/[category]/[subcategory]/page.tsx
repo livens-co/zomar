@@ -6,6 +6,7 @@ import getSubcategoryBySlug from "@/sanity/actions/get-subcategory";
 import PaginationControls from "@/components/PaginationControls";
 import Image from "next/image";
 import ProductCard from "@/components/ProductCard";
+import { PortableText } from "@portabletext/react";
 
 export const revalidate = 1;
 
@@ -28,11 +29,10 @@ const ShopSubcategoryPage: React.FC<ShopSubcategoryPageProps> = async ({
     params.subcategory
   );
 
-  const page = searchParams["page"] ?? "1";
-  const per_page = searchParams["per_page"] ?? "12";
-
-  const start = (Number(page) - 1) * Number(per_page);
-  const end = start + Number(per_page);
+  const page = parseInt((searchParams["page"] as string) ?? "1", 10);
+  const per_page = parseInt((searchParams["per_page"] as string) ?? "12", 10);
+  const start = (page - 1) * per_page;
+  const end = start + per_page;
 
   const entries = products?.slice(start, end);
 
@@ -40,29 +40,27 @@ const ShopSubcategoryPage: React.FC<ShopSubcategoryPageProps> = async ({
 
   return (
     <div className="shopSubcategoryPage">
-      <div className="subcategoryPageTitle">{subcategory?.title}</div>
-      <div>Broj proizvoda: {productsNum}</div>
+      <div className="header">
+        <div className="image">
+          <Image
+            priority
+            src={subcategory?.image || ""}
+            width={600}
+            height={400}
+            alt={subcategory?.title || ""}
+          />
+          <div className="overlay" />
+        </div>
+        <h1>{subcategory?.title}</h1>
+      </div>
+
+      {/* <div className="subcategoryDescription">
+        <PortableText value={subcategory?.description || []} />
+      </div> */}
 
       <div className="productsGrid">
         {entries?.map((product) => (
-          // <Link
-          //   key={product._id}
-          //   href={`/proizvod/${product.slug}`}
-          //   className="productCard"
-          // >
-          //   <div className="image">
-          //     <Image
-          //       src={product.images[0]?.toString()}
-          //       width={200}
-          //       height={400}
-          //       alt="Bahrein"
-          //     />
-          //   </div>
-          //   <div className="title">
-          //     <h2>{product.title}</h2>
-          //   </div>
-          // </Link>
-          <ProductCard product={product} key={product._id}/>
+          <ProductCard product={product} key={product._id} />
         ))}
       </div>
       <div>

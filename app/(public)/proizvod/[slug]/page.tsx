@@ -11,6 +11,7 @@ import getProductsBySubcategory from "@/sanity/actions/get-products-by-subcatego
 import RecommendedProducts from "@/components/RecommendedProducts";
 import { Tabs, TabsContent, TabsList, TabsTrigger } from "@/components/ui/tabs";
 import ProductContact from "@/components/ProductContact";
+import getProductsBySubcategoryShop from "@/sanity/actions/get-products-by-subcategory-shop";
 
 export const revalidate = 1;
 
@@ -20,8 +21,6 @@ interface ProductPageProps {
   };
 }
 
-
-
 const ProductPage: React.FC<ProductPageProps> = async ({
   params: { slug },
 }) => {
@@ -29,13 +28,20 @@ const ProductPage: React.FC<ProductPageProps> = async ({
   let recommendedProducts: Product[] = [];
 
   if (product) {
-    recommendedProducts =
-      (await getProductsBySubcategory(product.subcategories[0].slug)) ?? [];
+    // Determine the source for recommended products based on product category
+    if (product.productCategory === "noPriceProduct") {
+      recommendedProducts =
+        (await getProductsBySubcategory(product.subcategories[0].slug)) ?? [];
+    } else if (product.productCategory === "priceProduct") {
+      recommendedProducts =
+        (await getProductsBySubcategoryShop(product.subcategories[0].slug)) ??
+        [];
+    }
 
     // Filter out the current product from recommended products
-    recommendedProducts = recommendedProducts.filter(
-      (recommendedProduct) => recommendedProduct._id !== product._id
-    ).slice(0,6);
+    recommendedProducts = recommendedProducts
+      .filter((recommendedProduct) => recommendedProduct._id !== product._id)
+      .slice(0, 6);
   } else {
     return <div>Proizvod nije pronađen</div>;
   }
@@ -72,7 +78,6 @@ const ProductPage: React.FC<ProductPageProps> = async ({
   return (
     <div className="productPage">
       <header>
-        {/* PATH */}
         <div className="path">
           <Link href={`/${pathLink}/${product?.categories[0]?.slug}`}>
             {product?.categories[0]?.title}
@@ -89,7 +94,6 @@ const ProductPage: React.FC<ProductPageProps> = async ({
         </div>
       </header>
       <main>
-        {/* IMAGE GALLERY */}
         <div className="galleryColumn">
           <ProductImages data={product.images} />
         </div>
@@ -102,24 +106,23 @@ const ProductPage: React.FC<ProductPageProps> = async ({
             <p>{product?.title}</p>
           </div>
 
-          {/* OPIS */}
           <PortableText value={product?.description} />
 
           <div className="line" />
 
-          {/* CIJENA */}
           {product.price && (
             <div className="price">
               {product.salePrice ? (
                 <div className="row">
                   <h3 className="regularPriceTitle">Cijena:</h3>
-                  <p className="regularPrice" style={{ textDecoration: 'line-through' }}>
+                  <p
+                    className="regularPrice"
+                    style={{ textDecoration: "line-through" }}
+                  >
                     {product.price.toFixed(2)} €
                   </p>
                   <h3 className="salePriceTitle">Akcijska cijena:</h3>
-                  <p className="salePrice">
-                    {product.salePrice.toFixed(2)} €
-                  </p>
+                  <p className="salePrice">{product.salePrice.toFixed(2)} €</p>
                 </div>
               ) : (
                 <div className="row">
@@ -130,9 +133,7 @@ const ProductPage: React.FC<ProductPageProps> = async ({
             </div>
           )}
 
-          
-          {/* KONTAKT BUTTON */}
-          <ProductContact product={product}/>
+          <ProductContact product={product} />
         </div>
       </main>
       <div className="productDetails">
@@ -153,16 +154,20 @@ const ProductPage: React.FC<ProductPageProps> = async ({
                 </TabsTrigger>
               </TabsList>
               <TabsContent value="description" className="tabContent">
-              <div className="productDetailsGrid">
+                <div className="productDetailsGrid">
                   {tags.map(({ key, label }) => (
                     <div className="tag" key={key}>
                       <p>
-                        {label}: {product.tags?.[key] ? <span>da</span> : <span>ne</span>}
+                        {label}:{" "}
+                        {product.tags?.[key] ? (
+                          <span>da</span>
+                        ) : (
+                          <span>ne</span>
+                        )}
                       </p>
                     </div>
                   ))}
                 </div>
-
               </TabsContent>
               <TabsContent value="size" className="tabContent">
                 <ul>
@@ -181,10 +186,10 @@ const ProductPage: React.FC<ProductPageProps> = async ({
             </Tabs>
           </div>
         </div>
-
-        {/* RECOMMENDED PRODUCTS FORM COLLECTION */}
       </div>
-      <RecommendedProducts recommendedProducts={recommendedProducts} />
+      {recommendedProducts.length > 0 && (
+        <RecommendedProducts recommendedProducts={recommendedProducts} />
+      )}
     </div>
   );
 };

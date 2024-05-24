@@ -15,17 +15,27 @@ import "swiper/css/thumbs";
 // import required modules
 import { FreeMode, Navigation, Thumbs } from "swiper/modules";
 
-import Image, { StaticImageData } from "next/image";
+import Image from "next/image";
 import { Swiper as SwiperType } from "swiper/types";
 
 
 interface ProductImagesProps {
-  // data: StaticImageData[];
   data: string[];
 }
 
 const ProductImages: React.FC<ProductImagesProps> = ({ data }) => {
   const [thumbsSwiper, setThumbsSwiper] = useState<SwiperType | null>(null);
+  const [isOpen, setIsOpen] = useState(false);
+  const [activeIndex, setActiveIndex] = useState(0);
+
+  const openModal = (index: number) => {
+    setActiveIndex(index);
+    setIsOpen(true);
+  };
+
+  const closeModal = () => {
+    setIsOpen(false);
+  };
 
   return (
     <>
@@ -38,9 +48,21 @@ const ProductImages: React.FC<ProductImagesProps> = ({ data }) => {
         modules={[FreeMode, Navigation, Thumbs]}
         className="productImageComponent"
       >
-        {data?.map((image, index) => (
+        {/* {data?.map((image, index) => (
           <SwiperSlide className="swiperSlide" key={index}>
             <Image src={image} alt="Images " width={600} height={400}/>
+          </SwiperSlide>
+        ))} */}
+         {data.map((image, index) => (
+          <SwiperSlide className="swiperSlide" key={index}>
+            <Image
+              src={image}
+              alt="Image"
+              width={600}
+              height={400}
+              onClick={() => openModal(index)}
+              className="clickableImage"
+            />
           </SwiperSlide>
         ))}
       </Swiper>
@@ -61,6 +83,27 @@ const ProductImages: React.FC<ProductImagesProps> = ({ data }) => {
           </SwiperSlide>
         ))}
       </Swiper>
+
+      {isOpen && (
+        <div className="modalOverlay" onClick={closeModal}>
+          <div className="modalContent" onClick={(e) => e.stopPropagation()}>
+            <Swiper
+              initialSlide={activeIndex}
+              loop={true}
+              spaceBetween={10}
+              navigation={true}
+              modules={[FreeMode, Navigation]}
+              className="fullScreenSwiper"
+            >
+              {data.map((image, index) => (
+                <SwiperSlide className="swiperSlide" key={index}>
+                  <Image src={image} alt="Image" layout="fill" objectFit="contain" />
+                </SwiperSlide>
+              ))}
+            </Swiper>
+          </div>
+        </div>
+      )}
     </>
   );
 };
