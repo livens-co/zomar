@@ -17,7 +17,7 @@ import { FreeMode, Navigation, Thumbs } from "swiper/modules";
 
 import Image from "next/image";
 import { Swiper as SwiperType } from "swiper/types";
-
+import { IoClose } from "react-icons/io5";
 
 interface ProductImagesProps {
   data: string[];
@@ -48,12 +48,7 @@ const ProductImages: React.FC<ProductImagesProps> = ({ data }) => {
         modules={[FreeMode, Navigation, Thumbs]}
         className="productImageComponent"
       >
-        {/* {data?.map((image, index) => (
-          <SwiperSlide className="swiperSlide" key={index}>
-            <Image src={image} alt="Images " width={600} height={400}/>
-          </SwiperSlide>
-        ))} */}
-         {data.map((image, index) => (
+        {data.map((image, index) => (
           <SwiperSlide className="swiperSlide" key={index}>
             <Image
               src={image}
@@ -66,7 +61,7 @@ const ProductImages: React.FC<ProductImagesProps> = ({ data }) => {
           </SwiperSlide>
         ))}
       </Swiper>
-      
+
       <Swiper
         onSwiper={setThumbsSwiper}
         loop={true}
@@ -79,13 +74,19 @@ const ProductImages: React.FC<ProductImagesProps> = ({ data }) => {
       >
         {data.map((image, index) => (
           <SwiperSlide className="swiperSlide" key={index}>
-            <Image src={image} alt="Images " width={600} height={400}/>
+            <Image src={image} alt="Images " width={600} height={400} />
           </SwiperSlide>
         ))}
       </Swiper>
 
       {isOpen && (
-        <div className="modalOverlay" onClick={closeModal}>
+        <div
+          className="modalOverlay"
+          // onClick={closeModal}
+        >
+          <div className="close" onClick={closeModal}>
+            <IoClose />
+          </div>
           <div className="modalContent" onClick={(e) => e.stopPropagation()}>
             <Swiper
               initialSlide={activeIndex}
@@ -97,7 +98,12 @@ const ProductImages: React.FC<ProductImagesProps> = ({ data }) => {
             >
               {data.map((image, index) => (
                 <SwiperSlide className="swiperSlide" key={index}>
-                  <Image src={image} alt="Image" layout="fill" objectFit="contain" />
+                  <Image
+                    src={image}
+                    alt="Image"
+                    layout="fill"
+                    objectFit="contain"
+                  />
                 </SwiperSlide>
               ))}
             </Swiper>

@@ -148,19 +148,38 @@
   align-items: center;
   justify-content: center;
   z-index: 1000;
+
+  .close {
+    position: absolute;
+    top: 5%;
+    right: 5%;
+    width: fit-content;
+    z-index: inherit;
+    color: white;
+    cursor: pointer;
+    font-size: 2rem;
+  }
 }
 
 .modalContent {
   position: relative;
   width: 80%;
   height: 80%;
+
+ 
 }
 
 .fullScreenSwiper {
   width: 100%;
   height: 100%;
 
+  .swiper-button-prev,
+  .swiper-button-next {
+    color: var(--white);
+  }
+
   .swiperSlide {
+    
     img {
       object-fit: contain;
       width: 100%;
