@@ -7,7 +7,6 @@
   align-items: flex-start;
   gap: 1rem;
   margin-top: 1rem;
-  
 
   h3 {
     color: var(--primary);
@@ -21,13 +20,19 @@
     width: 100%;
     display: flex;
     overflow: hidden;
-    
+
     .recommendedProductsContainerInner {
       width: 100%;
       display: flex;
       gap: 3rem;
       overflow-x: auto;
-      padding:  2rem 0;
+      padding: 2rem 0;
     }
+  }
+}
+
+@media screen and (max-width: 850px) {
+  .recommendedProducts {
+    padding: 2rem 1rem;
   }
 }

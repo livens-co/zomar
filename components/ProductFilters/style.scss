@@ -225,7 +225,7 @@
   .filtersComponent {
     .filtersContainer {
       .filtersContainerInner {
-        .filterButtons{
+        .filterButtons {
           flex-direction: column;
           // align-items: center;
           justify-content: flex-end;
@@ -243,16 +243,13 @@
 @media screen and (max-width: 850px) {
   .filtersComponent {
     .filtersContainer {
-
       &.visible {
-max-height: max-content;
+        max-height: max-content;
       }
 
       .filtersContainerInner {
         grid-template-columns: 1fr 1fr;
-        .filterButtons{
-          
-
+        .filterButtons {
           button {
             width: 100%;
           }

@@ -1,6 +1,4 @@
-import Link from "next/link";
 import "./style.scss";
-import Image from "next/image";
 import { Product } from "@/types";
 import ProductCard from "../ProductCard";
 
@@ -14,7 +12,6 @@ const RecommendedProducts: React.FC<RecommendedProductsProps> = ({
   return (
     <div className="recommendedProducts">
       <h3>Preporučeni proizvodi</h3>
-
       <div className="recommendedProductsContainer">
         <div className="recommendedProductsContainerInner">
           {recommendedProducts?.map((product) => (
