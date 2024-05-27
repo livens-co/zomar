@@ -19,7 +19,7 @@ const Menu: React.FC<MenuProps> = ({ openMenu, navLinks, closeMenu }) => {
           onClick={closeMenu}
           className="menuLink"
         >
-          <span>0{i + 1}</span>
+          {/* <span>0{i + 1}</span> */}
           <p>{l.name}</p>
         </Link>
       ))}
