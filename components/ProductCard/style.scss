@@ -45,3 +45,43 @@
     }
   }
 }
+
+@media screen and (max-width: 1150px) {
+  .productCard {
+    width: 16rem;
+
+    .image {
+      height: 14rem;
+    }
+  }
+}
+
+@media screen and (max-width: 950px) {
+  .productCard {
+    width: 20rem;
+
+    .image {
+      height: 18rem;
+    }
+  }
+}
+
+@media screen and (max-width: 750px) {
+  .productCard {
+    width: 16rem;
+    
+    .image {
+      height: 14rem;
+    }
+  }
+}
+
+@media screen and (max-width: 650px) {
+  .productCard {
+    width: 20rem;
+
+    .image {
+      height: 18rem;
+    }
+  }
+}

@@ -7,10 +7,7 @@
   padding-bottom: 4rem;
   
 
-  .subcategoryPageTitle{
-    font-size: 2rem;
-    margin: 3rem 0;
-  }
+  
 
   .header {
     width: 100%;
@@ -78,3 +75,22 @@
     
   }
 }
+
+@media screen and (max-width: 950px) {
+.subcategoryPage{
+  .productsGrid{
+    grid-template-columns: 1fr 1fr;
+  }
+}
+}
+
+@media screen and (max-width: 650px) {
+.subcategoryPage{
+  .productsGrid{
+    grid-template-columns: 1fr;
+    gap: 3rem;
+    padding: 2rem;
+  }
+}
+}
+

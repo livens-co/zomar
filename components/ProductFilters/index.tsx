@@ -2,7 +2,7 @@
 
 import { Brand, Format } from "@/types";
 import "./style.scss";
-import { useEffect, useState } from "react";
+import { useState } from "react";
 import { HiMenu } from "react-icons/hi";
 
 interface ProductFiltersProps {

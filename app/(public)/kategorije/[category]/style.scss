@@ -5,12 +5,7 @@
   flex-direction: column;
   align-items: center;
   padding-bottom: 4rem;
-  
 
-  // .categoryPageTitle {
-  //   font-size: 2rem;
-  //   margin-top: 3rem;
-  // }
   .header {
     width: 100%;
     // max-width: 1200px;
@@ -56,48 +51,11 @@
   .categoryGrid {
     width: 100%;
     max-width: 1200px;
-    display: grid;
-    grid-template-columns: repeat(3, 1fr);
+    display: flex;
+    flex-wrap: wrap;
     gap: 4rem 3rem;
-    align-content: center;
-    justify-items: center;
+    justify-content: center;
+    align-items: center;
     padding: 4rem 2rem;
-
-    // .categoryCard {
-    //   width: 100%;
-    //   height: fit-content;
-
-    //   .image {
-    //     aspect-ratio: 1/1;
-    //     overflow: hidden;
-
-    //     img {
-    //       height: 100%;
-    //       width: 100%;
-    //       object-fit: cover;
-    //       transition: all 300ms ease;
-    //     }
-    //   }
-
-    //   .title {
-    //     width: 100%;
-    //     padding: 0.5rem 0.25rem;
-
-    //     h2 {
-    //       font-size: 1.15rem;
-    //       font-weight: 600;
-    //       color: var(--tertiary);
-    //     }
-    //   }
-
-    //   &:hover{
-    //     .image{
-
-    //       img {
-    //         transform: scale(1.05);
-    //       }
-    //     }
-    //   }
-    // }
   }
 }
