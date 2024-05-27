@@ -28,10 +28,8 @@ const HomePage = async () => {
 
   return (
     <div className="homePage">
-    
       <Slider data={billboards} />
 
- 
       <div className="aboutUs">
         <div className="logo">
           <Image
@@ -66,7 +64,7 @@ const HomePage = async () => {
                   key={subcategory._id}
                 />
               ))
-              .slice(0, 10)}
+              .slice(0, 8)}
           </div>
         </div>
       </div>
@@ -109,7 +107,7 @@ const HomePage = async () => {
                 .map((product) => (
                   <ProductCard product={product} key={product._id} />
                 ))
-                .slice(0, 10)}
+                .slice(0, 8)}
             </div>
           </div>
         </div>
@@ -121,11 +119,13 @@ const HomePage = async () => {
           <h1>Novosti</h1>
         </div>
         <div className="newsContainer">
-          {articles
-            .map((article) => (
-              <ArticleCard article={article} key={article._id} />
-            ))
-            .slice(0, 4)}
+          <div className="newsContainerInner">
+            {articles
+              .map((article) => (
+                <ArticleCard article={article} key={article._id} />
+              ))
+              .slice(0, 4)}
+          </div>
         </div>
       </div>
     </div>
