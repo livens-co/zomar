@@ -4,7 +4,7 @@ export const revalidate = 1;
 
 import Image from "next/image";
 import Link from "next/link";
-import { Article, Billboard, Product, Subcategory } from "@/types";
+import { Article, Billboard, Category, Product, Subcategory } from "@/types";
 import Slider from "@/components/Slider";
 import getArticles from "@/sanity/actions/get-articles";
 import getBillboards from "@/sanity/actions/get-billboards";
@@ -13,17 +13,17 @@ import ProductCard from "@/components/ProductCard";
 import getSubcategoriesByCategory from "@/sanity/actions/get-subcategories";
 import ArticleCard from "@/components/ArticleCard";
 import SubCategoryCard from "@/components/SubCategoryCard";
+import getCategories from "@/sanity/actions/get-categories";
+import CategoryCard from "@/components/CategoryCard";
 
 const HomePage = async () => {
   const billboards: Billboard[] | [] = await getBillboards();
   const articles: Article[] | [] = await getArticles();
   const products: Product[] | [] = await getProductsShop();
-  const subcategories: Subcategory[] | [] = await getSubcategoriesByCategory(
-    "keramika"
-  );
+  const categories: Category[] | [] = await getCategories();
 
-  const subcategoriesWithProd = subcategories.filter(
-    (subcategory) => subcategory?.products.length > 0
+  const categoriesWithProd = categories.filter(
+    (category) => category?.products.length > 0
   );
 
   return (
@@ -55,13 +55,12 @@ const HomePage = async () => {
         </div>
         <div className="collectionsSlider">
           <div className="collectionsSliderContainer">
-            {subcategoriesWithProd
-              .map((subcategory) => (
-                <SubCategoryCard
-                  subcategory={subcategory}
-                  subcategoryUrl="keramika"
-                  categoryUrl="kategorije"
-                  key={subcategory._id}
+            {categoriesWithProd
+              .map((category) => (
+                <CategoryCard
+                  category={category}
+                  url="kategorije"
+                  key={category._id}
                 />
               ))
               .slice(0, 8)}

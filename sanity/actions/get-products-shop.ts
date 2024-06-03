@@ -4,7 +4,9 @@ import clientConfig from "../config/client-config";
 
 export default function getProductsShop(): Promise<Product[]> {
   return createClient(clientConfig).fetch(
-    groq`*[_type == "products" && productCategory == "priceProduct" && isFeatured == true] | order(_createdAt desc) {
+    groq`*[_type == "products"
+    //  && productCategory == "priceProduct" 
+     && isFeatured == true] | order(_createdAt desc) {
       _id,
       title,
       price,

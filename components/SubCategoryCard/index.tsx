@@ -29,6 +29,7 @@ const SubCategoryCard = ({ subcategory, subcategoryUrl, categoryUrl }: Props) =>
         <div className="title">
           <h2>{subcategory?.title}</h2>
         </div>
+        <div className="overlay"/>
       </Link>
     </>
   );
