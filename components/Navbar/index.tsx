@@ -14,15 +14,15 @@ const navLinks = [
   },
   {
     name: "Katalozi",
-    path: "/",
+    path: "/katalozi",
   },
   {
-    name: "Reference",
-    path: "/reference",
+    name: "Projekti",
+    path: "/projekti",
   },
   {
     name: "Spiana",
-    path: "/",
+    path: "/spiana",
   },
   {
     name: "Kontakt",

@@ -1,10 +1,10 @@
 import { createClient, groq } from "next-sanity";
-import { Reference } from "@/types";
+import { Project } from "@/types";
 import clientConfig from "../config/client-config";
 
-export default function getReferences(): Promise<Reference[]> {
+export default function getProjects(): Promise<Project[]> {
   return createClient(clientConfig).fetch(
-    groq`*[_type == "reference" ] | order(_createdAt desc) {
+    groq`*[_type == "project" ] | order(_createdAt desc) {
       _id,
       title,
       'slug': slug.current,

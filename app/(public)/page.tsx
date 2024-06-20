@@ -4,7 +4,7 @@ export const revalidate = 1;
 
 import Image from "next/image";
 import Link from "next/link";
-import { Billboard, Category, Product, Reference, Subcategory } from "@/types";
+import { Billboard, Category, Product, Project, Subcategory } from "@/types";
 import Slider from "@/components/Slider";
 import getBillboards from "@/sanity/actions/get-billboards";
 import getProductsShop from "@/sanity/actions/get-products-shop";
@@ -13,13 +13,13 @@ import getSubcategoriesByCategory from "@/sanity/actions/get-subcategories";
 import SubCategoryCard from "@/components/SubCategoryCard";
 import getCategories from "@/sanity/actions/get-categories";
 import CategoryCard from "@/components/CategoryCard";
-import getReferences from "@/sanity/actions/get-references";
+import getProjects from "@/sanity/actions/get-projects";
 
 const HomePage = async () => {
   const billboards: Billboard[] | [] = await getBillboards();
   const products: Product[] | [] = await getProductsShop();
   const categories: Category[] | [] = await getCategories();
-  const references: Reference[] = await getReferences()
+  const projects: Project[] = await getProjects();
 
   const categoriesWithProd = categories.filter(
     (category) => category?.products.length > 0
@@ -29,6 +29,7 @@ const HomePage = async () => {
     <div className="homePage">
       <Slider data={billboards} />
 
+      {/* O NAMA */}
       <div className="aboutUs">
         <div className="logo">
           <Image
@@ -67,6 +68,7 @@ const HomePage = async () => {
         </div>
       </div>
 
+      {/* SPIANA SECTION */}
       <div className="featuredCollection">
         <div className="image">
           <Image
@@ -89,11 +91,14 @@ const HomePage = async () => {
               voluptatibus, consectetur rerum suscipit aut ratione!
             </p>
           </div>
-          <Link href="/">Pogledaj kolekciju</Link>
+          <Link href="/spiana">Pogledaj kolekciju</Link>
         </div>
       </div>
 
-      {/* SHOP PROIZVODI */}
+      {/* OUTLET DIO */}
+      <p>outlet dio, slika, opis, link na ponudu</p>
+
+      {/* SVI PROIZVODI fetaured početna*/}
       <div className="shop">
         <div className="innerContainer">
           <div className="containerTitle">
@@ -126,6 +131,9 @@ const HomePage = async () => {
           </div> */}
         </div>
       </div>
+
+      {/* KATALOZI */}
+      <p>katalozi</p>
     </div>
   );
 };

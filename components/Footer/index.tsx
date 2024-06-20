@@ -46,8 +46,9 @@ const Footer = () => {
           <h2>Kupci</h2>
           <div className="links">
             <Link href={'/kategorije'} className="navLink">Kategorije</Link>
-            <Link href={'/reference'} className="navLink">Reference</Link>
-            <Link href={'/'} className="navLink">Spiana</Link>
+            <Link href={'/projekti'} className="navLink">Projekti</Link>
+            <Link href={'/spiana'} className="navLink">Spiana</Link>
+            <Link href={'/katalozi'} className="navLink">Katalozi</Link>
             <Link href={'/ponuda'} className="navLink">Outlet</Link>
       
           </div>

@@ -1,46 +1,48 @@
-import { Reference } from "@/types";
+import { Project } from "@/types";
 import "./style.scss";
 import Image from "next/image";
 import { PortableText } from "@portabletext/react";
 import { RichTextComponents } from "@/components/RichTextComponent/RichTextComponents";
 import ArticleCard from "@/components/ArticleCard";
 import Link from "next/link";
-import getReference from "@/sanity/actions/get-reference";
-import getReferences from "@/sanity/actions/get-references";
+import getProject from "@/sanity/actions/get-project";
+import getProjects from "@/sanity/actions/get-projects";
+
 
 export const revalidate = 1;
 
-interface ReferencePageProps {
+interface ProjectPageProps {
   params: {
     slug: string;
   };
 }
 
-const ReferencePage: React.FC<ReferencePageProps> = async ({
+const ProjectPage: React.FC<ProjectPageProps> = async ({
   params: { slug },
 }) => {
-  const reference: Reference | null = await getReference(slug)
-  let recommendedReferences: Reference[] = [];
+  const project: Project | null = await getProject(slug);
+  let recommendedProjects: Project[] = [];
 
-  if (reference) {
-    recommendedReferences =
-      (await getReferences()) ?? [];
+  if (project) {
+    recommendedProjects = (await getProjects()) ?? [];
 
     // Filter out the current reference from recommended references
-    recommendedReferences = recommendedReferences.filter(
-      (recommendedReference) => recommendedReference._id !== reference._id
-    ).slice(0,3);
+    recommendedProjects = recommendedProjects
+      .filter(
+        (recommendedReference) => recommendedReference._id !== project._id
+      )
+      .slice(0, 3);
   } else {
-    return <div>Referenca nije pronađena</div>;
+    return <div>Projekt nije pronađen</div>;
   }
 
-  if (!reference) {
-    return <div>Referenca nije pronađena</div>;
+  if (!project) {
+    return <div>Projekt nije pronađen</div>;
   }
-  
+
   return (
-    <div className="referencePage">
-      reference page
+    <div className="projectPage">
+      project page
       {/* <div className="headerImage">
         <Image
           priority
@@ -73,4 +75,4 @@ const ReferencePage: React.FC<ReferencePageProps> = async ({
   );
 };
 
-export default ReferencePage;
+export default ProjectPage;

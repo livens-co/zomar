@@ -77,7 +77,7 @@ export interface Article {
   body: PortableTextBlock[];
 }
 
-export interface Reference {
+export interface Project {
   _id: string;
   title: string;
   description: PortableTextBlock[];

@@ -4,7 +4,7 @@ import brand from "./brand-schema";
 import category from "./category-schema";
 import format from "./format-schema";
 import product from "./product-schema";
-import reference from "./reference-schema";
+import project from "./project-schema";
 import subcategory from "./subcategory-schema";
 
 const schemas = [
@@ -15,7 +15,7 @@ const schemas = [
   format,
   brand,
   billboard,
-  reference
+  project
 ];
 
 export default schemas;

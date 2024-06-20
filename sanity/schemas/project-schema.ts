@@ -1,9 +1,9 @@
 import { normalize } from "normalize-diacritics";
 import { isUniqueAcrossAllDocuments } from "@/lib/isUniqueAcrossAllDocuments";
 
-const reference = {
-  name: "reference",
-  title: "Referenca",
+const project = {
+  name: "project",
+  title: "Projekti",
   type: "document",
   fields: [
     {
@@ -53,4 +53,4 @@ const reference = {
   ],
 };
 
-export default reference;
+export default project;
