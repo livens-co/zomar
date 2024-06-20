@@ -1,46 +1,47 @@
-import { Article } from "@/types";
+import { Reference } from "@/types";
 import "./style.scss";
-import getArticle from "@/sanity/actions/get-article";
-import getArticles from "@/sanity/actions/get-articles";
 import Image from "next/image";
 import { PortableText } from "@portabletext/react";
 import { RichTextComponents } from "@/components/RichTextComponent/RichTextComponents";
 import ArticleCard from "@/components/ArticleCard";
 import Link from "next/link";
+import getReference from "@/sanity/actions/get-reference";
+import getReferences from "@/sanity/actions/get-references";
 
 export const revalidate = 1;
 
-interface ArticlePageProps {
+interface ReferencePageProps {
   params: {
     slug: string;
   };
 }
 
-const ArticlePage: React.FC<ArticlePageProps> = async ({
+const ReferencePage: React.FC<ReferencePageProps> = async ({
   params: { slug },
 }) => {
-  const article: Article | null = await getArticle(slug);
-  let recommendedArticles: Article[] = [];
+  const reference: Reference | null = await getReference(slug)
+  let recommendedReferences: Reference[] = [];
 
-  if (article) {
-    recommendedArticles =
-      (await getArticles()) ?? [];
+  if (reference) {
+    recommendedReferences =
+      (await getReferences()) ?? [];
 
-    // Filter out the current article from recommended articles
-    recommendedArticles = recommendedArticles.filter(
-      (recommendedArticle) => recommendedArticle._id !== article._id
+    // Filter out the current reference from recommended references
+    recommendedReferences = recommendedReferences.filter(
+      (recommendedReference) => recommendedReference._id !== reference._id
     ).slice(0,3);
   } else {
-    return <div>Članak nije pronađen</div>;
+    return <div>Referenca nije pronađena</div>;
   }
 
-  if (!article) {
-    return <div>Članak nije pronađen</div>;
+  if (!reference) {
+    return <div>Referenca nije pronađena</div>;
   }
   
   return (
-    <div className="articlePage">
-      <div className="headerImage">
+    <div className="referencePage">
+      reference page
+      {/* <div className="headerImage">
         <Image
           priority
           src={article.image}
@@ -67,9 +68,9 @@ const ArticlePage: React.FC<ArticlePageProps> = async ({
             <ArticleCard article={article} key={article._id} />
           ))}
         </div>
-      </div>
+      </div> */}
     </div>
   );
 };
 
-export default ArticlePage;
+export default ReferencePage;

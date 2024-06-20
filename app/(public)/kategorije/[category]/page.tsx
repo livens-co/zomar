@@ -39,7 +39,7 @@ const CategoryPage: React.FC<CategoryPageProps> = async ({ params }) => {
       <div className="header">
         <div className="image">
           <Image
-            src={category.image}
+            src={category.image || '/test/photo3-min.jpg'}
             width={600}
             height={400}
             alt={category.title}

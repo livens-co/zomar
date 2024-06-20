@@ -9,21 +9,20 @@ import { useState } from "react";
 
 const navLinks = [
   {
-    name: "Početna",
-    path: "/",
-  },
-  {
     name: "Proizvodi",
     path: "/kategorije",
   },
   {
-    name: "Spiana",
+    name: "Katalozi",
     path: "/",
   },
-
   {
-    name: "Novosti",
-    path: "/novosti",
+    name: "Reference",
+    path: "/reference",
+  },
+  {
+    name: "Spiana",
+    path: "/",
   },
   {
     name: "Kontakt",
@@ -32,7 +31,7 @@ const navLinks = [
   {
     name: "Outlet",
     path: "/ponuda",
-  },
+  }
 ];
 
 const Navbar = () => {

@@ -123,6 +123,11 @@ const product = {
       type: "boolean",
     },
     {
+      name: "isFeaturedSubcategory",
+      title: "Prikazan u potkategoriji",
+      type: "boolean",
+    },
+    {
       name: "tags",
       title: "Vrsta pločice",
       type: "object",

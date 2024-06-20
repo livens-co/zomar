@@ -134,14 +134,17 @@ const SubcategoryPage: React.FC<SubcategoryPageProps> = ({
       </div>
 
       {/* FILTERS */}
-      <ProductFilters
-        onTagsChange={handleTagsChange}
-        onBrandsChange={handleBrandsChange}
-        onFormatsChange={handleFormatsChange}
-        brands={brands}
-        formats={formats}
-        productsNum={productsNum}
-      />
+       {/* Render ProductFilters only if category is /kategorije/keramika */}
+       {params.category === "keramika" && (
+        <ProductFilters
+          onTagsChange={handleTagsChange}
+          onBrandsChange={handleBrandsChange}
+          onFormatsChange={handleFormatsChange}
+          brands={brands}
+          formats={formats}
+          productsNum={productsNum}
+        />
+      )}
 
       <div className="productsGrid">
         {entries?.map((product) => (

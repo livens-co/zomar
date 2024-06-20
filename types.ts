@@ -77,6 +77,15 @@ export interface Article {
   body: PortableTextBlock[];
 }
 
+export interface Reference {
+  _id: string;
+  title: string;
+  description: PortableTextBlock[];
+  slug: string;
+  image: string;
+  images: string[];
+}
+
 export interface Billboard {
   _id: string;
   title: string;

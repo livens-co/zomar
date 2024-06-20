@@ -35,7 +35,7 @@ const Footer = () => {
           <div className="links">
             <Link href={'/o-nama'} className="navLink">O nama</Link>
             <Link href={'/'}  className="navLink">Načini plaćanja</Link>
-            <Link href={'/'} className="navLink">Česta pitanja</Link>
+            <Link href={'/cesta-pitanja'} className="navLink">Česta pitanja</Link>
             <Link href={'/politika-privatnosti'} className="navLink">Pravila privatnosti</Link>
             <Link href={'/politika-privatnosti'} className="navLink">Kolačići</Link>
 
@@ -46,7 +46,7 @@ const Footer = () => {
           <h2>Kupci</h2>
           <div className="links">
             <Link href={'/kategorije'} className="navLink">Kategorije</Link>
-            <Link href={'/novosti'} className="navLink">Novosti</Link>
+            <Link href={'/reference'} className="navLink">Reference</Link>
             <Link href={'/'} className="navLink">Spiana</Link>
             <Link href={'/ponuda'} className="navLink">Outlet</Link>
       

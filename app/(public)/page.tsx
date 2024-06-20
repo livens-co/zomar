@@ -4,23 +4,22 @@ export const revalidate = 1;
 
 import Image from "next/image";
 import Link from "next/link";
-import { Article, Billboard, Category, Product, Subcategory } from "@/types";
+import { Billboard, Category, Product, Reference, Subcategory } from "@/types";
 import Slider from "@/components/Slider";
-import getArticles from "@/sanity/actions/get-articles";
 import getBillboards from "@/sanity/actions/get-billboards";
 import getProductsShop from "@/sanity/actions/get-products-shop";
 import ProductCard from "@/components/ProductCard";
 import getSubcategoriesByCategory from "@/sanity/actions/get-subcategories";
-import ArticleCard from "@/components/ArticleCard";
 import SubCategoryCard from "@/components/SubCategoryCard";
 import getCategories from "@/sanity/actions/get-categories";
 import CategoryCard from "@/components/CategoryCard";
+import getReferences from "@/sanity/actions/get-references";
 
 const HomePage = async () => {
   const billboards: Billboard[] | [] = await getBillboards();
-  const articles: Article[] | [] = await getArticles();
   const products: Product[] | [] = await getProductsShop();
   const categories: Category[] | [] = await getCategories();
+  const references: Reference[] = await getReferences()
 
   const categoriesWithProd = categories.filter(
     (category) => category?.products.length > 0
@@ -112,19 +111,19 @@ const HomePage = async () => {
         </div>
       </div>
 
-      {/* NOVOSTI */}
+      {/* REFERENCE */}
       <div className="news">
         <div className="title">
-          <h1>Novosti</h1>
+          <h1>Reference</h1>
         </div>
         <div className="newsContainer">
-          <div className="newsContainerInner">
+          {/* <div className="newsContainerInner">
             {articles
               .map((article) => (
                 <ArticleCard article={article} key={article._id} />
               ))
               .slice(0, 4)}
-          </div>
+          </div> */}
         </div>
       </div>
     </div>
