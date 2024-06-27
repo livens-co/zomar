@@ -8,35 +8,47 @@
   margin-bottom: 4rem;
 
   .aboutUs {
-    max-width: 1000px;
+    max-width: 1200px;
     width: 100%;
     display: flex;
     flex-direction: column;
     align-items: center;
     padding: 4rem 2rem;
+    gap: 3rem;
 
-    .logo {
-      height: 5rem;
-      width: fit-content;
-
-      img {
-        height: 100%;
-        width: auto;
-      }
+    h1 {
+      font-size: 2.5rem;
     }
 
-    .text {
-      width: 60%;
-      margin-top: 2rem;
+    .aboutUsRow {
+      width: 100%;
+      display: flex;
+      gap: 3rem;
+      align-items: center;
 
-      p {
-        font-size: 1.25rem;
-        font-weight: 400;
-        text-align: center;
+      .image {
+        height: 16rem;
+        width: fit-content;
 
-        span {
-          font-weight: 600;
-          color: var(--secondary);
+        img {
+          height: 100%;
+          width: auto;
+        }
+      }
+
+      .text {
+        width: 60%;
+        margin-top: 2rem;
+
+        p {
+          font-size: 1.15rem;
+          font-weight: 300;
+          text-align: center;
+
+          span {
+            font-weight: 600;
+            color: var(--secondary);
+          }
         }
       }
     }
@@ -66,9 +78,14 @@
         width: 100%;
         max-width: 1200px;
         padding: 2rem 0;
-
         gap: 3rem;
         overflow-x: auto;
+        -ms-overflow-style: none;
+        scrollbar-width: none;
+
+        &::-webkit-scrollbar {
+          display: none;
+        }
       }
     }
   }
@@ -131,7 +148,7 @@
     }
   }
 
-  .news {
+  .projects {
     max-width: 1200px;
     width: 100%;
     display: flex;
@@ -145,18 +162,29 @@
       }
     }
 
-    .newsContainer {
+    .projectsContainer {
       width: 100%;
       display: flex;
       overflow: hidden;
 
-      .newsContainerInner {
+      .projectsContainerInner {
         width: 100%;
         display: flex;
         gap: 3rem;
         overflow-x: auto;
         padding: 2rem 0;
       }
+    }
+
+    .projectsLink {
+      width: fit-content;
+        font-size: 1rem;
+        padding: 0.35rem 1.5rem;
+        border: 1px solid var(--primary);
+        display: flex;
+        align-items: center;
+        justify-content: center;
+      align-self: flex-end;
     }
   }
 
@@ -197,6 +225,12 @@
           display: flex;
           gap: 3rem;
           overflow-x: auto;
+          -ms-overflow-style: none;
+          scrollbar-width: none;
+
+          &::-webkit-scrollbar {
+            display: none;
+          }
         }
       }
     }

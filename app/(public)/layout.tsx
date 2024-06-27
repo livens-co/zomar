@@ -1,5 +1,6 @@
 import type { Metadata } from "next";
 import localfont from "next/font/local";
+import { Roboto } from "next/font/google";
 import "./globals.css";
 import Navbar from "@/components/Navbar";
 import Footer from "@/components/Footer";
@@ -40,6 +41,11 @@ const houschkaPro = localfont({
   ],
 });
 
+const roboto = Roboto({
+  weight: ["100", "300", "400", "500", "700", "900"],
+  subsets: ["latin"],
+});
+
 export const metadata: Metadata = {
   title: "Zomar Interijeri",
   description: "Zomar interijeri",
@@ -52,13 +58,11 @@ export default function RootLayout({
 }) {
   return (
     <html lang="hr">
-      <body className={houschkaPro.className}>
+      <body className={roboto.className}>
         <Navbar />
-        <div className="mainLayout">
-          {children}
-          </div>
+        <div className="mainLayout">{children}</div>
         <Footer />
-        <Toaster/>
+        <Toaster />
       </body>
     </html>
   );

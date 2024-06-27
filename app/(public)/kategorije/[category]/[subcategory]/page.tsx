@@ -117,9 +117,10 @@ const SubcategoryPage: React.FC<SubcategoryPageProps> = ({
     <div className="subcategoryPage">
       <div className="header">
         <div className="image">
+          {/* ADD PLACEHOLDER IMAGE */}
           <Image
             priority
-            src={subcategory?.image || ""}
+            src={subcategory?.image || "/test/photo3-min.jpg"}
             width={600}
             height={400}
             alt={subcategory?.title || ""}
@@ -134,8 +135,7 @@ const SubcategoryPage: React.FC<SubcategoryPageProps> = ({
       </div>
 
       {/* FILTERS */}
-       {/* Render ProductFilters only if category is /kategorije/keramika */}
-       {params.category === "keramika" && (
+      {params.category === "keramika" && (
         <ProductFilters
           onTagsChange={handleTagsChange}
           onBrandsChange={handleBrandsChange}
@@ -151,6 +151,7 @@ const SubcategoryPage: React.FC<SubcategoryPageProps> = ({
           <ProductCard product={product} key={product._id} />
         ))}
       </div>
+      
       <div>
         <PaginationControls
           hasNextPage={end < (products?.length ?? 0)}

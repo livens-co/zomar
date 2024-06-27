@@ -71,20 +71,11 @@
         transform: scaleX(1);
         transform-origin: bottom left;
       }
-    }
 
-    .academyLink {
-      padding: 0.25rem 0;
-      height: 2.25rem;
-      width: fit-content;
-      display: flex;
-      align-items: center;
-      // justify-content: center;
-
-      h3 {
-        font-size: 1.5rem;
+      &:last-child {
         font-weight: 500;
-        width: 10rem;
+        text-transform: uppercase;
+        color: #df1c1c;
       }
     }
   }

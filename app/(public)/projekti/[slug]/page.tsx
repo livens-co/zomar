@@ -40,6 +40,7 @@ const ProjectPage: React.FC<ProjectPageProps> = async ({
     return <div>Projekt nije pronađen</div>;
   }
 
+  console.log(project)
   return (
     <div className="projectPage">
       project page

@@ -62,10 +62,16 @@
           transform: scaleX(1);
           transform-origin: bottom left;
         }
+
+        &:last-child {
+          color: #df1c1c;
+          font-weight: 600;
+          margin-left: 3rem;
+        }
       }
       .navLink[href="/"]:hover::after,
       .navLink[href="/"].active::after {
-        transform: scaleX(0); /* No underline for root */
+        transform: scaleX(0);
       }
     }
 

@@ -12,14 +12,13 @@ const Menu: React.FC<MenuProps> = ({ openMenu, navLinks, closeMenu }) => {
   
   return (
     <div className="menuOverlay" style={{ top: openMenu ? "0" : "-100vh" }}>
-      {navLinks.map((l, i) => (
+      {navLinks.map((l) => (
         <Link
           href={l.path} 
           key={l.path}
           onClick={closeMenu}
           className="menuLink"
         >
-          {/* <span>0{i + 1}</span> */}
           <p>{l.name}</p>
         </Link>
       ))}

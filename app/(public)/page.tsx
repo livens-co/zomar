@@ -14,6 +14,7 @@ import SubCategoryCard from "@/components/SubCategoryCard";
 import getCategories from "@/sanity/actions/get-categories";
 import CategoryCard from "@/components/CategoryCard";
 import getProjects from "@/sanity/actions/get-projects";
+import ProjectCard from "@/components/ProjectCard";
 
 const HomePage = async () => {
   const billboards: Billboard[] | [] = await getBillboards();
@@ -31,21 +32,60 @@ const HomePage = async () => {
 
       {/* O NAMA */}
       <div className="aboutUs">
-        <div className="logo">
-          <Image
-            src="/zomarLogo.png"
-            width={100}
-            height={300}
-            alt="Zomar interineri"
-          />
+        <h1>Zomar interijeri</h1>
+        <div className="aboutUsRow">
+          <div className="image">
+            <Image
+              src="/test/photo3-min.jpg"
+              width={200}
+              height={200}
+              alt="Zomar interineri"
+            />
+          </div>
+          <div className="text">
+            <p>
+              Lorem ipsum dolor sit amet consectetur adipisicing elit. Quisquam
+              officiis, aspernatur nisi totam dolorem cum esse voluptas ipsum
+              laboriosam magnam? Rerum quasi assumenda voluptate veritatis
+              nesciunt repellendus non, amet quis.
+            </p>
+          </div>
         </div>
-        <div className="text">
-          <p>
-            Uz savjete našeg stručnog i ljubaznog osoblja nudimo široku paletu
-            <span> proizvoda vrhunske kvalitete</span> različitih stilova koji
-            će zadovoljiti
-            <span> sve vaše želje i potrebe</span>.
-          </p>
+        <div className="aboutUsRow">
+          <div className="text">
+            <p>
+              Lorem ipsum dolor sit amet consectetur, adipisicing elit.
+              Excepturi omnis quaerat autem laborum, aspernatur itaque inventore
+              praesentium at nemo placeat repellat blanditiis delectus deleniti
+              perferendis minima explicabo nobis a nisi.
+            </p>
+          </div>
+          <div className="image">
+            <Image
+              src="/test/photo3-min.jpg"
+              width={200}
+              height={200}
+              alt="Zomar interineri"
+            />
+          </div>
+        </div>
+        <div className="aboutUsRow">
+          <div className="image">
+            <Image
+              src="/test/photo3-min.jpg"
+              width={200}
+              height={200}
+              alt="Zomar interineri"
+            />
+          </div>
+          <div className="text">
+            <p>
+              Lorem ipsum dolor sit amet, consectetur adipisicing elit. Porro
+              quisquam possimus molestias pariatur maiores ratione omnis totam
+              enim adipisci iste itaque fuga labore eius, ad cumque suscipit hic
+              rerum? Vitae?
+            </p>
+          </div>
         </div>
       </div>
 
@@ -96,7 +136,32 @@ const HomePage = async () => {
       </div>
 
       {/* OUTLET DIO */}
-      <p>outlet dio, slika, opis, link na ponudu</p>
+      <div className="featuredCollection">
+        
+        <div className="content">
+          <div className="title">
+            <h1>Outlet</h1>
+            <h2>ponuda proizvoda na lageru</h2>
+            <p>
+              Lorem ipsum dolor, sit amet consectetur adipisicing elit.
+              Architecto pariatur tempore, quaerat hic fugit facere rem minima
+              quia ex quasi dolorem officiis aspernatur quos nihil et, libero
+              molestias ipsum at neque quas magnam, fugiat commodi harum.
+              Debitis architecto quam nam qui ipsam deserunt! Magnam
+              voluptatibus, consectetur rerum suscipit aut ratione!
+            </p>
+          </div>
+          <Link href="/ponuda">Pogledaj ponudu</Link>
+        </div>
+        <div className="image">
+          <Image
+            src="/test/photo3-min.jpg"
+            width={200}
+            height={400}
+            alt="Bahrein"
+          />
+        </div>
+      </div>
 
       {/* SVI PROIZVODI fetaured početna*/}
       <div className="shop">
@@ -117,19 +182,20 @@ const HomePage = async () => {
       </div>
 
       {/* REFERENCE */}
-      <div className="news">
+      <div className="projects">
         <div className="title">
-          <h1>Reference</h1>
+          <h1>Projekti</h1>
         </div>
-        <div className="newsContainer">
-          {/* <div className="newsContainerInner">
-            {articles
-              .map((article) => (
-                <ArticleCard article={article} key={article._id} />
+        <div className="projectsContainer">
+          <div className="projectsContainerInner">
+            {projects
+              .map((project) => (
+                <ProjectCard project={project} key={project._id} />
               ))
-              .slice(0, 4)}
-          </div> */}
+              .slice(0, 3)}
+          </div>
         </div>
+        <Link href={'/projekti'} className="projectsLink">Svi projekti</Link>
       </div>
 
       {/* KATALOZI */}

@@ -18,7 +18,7 @@ const ProductCard = ({ product }: Props) => {
         <div className="image">
           <Image
             src={product.images[0]?.toString()}
-            width={200}
+            width={400}
             height={400}
             alt={product.title}
           />
